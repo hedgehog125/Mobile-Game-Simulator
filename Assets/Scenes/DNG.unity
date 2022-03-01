@@ -461,7 +461,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3acb784a47c13724398c58c78b01993a, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -502,7 +502,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4b57b7be40527479ffb5c7775923cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NFTAsset: {fileID: 4900000, guid: d90e8a3ab3547724d952fafe0e58092c, type: 3}
+  NFTImgAssets:
+  - {fileID: 21300000, guid: 3889e7f22de72ca40b9e86814252bdde, type: 3}
+  - {fileID: 21300000, guid: e4eece317495d844aa1d87346a79012a, type: 3}
+  - {fileID: 21300000, guid: fa1eadab9fc62f442a1ea246a517e877, type: 3}
+  - {fileID: 21300000, guid: 5cafff53cb4ad87438a4be6d2205b626, type: 3}
+  - {fileID: 21300000, guid: 945a7f1585dd42a47822da2a9116fbc9, type: 3}
+  NFTAssets:
+  - {fileID: 4900000, guid: 58c2d8e59e70a6245a43ab3dec0f11ed, type: 3}
+  - {fileID: 4900000, guid: 4db7cd16a06a845439867802105ba32b, type: 3}
+  - {fileID: 4900000, guid: 5a06dd2447a03c5428d15e62d5db8563, type: 3}
+  - {fileID: 4900000, guid: 4cd1189d9c639d44fba7b8334991ca37, type: 3}
+  - {fileID: 4900000, guid: 1c24cd23a6b363d4e92605a21a345cb9, type: 3}
+  NFT_ID: 0
   variationID: 0
 --- !u!1 &1807984864
 GameObject:

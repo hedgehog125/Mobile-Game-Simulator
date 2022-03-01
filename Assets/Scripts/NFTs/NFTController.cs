@@ -3,34 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NFTController : MonoBehaviour {
-	[SerializeField] private TextAsset NFTAsset;
+	[SerializeField] private List<Sprite> NFTImgAssets;
+	[SerializeField] private List<TextAsset> NFTAssets;
+	[SerializeField] private int NFT_ID;
 	[SerializeField] private int variationID;
 
 	private void Awake() {
-		Bounds bounds = GetComponent<SpriteRenderer>().bounds;
-		NFTData NFT = JsonUtility.FromJson<NFTData>(NFTAsset.text);
+		SpriteRenderer myRen = GetComponent<SpriteRenderer>();
+		myRen.sprite = NFTImgAssets[NFT_ID];
+		Bounds bounds = myRen.bounds;
+		NFTData NFT = JsonUtility.FromJson<NFTData>(NFTAssets[NFT_ID].text);
 
 		float scale = transform.localScale.x;
 		float size = NFT.size;
 		float halfSize = size / 2;
 		int colorIndex = variationID * (4 * 3);
+
+		Vector2[] directions = {
+			new Vector2((bounds.min.x / scale) + halfSize, (bounds.min.y / scale) + halfSize),
+			new Vector2((bounds.max.x / scale) - halfSize, (bounds.min.y / scale) + halfSize),
+			new Vector2((bounds.min.x / scale) + halfSize, (bounds.max.y / scale) - halfSize),
+			new Vector2((bounds.max.x / scale) - halfSize, (bounds.max.y / scale) - halfSize)
+		};
 		for (int i = 0; i < transform.childCount; i++) {
 			GameObject pixel = transform.GetChild(i).gameObject;
 
 			pixel.transform.localScale = new Vector3(size, size, 1);
-			Vector2 pos;
-			if (i == 0) {
-				pos = new Vector2((bounds.min.x / scale) + halfSize, (bounds.min.y / scale) + halfSize);
-			}
-			else if (i == 1) {
-				pos = new Vector2((bounds.max.x / scale) - halfSize, (bounds.min.y / scale) + halfSize);
-			}
-			else if (i == 2) {
-				pos = new Vector2((bounds.min.x / scale) + halfSize, (bounds.max.y / scale) - halfSize);
-			}
-			else {
-				pos = new Vector2((bounds.max.x / scale) - halfSize, (bounds.max.y / scale) - halfSize);
-			}
+			Vector2 pos = directions[i];
+
 			pixel.transform.localPosition = pos;
 
 			SpriteRenderer ren = pixel.GetComponent<SpriteRenderer>();
