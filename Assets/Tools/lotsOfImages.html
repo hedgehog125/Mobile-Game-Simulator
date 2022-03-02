@@ -1,0 +1,91 @@
+<button type="button" onclick="go()">Upload</button>
+<button type="button" onclick="loaded()">Randomise</button>
+
+
+<script>
+    let imgs = [];
+    let imgsLoaded = 0;
+
+    const go = _ => {
+        let input = document.createElement("input");
+        input.type = "file";
+        input.style.display = "none";
+        input.multiple = true;
+
+        (input => {
+            let file = 0;
+            let urls = [];
+            input.addEventListener("change", _ => {
+                let reader = new FileReader();
+                reader.onload = event => {
+                    urls.push(event.target.result);
+                    file++;
+                    if (file < input.files.length) {
+                        reader.readAsDataURL(input.files[file]);
+                    }
+                    else {
+                        for (let url of urls) {
+                            addImage(url);
+                        }
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
+            }, false);
+        })(input);
+        input.click();
+    };
+
+    const addImage = url => {
+        let img = new Image();
+        img.onload = _ => {
+            imgsLoaded++;
+            if (imgsLoaded == imgs.length) {
+                loaded();
+            }
+        };
+        img.src = url;
+
+        imgs.push(img);
+    };
+
+    const loaded = _ => {
+        let canvas = document.createElement("canvas");
+        canvas.width = 1920;
+        canvas.height = 1080;
+        let ctx = canvas.getContext("2d");
+        ctx.imageSmoothingEnabled = false;
+
+        const rand = _ => Math.round(Math.random() * 255);
+
+        let count = 200;
+
+        let i = 0;
+        while (i < count) {
+            let img = imgs[Math.round(Math.random() * (imgs.length - 1))];
+            let size = Math.round(Math.random() * 300) + 50;
+
+            let width, height;
+            let ratio = img.width / img.height;
+            if (ratio > 1) {
+                width = size;
+                height = size / ratio;
+            }
+            else {
+                height = size;
+                width = size * ratio;
+            }
+
+            ctx.drawImage(
+                img,
+                Math.round((Math.random() * (canvas.width + width)) - (width / 2)),
+                Math.round((Math.random() * (canvas.height + height)) - (height / 2)),
+                width,
+                height
+            );
+
+            i++;
+        }
+
+        document.body.appendChild(canvas);
+    };
+</script>

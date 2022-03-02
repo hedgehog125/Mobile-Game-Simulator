@@ -2,9 +2,15 @@
 = Images =
 NFTs bad: Assets/Images/I hate NFTs lineup/nftsBad.png (fully made beforehand)
 
+= Code =
+tools/lotsOfImages: upload logic partly made beforehand, required modification to work outside of my framework
+
 
 
 === Made by others ===
 = Images =
 4 leaf clover: based off of the heart from https://www.kenney.nl/assets/pixel-platformer under CC0 1.0 Universal
 Lucky 7: uses explosion from https://www.flickr.com/photos/pahudson/3224209758 and a deep fry filter: https://deepfriedmemes.com/
+
+= 3D models =
+Loot box: https://sketchfab.com/3d-models/treasure-chest-b46fd9edd44e412fa76f9b9a2b86281c under CC BY 4.0
