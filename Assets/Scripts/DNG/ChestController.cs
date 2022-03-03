@@ -4,9 +4,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ChestController : MonoBehaviour {
-	private Animator anim;
+	[Header("Objects and references")]
+	[SerializeField] private GameObject keyObject;
+	[SerializeField] private GameObject NFTPrefab;
+	[SerializeField] private Transform NFTHolder;
 
+	[Header("Delays")]
+	[SerializeField] private int spawnDelay;
+
+	private Animator anim;
 	private Vector2 mousePos;
+
+	private int spawnTick;
+	private bool spawnedNFT;
 
 	private void Awake() {
 		anim = GetComponent<Animator>();
@@ -19,7 +29,25 @@ public class ChestController : MonoBehaviour {
 		if (input.isPressed) {
 			Ray ray = Camera.main.ScreenPointToRay(mousePos);
 			if (Physics.Raycast(ray)) {
-				anim.enabled = true; // Play the animation
+				keyObject.SetActive(true); // Play the animation
+			}
+		}
+	}
+
+	private void FixedUpdate() {
+		if (! spawnedNFT) {
+			if (anim.enabled) {
+				if (spawnTick == spawnDelay) {
+					NFTController NFTOb = Instantiate(NFTPrefab, NFTHolder).GetComponent<NFTController>();
+					NFTOb.Randomize();
+					NFTOb.animate = true;
+					NFTOb.Ready();
+
+					spawnedNFT = true;
+				}
+				else {
+					spawnTick++;
+				}
 			}
 		}
 	}

@@ -15,3 +15,4 @@ Lucky 7: uses explosion from https://www.flickr.com/photos/pahudson/3224209758 a
 = 3D models =
 Loot box: https://sketchfab.com/3d-models/treasure-chest-b46fd9edd44e412fa76f9b9a2b86281c under CC BY 4.0
 Key: https://sketchfab.com/3d-models/zelda-ocarina-of-time-small-key-13ac63725a49435789ad7fab51a0804b under CC BY 4.0
+Picture frame: https://sketchfab.com/3d-models/fancy-picture-frame-b54984abe2394345a81621719bf8bf1a under CC BY 4.0

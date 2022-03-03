@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5789902606421634606}
   - component: {fileID: 5789902606421634593}
   - component: {fileID: 5789902606421634607}
+  - component: {fileID: 251961361804699728}
   m_Layer: 0
   m_Name: NFT
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5789902606421634592}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 5789902606901000644}
   - {fileID: 5789902608193638514}
@@ -115,6 +116,26 @@ MonoBehaviour:
   - {fileID: 4900000, guid: ae372c7882b65cc43858426c37fc122f, type: 3}
   NFT_ID: 5
   variationID: 0
+  animate: 0
+--- !u!95 &251961361804699728
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5789902606421634592}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f4e34f71ae0da45488a64dc9a05d1564, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5789902606901000646
 GameObject:
   m_ObjectHideFlags: 0
