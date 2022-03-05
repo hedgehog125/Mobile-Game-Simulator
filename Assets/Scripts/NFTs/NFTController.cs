@@ -5,6 +5,7 @@ using UnityEngine;
 public class NFTController : MonoBehaviour {
 	[SerializeField] private List<Sprite> NFTImgAssets;
 	[SerializeField] private List<TextAsset> NFTAssets;
+	[SerializeField] private SpriteRenderer myRen;
 
 	[HideInInspector] public int NFT_ID;
 	[HideInInspector] public int variationID;
@@ -16,7 +17,6 @@ public class NFTController : MonoBehaviour {
 	}
 
 	public void Ready() {
-		SpriteRenderer myRen = GetComponent<SpriteRenderer>();
 		myRen.sprite = NFTImgAssets[NFT_ID];
 		if (animate) {
 			Animator anim = GetComponent<Animator>();
@@ -37,7 +37,7 @@ public class NFTController : MonoBehaviour {
 			new Vector2((bounds.min.x / scale) + halfSize, (bounds.max.y / scale) - halfSize),
 			new Vector2((bounds.max.x / scale) - halfSize, (bounds.max.y / scale) - halfSize)
 		};
-		for (int i = 0; i < transform.childCount; i++) {
+		for (int i = 0; i < 4; i++) {
 			GameObject pixel = transform.GetChild(i).gameObject;
 
 			pixel.transform.localScale = new Vector3(size, size, 1);
