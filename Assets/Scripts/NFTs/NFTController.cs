@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NFTController : MonoBehaviour {
-	[SerializeField] private List<Texture2D> NFTImgAssets;
+	[SerializeField] private List<Sprite> NFTImgAssets;
 	[SerializeField] private List<TextAsset> NFTAssets;
+	[SerializeField] private SpriteRenderer myRen;
 
 	[HideInInspector] public int NFT_ID;
 	[HideInInspector] public int variationID;
@@ -16,8 +17,7 @@ public class NFTController : MonoBehaviour {
 	}
 
 	public void Ready() {
-		Renderer myRen = GetComponent<Renderer>();
-		myRen.material.mainTexture = NFTImgAssets[NFT_ID];
+		myRen.sprite = NFTImgAssets[NFT_ID];
 		if (animate) {
 			Animator anim = GetComponent<Animator>();
 			anim.enabled = true;
@@ -45,8 +45,8 @@ public class NFTController : MonoBehaviour {
 
 			pixel.transform.localPosition = pos;
 
-			Renderer ren = pixel.GetComponent<Renderer>();
-			ren.material.color = new Color(NFT.colors[colorIndex] / 255f, NFT.colors[colorIndex + 1] / 255f, NFT.colors[colorIndex + 2] / 255f);
+			SpriteRenderer ren = pixel.GetComponent<SpriteRenderer>();
+			ren.color = new Color(NFT.colors[colorIndex] / 255f, NFT.colors[colorIndex + 1] / 255f, NFT.colors[colorIndex + 2] / 255f);
 			ren.enabled = true;
 			colorIndex += 3;
 		}
