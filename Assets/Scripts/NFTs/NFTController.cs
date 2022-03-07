@@ -10,18 +10,30 @@ public class NFTController : MonoBehaviour {
 	[HideInInspector] public int NFT_ID;
 	[HideInInspector] public int variationID;
 
-	[HideInInspector] public bool animate;
+	private Animator anim;
+	private void Awake() {
+		anim = GetComponent<Animator>();
+	}
 
-	public void Randomize() {
+	public Save.OwnedNFT Randomize() {
+		Save.OwnedNFT newNFT;
+		while (true) { // Find a valid NFT. Who needs optimisation?
+			NFT_ID = Random.Range(0, NFTImgAssets.Count - 1);
 
+			NFTData NFTAsset = JsonUtility.FromJson<NFTData>(NFTAssets[NFT_ID].text);
+			variationID = Random.Range(0, NFTAsset.variations - 1);
+			
+			newNFT = new Save.OwnedNFT(Save.OwnedNFT.Collections.DNG, NFT_ID, variationID);
+			if (! Save.miniGameSaves.NFTSave.NFTs.Contains(newNFT)) { // Make sure it's not already owned
+				break;
+			}
+		}
+
+		return newNFT;
 	}
 
 	public void Ready() {
 		myRen.sprite = NFTImgAssets[NFT_ID];
-		if (animate) {
-			Animator anim = GetComponent<Animator>();
-			anim.enabled = true;
-		}
 
 		Bounds bounds = myRen.bounds;
 		NFTData NFT = JsonUtility.FromJson<NFTData>(NFTAssets[NFT_ID].text);
@@ -50,5 +62,9 @@ public class NFTController : MonoBehaviour {
 			ren.enabled = true;
 			colorIndex += 3;
 		}
+	}
+
+	public void Fly() {
+		anim.SetBool("Fly", true);
 	}
 }

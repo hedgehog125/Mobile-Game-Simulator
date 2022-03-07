@@ -11,12 +11,22 @@ public class ChestController : MonoBehaviour {
 
 	[Header("Delays")]
 	[SerializeField] private int spawnDelay;
+	[SerializeField] private int pauseDelay;
+	[SerializeField] private int finishDelay;
 
 	private Animator anim;
 	private Vector2 mousePos;
 
 	private int spawnTick;
-	private bool spawnedNFT;
+	private NFTController NFTOb;
+
+	private enum States {
+		WaitToOpen,
+		Open,
+		WaitToClose,
+		Close
+	}
+	private States state;
 
 	private void Awake() {
 		anim = GetComponent<Animator>();
@@ -27,28 +37,46 @@ public class ChestController : MonoBehaviour {
 	}
 	private void OnClick(InputValue input) {
 		if (input.isPressed) {
-			Ray ray = Camera.main.ScreenPointToRay(mousePos);
-			if (Physics.Raycast(ray)) {
-				keyObject.SetActive(true); // Play the animation
+			if (state == States.WaitToOpen) {
+				state = States.Open;
+
+				Ray ray = Camera.main.ScreenPointToRay(mousePos);
+				if (Physics.Raycast(ray)) {
+					keyObject.SetActive(true); // Play the animation
+				}
+			}
+			else if (state == States.WaitToClose) {
+				NFTOb.Fly(); // Next stage
+				state = States.Close;
 			}
 		}
 	}
 
 	private void FixedUpdate() {
-		if (! spawnedNFT) {
-			if (anim.enabled) {
+		if (anim.enabled) {
+			if (state == States.Open) {
 				if (spawnTick == spawnDelay) {
-					NFTController NFTOb = Instantiate(NFTPrefab, NFTHolder).GetComponent<NFTController>();
+					NFTOb = Instantiate(NFTPrefab, NFTHolder).GetComponent<NFTController>();
 					NFTOb.Randomize();
-					NFTOb.animate = true;
 					NFTOb.Ready();
-
-					spawnedNFT = true;
 				}
-				else {
-					spawnTick++;
+				if (spawnTick == pauseDelay) {
+					anim.enabled = false;
+					state = States.WaitToClose;
 				}
 			}
+			else if (state == States.Close) {
+				if (spawnTick == finishDelay) {
+					state = States.WaitToOpen;
+
+					anim.enabled = false;
+				}
+			}
+			spawnTick++;
 		}
+	}
+
+	public void StartAnimation() {
+		anim.enabled = true;
 	}
 }

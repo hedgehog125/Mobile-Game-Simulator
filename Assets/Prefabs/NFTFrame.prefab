@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5789902606421634607}
   - component: {fileID: 251961361804699728}
   m_Layer: 0
-  m_Name: NFT
+  m_Name: NFTFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +151,6 @@ MonoBehaviour:
   myRen: {fileID: 4032278111105531264}
   NFT_ID: 5
   variationID: 0
-  animate: 0
 --- !u!95 &251961361804699728
 Animator:
   serializedVersion: 3
@@ -160,7 +159,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5789902606421634592}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f4e34f71ae0da45488a64dc9a05d1564, type: 2}
   m_CullingMode: 0
