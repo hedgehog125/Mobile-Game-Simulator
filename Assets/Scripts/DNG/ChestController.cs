@@ -77,6 +77,7 @@ public class ChestController : MonoBehaviour {
 	}
 
 	public void StartAnimation() {
-		anim.enabled = true;
+		anim.SetBool("Start", true);
+		anim.SetBool("Restart", false);
 	}
 }
