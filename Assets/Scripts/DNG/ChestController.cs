@@ -19,6 +19,7 @@ public class ChestController : MonoBehaviour {
 
 	private int spawnTick;
 	private NFTController NFTOb;
+	private bool animating;
 
 	private enum States {
 		WaitToOpen,
@@ -26,7 +27,7 @@ public class ChestController : MonoBehaviour {
 		WaitToClose,
 		Close
 	}
-	private States state;
+	private States state = States.WaitToOpen;
 
 	private void Awake() {
 		anim = GetComponent<Animator>();
@@ -53,7 +54,7 @@ public class ChestController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		if (anim.enabled) {
+		if (animating) {
 			if (state == States.Open) {
 				if (spawnTick == spawnDelay) {
 					NFTOb = Instantiate(NFTPrefab, NFTHolder).GetComponent<NFTController>();
@@ -61,15 +62,13 @@ public class ChestController : MonoBehaviour {
 					NFTOb.Ready();
 				}
 				if (spawnTick == pauseDelay) {
-					anim.enabled = false;
+					PauseAnimation();
 					state = States.WaitToClose;
 				}
 			}
 			else if (state == States.Close) {
 				if (spawnTick == finishDelay) {
-					state = States.WaitToOpen;
-
-					anim.enabled = false;
+					ResetAnimation();
 				}
 			}
 			spawnTick++;
@@ -78,6 +77,27 @@ public class ChestController : MonoBehaviour {
 
 	public void StartAnimation() {
 		anim.SetBool("Start", true);
-		anim.SetBool("Restart", false);
+		anim.SetBool("Reset", false);
+
+		spawnTick = 0;
+		animating = true;
+	}
+
+	public void PauseAnimation() {
+		anim.enabled = false;
+		animating = false;
+	}
+
+	public void ResumeAnimation() {
+		anim.enabled = true;
+		animating = true;
+	}
+
+	public void ResetAnimation() {
+		animating = false;
+		anim.SetBool("Start", false);
+		anim.SetBool("Reset", true);
+
+		state = States.WaitToOpen;
 	}
 }

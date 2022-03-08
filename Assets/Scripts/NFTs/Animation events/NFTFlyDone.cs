@@ -5,14 +5,14 @@ using UnityEngine;
 public class NFTFlyDone : StateMachineBehaviour {
     [SerializeField] private List<string> activateName;
 
-    private Animator toActivate;
+    private ChestController toActivate;
     private void Awake() {
-        toActivate = Tools.GetNestedGameobject(activateName).GetComponent<Animator>();
+        toActivate = Tools.GetNestedGameobject(activateName).GetComponent<ChestController>();
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         if (toActivate) {
-            toActivate.enabled = true;
+            toActivate.ResumeAnimation();
         }
 
         Destroy(animator.gameObject);
