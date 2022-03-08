@@ -25,7 +25,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 
 	private void Tick() {
 		if (Simulation.inGame) {
-			Simulation.time++;
+			Simulation.IncreaseTime(1);
 		}
 	}
 }

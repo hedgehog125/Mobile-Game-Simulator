@@ -14,6 +14,10 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private int pauseDelay;
 	[SerializeField] private int finishDelay;
 
+	[Header("Misc")]
+	[SerializeField] private int cost;
+	[SerializeField] private int limit;
+
 	private Animator anim;
 	private bool clicking;
 	private Vector2 mousePos;
@@ -46,8 +50,7 @@ public class ChestController : MonoBehaviour {
 			if (state == States.WaitToOpen) {
 				Ray ray = Camera.main.ScreenPointToRay(mousePos);
 				if (Physics.Raycast(ray)) {
-					state = States.Open;
-					keyObject.SetActive(true); // Play the animation
+					Open();
 				}
 				else {
 					clicking = false;
@@ -77,6 +80,15 @@ public class ChestController : MonoBehaviour {
 				}
 			}
 			spawnTick++;
+		}
+	}
+
+	private void Open() {
+		if (Simulation.dailyLimitProgress.DNG != limit) {
+			state = States.Open;
+			keyObject.SetActive(true); // Play the animation
+			Simulation.spent += cost;
+			Simulation.dailyLimitProgress.DNG++;
 		}
 	}
 
