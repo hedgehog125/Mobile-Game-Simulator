@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Simulation {
     public static bool inGame;
-    public static int time;
+    public static int time = (9 * 60) * 50;
 }
