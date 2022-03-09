@@ -8,9 +8,14 @@ public class DayController : MonoBehaviour {
 
 	private void Awake() {
 		text = GetComponent<TextMeshProUGUI>();
+		UpdateText();
 	}
 
 	private void FixedUpdate() {
+		UpdateText();
+	}
+
+	private void UpdateText() {
 		text.SetText($"Day {Simulation.day + 1}");
 	}
 }

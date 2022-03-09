@@ -8,6 +8,7 @@ public class TimeController : MonoBehaviour {
 
 	private void Awake() {
 		text = GetComponent<TextMeshProUGUI>();
+		UpdateText();
 	}
 
 	private string ZeroPad(string textNum, int targetLength) {
@@ -15,6 +16,10 @@ public class TimeController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
+		UpdateText();
+	}
+
+	private void UpdateText() {
 		int totalTicks = Simulation.time;
 
 		// An in game minute is a real life second so not dividing by as much
@@ -26,7 +31,7 @@ public class TimeController : MonoBehaviour {
 		string hoursText = ZeroPad(hours.ToString(), 2);
 		string minsText = ZeroPad(mins.ToString(), 2);
 
-		bool showDot = (! Simulation.inGame) || (halfMinutes % 2 == 0);
+		bool showDot = (!Simulation.inGame) || (halfMinutes % 2 == 0);
 		if (showDot) {
 			text.SetText($"{hoursText}:{minsText}");
 		}
