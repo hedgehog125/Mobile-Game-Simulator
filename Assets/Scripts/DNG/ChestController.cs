@@ -8,6 +8,7 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private GameObject keyObject;
 	[SerializeField] private GameObject NFTPrefab;
 	[SerializeField] private Transform NFTHolder;
+	[SerializeField] private GameObject limitPopup;
 
 	[Header("Delays")]
 	[SerializeField] private int spawnDelay;
@@ -47,18 +48,20 @@ public class ChestController : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (clicking) {
-			if (state == States.WaitToOpen) {
-				Ray ray = Camera.main.ScreenPointToRay(mousePos);
-				if (Physics.Raycast(ray)) {
-					Open();
+			if (! limitPopup.activeSelf) {
+				if (state == States.WaitToOpen) {
+					Ray ray = Camera.main.ScreenPointToRay(mousePos);
+					if (Physics.Raycast(ray)) {
+						Open();
+					}
+					else {
+						clicking = false;
+					}
 				}
-				else {
-					clicking = false;
+				else if (state == States.WaitToClose) {
+					NFTOb.Fly(); // Next stage
+					state = States.Close;
 				}
-			}
-			else if (state == States.WaitToClose) {
-				NFTOb.Fly(); // Next stage
-				state = States.Close;
 			}
 		}
 
@@ -84,7 +87,10 @@ public class ChestController : MonoBehaviour {
 	}
 
 	private void Open() {
-		if (Simulation.dailyLimitProgress.DNG != limit) {
+		if (Simulation.dailyLimitProgress.DNG == limit) {
+			limitPopup.SetActive(true);
+		}
+		else {
 			state = States.Open;
 			keyObject.SetActive(true); // Play the animation
 			Simulation.spent += cost;

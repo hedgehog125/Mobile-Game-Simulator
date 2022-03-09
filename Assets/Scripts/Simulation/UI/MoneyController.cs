@@ -19,6 +19,6 @@ public class MoneyController : MonoBehaviour {
 		string target = Format(Simulation.spendTarget);
 		int percent = Mathf.FloorToInt((Simulation.spent / Simulation.spendTarget) * 100);
 
-		text.SetText($"{spent}/£{target} ({percent}%)");
+		text.SetText($"{spent}/Â£{target} ({percent}%)");
 	}
 }
