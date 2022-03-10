@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DNG.unity
     guid: 6e1654283406b7242a6c50c18797619e
+  - enabled: 1
+    path: Assets/Scenes/NFTMatch.unity
+    guid: 9350810dc932f52448455ce23d7175fb
   m_configObjects: {}

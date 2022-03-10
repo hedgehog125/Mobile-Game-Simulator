@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class SimulationController : MonoBehaviour { // Handles anything that needs to continually change over time in the Simulation global state
     [SerializeField] private bool isGame;
+	[SerializeField] private string backScene = "PhoneMenu";
 
 	private static bool hasGlobalController;
 	private bool isTheGlobalController;
 
 	private void OnClose(InputValue input) {
 		if (input.isPressed) {
-			SceneManager.LoadScene("PhoneMenu");
+			SceneManager.LoadScene(backScene);
 		}
 	}
 

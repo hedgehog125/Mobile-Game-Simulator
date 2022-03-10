@@ -1464,7 +1464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 712655498799083669, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
       propertyPath: m_Name
-      value: PermanenttUI
+      value: PermanentUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
