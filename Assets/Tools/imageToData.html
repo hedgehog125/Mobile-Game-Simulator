@@ -1,0 +1,78 @@
+<button type="button" onclick="go()">Upload</button>
+
+<script>
+    let imgs = [];
+    let imgsLoaded = 0;
+
+    const coloursToData = {
+        "255,0,0": 0,
+        "0,255,0": 1,
+        "0,0,255": 2,
+        "255,255,0": 3
+    };
+
+    const go = _ => {
+        let input = document.createElement("input");
+        input.type = "file";
+        input.style.display = "none";
+        input.multiple = false;
+
+        (input => {
+            let urls = [];
+            input.addEventListener("change", _ => {
+                let reader = new FileReader();
+                reader.onload = event => {
+                    loadImage(event.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }, false);
+        })(input);
+        input.click();
+    };
+
+    const download = data => {
+        let blob = new Blob([data], {
+            type: "text/text"
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.style.display = "none";
+        a.href = url;
+
+        a.download = "data.txt";
+        document.body.appendChild(a);
+        a.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const loadImage = url => {
+        let img = new Image();
+        img.onload = _ => {
+            loaded(img);
+        };
+        img.src = url;
+
+        imgs.push(img);
+    };
+
+    const loaded = img => {
+        let canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        let ctx = canvas.getContext("2d");
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(img, 0, 0);
+
+        let output = "";
+        let data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        let i = 0;
+        while (i < data.length) {
+            let color = data.slice(i, i + 3).join();
+
+            output += coloursToData[color];
+            i += 4;
+        }
+
+        download(output);
+    };
+</script>

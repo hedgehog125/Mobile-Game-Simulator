@@ -3,7 +3,7 @@
 NFTs bad: Assets/Images/I hate NFTs lineup/nftsBad.png (fully made beforehand)
 
 = Code =
-tools/lotsOfImages: upload logic partly made beforehand, required modification to work outside of my framework
+tools/lotsOfImages and imageToData: upload and download logic partly made beforehand, required modification to work outside of my framework
 
 
 
