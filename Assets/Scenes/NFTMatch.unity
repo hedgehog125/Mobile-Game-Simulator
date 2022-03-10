@@ -317,6 +317,7 @@ MonoBehaviour:
   NFTPrefab: {fileID: 7592939756192900297, guid: c532a91a2e7b19842a76964b1a36ef99, type: 3}
   gridDataAsset: {fileID: 4900000, guid: 656b5e218d6bb5a449d9102b75b39319, type: 3}
   size: 10
+  deadzone: 0.5
 --- !u!114 &1352607030
 MonoBehaviour:
   m_ObjectHideFlags: 0

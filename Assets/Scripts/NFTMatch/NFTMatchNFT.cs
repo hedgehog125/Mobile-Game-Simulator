@@ -10,6 +10,7 @@ public class NFTMatchNFT : MonoBehaviour {
 		Yellow
 	}
 	[HideInInspector] public Types type;
+	[HideInInspector] public int id;
 
 	private SpriteRenderer ren;
 
