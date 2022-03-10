@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class NFTMatchGrid : MonoBehaviour {
 	[Header("Objects and references")]
-    [SerializeField] private GameObject NFTPrefab;
+	[SerializeField] private GameObject NFTPrefab;
 	[SerializeField] private TextAsset gridDataAsset;
 
 	[Header("Misc")]
@@ -88,6 +88,34 @@ public class NFTMatchGrid : MonoBehaviour {
 		}
 	}
 
+	private int GetPosIndex(int x, int y) {
+		return (y * size) + x;
+	}
+
+	private Types GetTypeAt(int x, int y) {
+		return NFTGridData[NFTPositionIndexes[GetPosIndex(x, y)]];
+	}
+
+	private List<int> CheckMatches(int x, int y, List<int> matches) {
+		CheckMatchesSub(x, y, matches, GetTypeAt(x, y));
+
+		return matches;
+	}
+
+	private List<int> CheckMatches(int x, int y) {
+		return CheckMatches(x, y, new List<int>());
+	}
+
+	private void CheckMatchesSub(int x, int y, List<int> matches, Types matchType) {
+		if (GetTypeAt(x, y) != matchType) return;
+		matches.Add(NFTPositionIndexes[GetPosIndex(x, y)]);
+
+		CheckMatchesSub(x + 1, y, matches, matchType);
+		CheckMatchesSub(x - 1, y, matches, matchType);
+		CheckMatchesSub(x, y + 1, matches, matchType);
+		CheckMatchesSub(x, y - 1, matches, matchType);
+	}
+
 	private void Dragged() {
 		Vector2 difference = startPos - endPos;
 		if (difference.magnitude < deadzone) return;
@@ -95,7 +123,6 @@ public class NFTMatchGrid : MonoBehaviour {
 		float halfSize = size / 2;
 		if (startPos.x > halfSize || startPos.x < -halfSize || startPos.y > halfSize || startPos.y < -halfSize) return;
 
-		int direction = 0;
 		Vector2Int[] directions = {
 			Vector2Int.left,
 			Vector2Int.right,
@@ -103,6 +130,7 @@ public class NFTMatchGrid : MonoBehaviour {
 			Vector2Int.down
 		};
 
+		int direction;
 		if (Mathf.Abs(difference.x) > Mathf.Abs(difference.y)) {
 			if (difference.x > 0) {
 				direction = 0;
@@ -120,11 +148,14 @@ public class NFTMatchGrid : MonoBehaviour {
 			}
 		}
 
-		int gridX = (int)(startPos.x + halfSize);
-		int gridY = (int)(size - (startPos.y + halfSize));
-		int startPosIndex = (gridY * size) + gridX;
+		int startX = (int)(startPos.x + halfSize);
+		int startY = (int)(size - (startPos.y + halfSize));
+		int startPosIndex = GetPosIndex(startX, startY);
+
 		Vector2Int dir = directions[direction];
-		int endPosIndex = ((gridY + dir.y) * size) + (gridX + dir.x);
+		int endX = startX + dir.x;
+		int endY = startY + dir.y;
+		int endPosIndex = GetPosIndex(endX, endY);
 		if (endPosIndex >= count) { // Screw it, I feel like turning this bug into a feature
 			endPosIndex = 0;
 		}
@@ -135,11 +166,25 @@ public class NFTMatchGrid : MonoBehaviour {
 		GameObject startNFT = NFTGrid[NFTPositionIndexes[startPosIndex]];
 		GameObject endNFT = NFTGrid[NFTPositionIndexes[endPosIndex]];
 
+		List<int> matchIDs = CheckMatches(startX, startY);
+		if (matchIDs.Count < 3) return;
+		int countWas = matchIDs.Count;
+		CheckMatches(endX, endY, matchIDs);
+		if (matchIDs.Count - countWas < 3) return;
+
+		foreach (int id in matchIDs) {
+			GameObject NFT = NFTGrid[id];
+
+			Destroy(NFT);
+		}
+
+		/*
 		Vector2 posWas = startNFT.transform.position;
 		startNFT.transform.position = endNFT.transform.position;
 		endNFT.transform.position = posWas;
 
 		NFTPositionIndexes[endPosIndex] = startNFT.GetComponent<NFTMatchNFT>().id;
 		NFTPositionIndexes[startPosIndex] = endNFT.GetComponent<NFTMatchNFT>().id;
+		*/
 	}
 }
