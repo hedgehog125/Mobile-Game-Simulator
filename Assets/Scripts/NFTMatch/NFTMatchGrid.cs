@@ -18,7 +18,8 @@ public class NFTMatchGrid : MonoBehaviour {
 		Red,
 		Green,
 		Blue,
-		Yellow
+		Yellow,
+		Null
 	}
 	private Types[] NFTGridData;
 	private Types[] startData;
@@ -87,17 +88,23 @@ public class NFTMatchGrid : MonoBehaviour {
 			}
 		}
 	}
-
+	
 	private int GetPosIndex(int x, int y) {
+		if (x < 0 || x >= size - 1) return -1;
+		if (y < 0 || y >= size - 1) return -1;
+
 		return (y * size) + x;
 	}
 
 	private Types GetTypeAt(int x, int y) {
-		return NFTGridData[NFTPositionIndexes[GetPosIndex(x, y)]];
+		int index = GetPosIndex(x, y);
+		if (index == -1) return Types.Null;
+
+		return NFTGridData[NFTPositionIndexes[index]];
 	}
 
 	private List<int> CheckMatches(int x, int y, List<int> matches) {
-		CheckMatchesSub(x, y, matches, GetTypeAt(x, y));
+		CheckMatchesSub(x, y, matches, GetTypeAt(x, y), new Hashtable());
 
 		return matches;
 	}
@@ -106,14 +113,17 @@ public class NFTMatchGrid : MonoBehaviour {
 		return CheckMatches(x, y, new List<int>());
 	}
 
-	private void CheckMatchesSub(int x, int y, List<int> matches, Types matchType) {
+	private void CheckMatchesSub(int x, int y, List<int> matches, Types matchType, Hashtable alreadyDone) {
 		if (GetTypeAt(x, y) != matchType) return;
+		string key = x + "," + y;
+		if ((string)alreadyDone[key] == "1") return;
+		alreadyDone[key] = "1";
 		matches.Add(NFTPositionIndexes[GetPosIndex(x, y)]);
 
-		CheckMatchesSub(x + 1, y, matches, matchType);
-		CheckMatchesSub(x - 1, y, matches, matchType);
-		CheckMatchesSub(x, y + 1, matches, matchType);
-		CheckMatchesSub(x, y - 1, matches, matchType);
+		CheckMatchesSub(x + 1, y, matches, matchType, alreadyDone);
+		CheckMatchesSub(x - 1, y, matches, matchType, alreadyDone);
+		CheckMatchesSub(x, y + 1, matches, matchType, alreadyDone);
+		CheckMatchesSub(x, y - 1, matches, matchType, alreadyDone);
 	}
 
 	private void Dragged() {
@@ -151,26 +161,38 @@ public class NFTMatchGrid : MonoBehaviour {
 		int startX = (int)(startPos.x + halfSize);
 		int startY = (int)(size - (startPos.y + halfSize));
 		int startPosIndex = GetPosIndex(startX, startY);
+		if (startPosIndex == -1) return;
+
 
 		Vector2Int dir = directions[direction];
 		int endX = startX + dir.x;
 		int endY = startY + dir.y;
 		int endPosIndex = GetPosIndex(endX, endY);
-		if (endPosIndex >= count) { // Screw it, I feel like turning this bug into a feature
-			endPosIndex = 0;
-		}
-		else if (endPosIndex < 0) {
-			endPosIndex = count - 1;
-		}
+		if (endPosIndex == -1) return;
 
 		GameObject startNFT = NFTGrid[NFTPositionIndexes[startPosIndex]];
 		GameObject endNFT = NFTGrid[NFTPositionIndexes[endPosIndex]];
+		if (startNFT == null || endNFT == null) return;
 
+		NFTPositionIndexes[endPosIndex] = startNFT.GetComponent<NFTMatchNFT>().id;
+		NFTPositionIndexes[startPosIndex] = endNFT.GetComponent<NFTMatchNFT>().id;
+
+		bool matched = false;
 		List<int> matchIDs = CheckMatches(startX, startY);
-		if (matchIDs.Count < 3) return;
+		if (matchIDs.Count < 3) {
+
+		}
+		else {
+			matched = true;
+		}
 		int countWas = matchIDs.Count;
 		CheckMatches(endX, endY, matchIDs);
-		if (matchIDs.Count - countWas < 3) return;
+		if (matchIDs.Count - countWas > 2) matched = true;
+
+		if (! matched) { // Revert
+			NFTPositionIndexes[endPosIndex] = startNFT.GetComponent<NFTMatchNFT>().id;
+			NFTPositionIndexes[startPosIndex] = endNFT.GetComponent<NFTMatchNFT>().id;
+		}
 
 		foreach (int id in matchIDs) {
 			GameObject NFT = NFTGrid[id];
