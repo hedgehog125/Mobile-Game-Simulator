@@ -36,7 +36,6 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private void OnClick(InputValue input) {
-		Debug.Log("A");
 		if (input.isPressed) {
 			startPos = mousePos;
 		}
@@ -91,17 +90,34 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 	
 	private int GetPosIndex(int x, int y) {
-		if (x < 0 || x >= size - 1) return -1;
-		if (y < 0 || y >= size - 1) return -1;
+		if (x < 0 || x >= size) return -1;
+		if (y < 0 || y >= size) return -1;
 
 		return (y * size) + x;
+	}
+
+	private GameObject GetNFTObByPosIndex(int index) {
+		int pos = NFTPositionIndexes[index];
+		if (pos == -1) return null;
+		return NFTGrid[pos];
 	}
 
 	private Types GetTypeAt(int x, int y) {
 		int index = GetPosIndex(x, y);
 		if (index == -1) return Types.Null;
+		index = NFTPositionIndexes[index];
+		if (index == -1) return Types.Null; 
 
-		return NFTGridData[NFTPositionIndexes[index]];
+		return NFTGridData[index];
+	}
+
+	private void DeleteTileID(int id) {
+		int pos = NFTPositionIndexes[id];
+		GameObject NFT = NFTGrid[pos];
+		NFTGridData[pos] = Types.Null;
+		NFTPositionIndexes[id] = -1;
+
+		Destroy(NFT);
 	}
 
 	private List<int> CheckMatches(int x, int y, List<int> matches) {
@@ -119,7 +135,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		string key = x + "," + y;
 		if ((string)alreadyDone[key] == "1") return;
 		alreadyDone[key] = "1";
-		matches.Add(NFTPositionIndexes[GetPosIndex(x, y)]);
+		matches.Add(GetPosIndex(x, y));
 
 		CheckMatchesSub(x + 1, y, matches, matchType, alreadyDone);
 		CheckMatchesSub(x - 1, y, matches, matchType, alreadyDone);
@@ -171,8 +187,8 @@ public class NFTMatchGrid : MonoBehaviour {
 		int endPosIndex = GetPosIndex(endX, endY);
 		if (endPosIndex == -1) return;
 
-		GameObject startNFT = NFTGrid[NFTPositionIndexes[startPosIndex]];
-		GameObject endNFT = NFTGrid[NFTPositionIndexes[endPosIndex]];
+		GameObject startNFT = GetNFTObByPosIndex(startPosIndex);
+		GameObject endNFT = GetNFTObByPosIndex(endPosIndex);
 		if (startNFT == null || endNFT == null) return;
 
 		NFTPositionIndexes[endPosIndex] = startNFT.GetComponent<NFTMatchNFT>().id;
@@ -186,9 +202,11 @@ public class NFTMatchGrid : MonoBehaviour {
 		else {
 			matched = true;
 		}
+		int countWas = matchIDs.Count;
 		CheckMatches(endX, endY, matchIDs);
-		if (matchIDs.Count < 3) {
-			matchIDs.Clear();
+		int newCount = matchIDs.Count - countWas;
+		if (newCount < 3) {
+			matchIDs.RemoveRange(countWas, newCount);
 		}
 		else {
 			matched = true;
@@ -197,21 +215,15 @@ public class NFTMatchGrid : MonoBehaviour {
 		if (! matched) { // Revert
 			NFTPositionIndexes[endPosIndex] = startNFT.GetComponent<NFTMatchNFT>().id;
 			NFTPositionIndexes[startPosIndex] = endNFT.GetComponent<NFTMatchNFT>().id;
+			return;
 		}
 
-		foreach (int id in matchIDs) {
-			GameObject NFT = NFTGrid[id];
-
-			Destroy(NFT);
-		}
-
-		/*
 		Vector2 posWas = startNFT.transform.position;
 		startNFT.transform.position = endNFT.transform.position;
 		endNFT.transform.position = posWas;
 
-		NFTPositionIndexes[endPosIndex] = startNFT.GetComponent<NFTMatchNFT>().id;
-		NFTPositionIndexes[startPosIndex] = endNFT.GetComponent<NFTMatchNFT>().id;
-		*/
+		foreach (int id in matchIDs) {
+			DeleteTileID(id);
+		}
 	}
 }
