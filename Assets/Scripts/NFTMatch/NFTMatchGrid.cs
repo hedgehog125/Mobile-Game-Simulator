@@ -36,6 +36,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private void OnClick(InputValue input) {
+		Debug.Log("A");
 		if (input.isPressed) {
 			startPos = mousePos;
 		}
@@ -180,14 +181,18 @@ public class NFTMatchGrid : MonoBehaviour {
 		bool matched = false;
 		List<int> matchIDs = CheckMatches(startX, startY);
 		if (matchIDs.Count < 3) {
-
+			matchIDs.Clear();
 		}
 		else {
 			matched = true;
 		}
-		int countWas = matchIDs.Count;
 		CheckMatches(endX, endY, matchIDs);
-		if (matchIDs.Count - countWas > 2) matched = true;
+		if (matchIDs.Count < 3) {
+			matchIDs.Clear();
+		}
+		else {
+			matched = true;
+		}
 
 		if (! matched) { // Revert
 			NFTPositionIndexes[endPosIndex] = startNFT.GetComponent<NFTMatchNFT>().id;
