@@ -113,6 +113,8 @@ public class NFTMatchGrid : MonoBehaviour {
 
 	private void DeleteTileID(int id) {
 		int pos = NFTPositionIndexes[id];
+		if (pos == -1) return;
+
 		GameObject NFT = NFTGrid[pos];
 		NFTGridData[pos] = Types.Null;
 		NFTPositionIndexes[id] = -1;
@@ -120,8 +122,36 @@ public class NFTMatchGrid : MonoBehaviour {
 		Destroy(NFT);
 	}
 
+	private int FallTile(int posIndex) {
+		int x = posIndex % size;
+		int y = Mathf.FloorToInt(posIndex / size);
+
+		int fallDistance = 0;
+		y++;
+		while (GetTypeAt(x, y) == Types.Null) {
+			y++;
+			fallDistance++;
+		}
+		if (fallDistance == 0) return -1;
+		else {
+			y--;
+			int index = NFTPositionIndexes[posIndex];
+			int newPosIndex = GetPosIndex(x, y);
+
+			NFTPositionIndexes[posIndex] = -1;
+			NFTPositionIndexes[newPosIndex] = index;
+
+			GameObject NFT = NFTGrid[posIndex];
+			NFT.transform.position -= new Vector3(0, fallDistance, 0);
+			return newPosIndex;
+		}
+	}
+
 	private List<int> CheckMatches(int x, int y, List<int> matches) {
-		CheckMatchesSub(x, y, matches, GetTypeAt(x, y), new Hashtable());
+		Types type = GetTypeAt(x, y);
+		if (type == Types.Null) return matches;
+
+		CheckMatchesSub(x, y, matches, type, new Hashtable());
 
 		return matches;
 	}
@@ -225,5 +255,43 @@ public class NFTMatchGrid : MonoBehaviour {
 		foreach (int id in matchIDs) {
 			DeleteTileID(id);
 		}
+
+
+		while (true) {
+			List<int> toCheck = new List<int>();
+			int start = (NFTGrid.Length - 1) - size; // Skip the bottom row, it can't fall
+			for (int i = start; i >= 0; i--) {
+				int newID = FallTile(i);
+				if (newID != -1) toCheck.Add(newID);
+			}
+
+			if (toCheck.Count == 0) break;
+			else {
+				matchIDs.Clear();
+				foreach (int pos in toCheck) {
+					int x = pos % size;
+					int y = Mathf.FloorToInt(pos / size);
+
+					List<int> newMatches = CheckMatches(x, y);
+					if (newMatches.Count > 2) {
+						matchIDs.AddRange(newMatches);
+					}
+				}
+
+				List<string> todo = new List<string>();
+				foreach (int pos in toCheck) {
+					int x = pos % size;
+					int y = Mathf.FloorToInt(pos / size);
+
+					todo.Add(x + "," + y + "," + GetTypeAt(x, y));
+				}
+
+				foreach (int id in matchIDs) {
+					DeleteTileID(id);
+				}
+			}
+		}
+
+		// TODO: spawn new
 	}
 }
