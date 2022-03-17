@@ -3,13 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NFTMatchNFT : MonoBehaviour {
-    [HideInInspector] public enum Types {
-		Red,
-		Green,
-		Blue,
-		Yellow
-	}
-	[HideInInspector] public Types type;
+	[HideInInspector] public NFTMatchGrid.SquareType type;
 	[HideInInspector] public int id;
 
 	private SpriteRenderer ren;
