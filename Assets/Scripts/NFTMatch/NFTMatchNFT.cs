@@ -8,6 +8,8 @@ public class NFTMatchNFT : MonoBehaviour {
 
 	private SpriteRenderer ren;
 
+	[HideInInspector] public Vector2 target;
+
 	private void Awake() {
 		ren = GetComponent<SpriteRenderer>();
 	}
@@ -21,5 +23,9 @@ public class NFTMatchNFT : MonoBehaviour {
 		};
 
 		ren.color = colors[(int)type];
+	}
+
+	private void Update() {
+		transform.position = target;
 	}
 }

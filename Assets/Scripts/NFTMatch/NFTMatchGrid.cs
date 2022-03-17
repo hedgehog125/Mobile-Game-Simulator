@@ -85,12 +85,13 @@ public class NFTMatchGrid : MonoBehaviour {
 		return (y * size) + x;
 	}
 
-	public int[] IndexToXY(int index) {
+	public Vector2Int IndexToXY(int index) {
 		int x = index % size;
 		int y = Mathf.FloorToInt(index / size);
-		int[] xy = {x, y};
+		x += size / 2;
+		y -= size / 2;
 
-		return xy;
+		return new Vector2Int(x, y);
 	}
 
 	private SquareType GetTypeAt(int x, int y) {

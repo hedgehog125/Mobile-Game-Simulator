@@ -29,15 +29,14 @@ public class NFTMatchRenderer : MonoBehaviour {
 			Init();
 		}
 
-							 //int[] index = Index();
-
+		// Create any new NFTs that are needed
 		for (int i = 0; i < dataScript.count; i++) {
 			NFTMatchGrid.GridSquare square = dataScript.grid[i];
 			if (square == null) continue;
 
-			int[] xy = dataScript.IndexToXY(i);
-			int x = xy[0] - (dataScript.pubSize / 2);
-			int y = xy[1] + (dataScript.pubSize / 2);
+			Vector2Int xy = dataScript.IndexToXY(i);
+			int x = xy.x;
+			int y = xy.y + 1;
 
 			if (square.UI_ID == -1) { // New
 				GameObject NFT = Instantiate(NFTPrefab);
@@ -55,9 +54,19 @@ public class NFTMatchRenderer : MonoBehaviour {
 				NFTs[id] = new NFTRenderData(NFT);
 				square.UI_ID = id;
 			}
-			else {
+		}
 
-			}
+		Vector2Int[] index = new Vector2Int[dataScript.count];
+		for (int i = 0; i < dataScript.count; i++) {
+			int id = dataScript.grid[i].UI_ID;
+
+			index[id] = dataScript.IndexToXY(i);
+		}
+
+		// Set the target to the corresponding coordinates of where that tile is found now
+		for (int i = 0; i < dataScript.count; i++) {
+			NFTMatchNFT NFTScript = NFTs[i].script;
+			NFTScript.target = index[i];
 		}
 	}
 
