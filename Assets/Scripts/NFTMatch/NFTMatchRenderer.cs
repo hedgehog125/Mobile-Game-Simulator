@@ -36,7 +36,7 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 			Vector2Int xy = dataScript.IndexToXY(i);
 			int x = xy.x;
-			int y = xy.y + 1;
+			int y = xy.y;
 
 			if (square.UI_ID == -1) { // New
 				GameObject NFT = Instantiate(NFTPrefab);

@@ -88,7 +88,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	public Vector2Int IndexToXY(int index) {
 		int x = index % size;
 		int y = Mathf.FloorToInt(index / size);
-		x += size / 2;
+		x -= size / 2;
 		y -= size / 2;
 
 		return new Vector2Int(x, y);
