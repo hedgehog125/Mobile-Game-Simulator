@@ -1,0 +1,25 @@
+<script>
+    let canvas = document.createElement("canvas");
+    canvas.width = 32;
+    canvas.height = 32;
+    let ctx = canvas.getContext("2d");
+
+    const rand = _ => Math.round(Math.random() * 255);
+
+    let y = 0;
+    while (y < canvas.height) {
+        let x = 0;
+        while (x < canvas.width) {
+            let brightness = rand();
+            ctx.fillStyle = "rgb(" + [brightness, brightness, brightness] + ")";
+            ctx.fillRect(x, y, 1, 1);
+
+            x++;
+        }
+        y++;
+    }
+
+    document.body = document.createElement("body");
+    document.body.appendChild(canvas);
+
+</script>
