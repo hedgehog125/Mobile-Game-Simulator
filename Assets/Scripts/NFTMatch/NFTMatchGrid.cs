@@ -89,7 +89,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		int x = index % size;
 		int y = Mathf.FloorToInt(index / size);
 		x -= size / 2;
-		y -= size / 2;
+		y = (size / 2) - y;
 
 		return new Vector2Int(x, y);
 	}
@@ -218,6 +218,8 @@ public class NFTMatchGrid : MonoBehaviour {
 		if (endPosIndex == -1) return;
 
 		SwapPair(startPosIndex, endPosIndex);
+		ren.Rerender();
+		return; // todo
 
 		bool matched = false;
 		List<int> matchIDs = CheckMatches(startX, startY);
@@ -247,6 +249,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		}
 
 		/*
+		TODO: delay until they've finished falling
 		while (true) {
 			List<int> toCheck = new List<int>();
 			int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall

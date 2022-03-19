@@ -26,6 +26,6 @@ public class NFTMatchNFT : MonoBehaviour {
 	}
 
 	private void Update() {
-		transform.position = target + new Vector2(0.5f, 0.5f);
+		transform.position = target + new Vector2(0.5f, -0.5f);
 	}
 }

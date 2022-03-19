@@ -58,9 +58,11 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 		Vector2Int[] index = new Vector2Int[dataScript.count];
 		for (int i = 0; i < dataScript.count; i++) {
-			int id = dataScript.grid[i].UI_ID;
-
-			index[id] = dataScript.IndexToXY(i);
+			NFTMatchGrid.GridSquare NFT = dataScript.grid[i];
+			if (NFT != null) {
+				int id = NFT.UI_ID;
+				index[id] = dataScript.IndexToXY(i);
+			}
 		}
 
 		// Set the target to the corresponding coordinates of where that tile is found now
