@@ -34,17 +34,11 @@ public class NFTMatchRenderer : MonoBehaviour {
 			NFTMatchGrid.GridSquare square = dataScript.grid[i];
 			if (square == null) continue;
 
-			Vector2Int xy = dataScript.IndexToXY(i);
-			int x = xy.x;
-			int y = xy.y;
-
 			if (square.UI_ID == -1) { // New
 				GameObject NFT = Instantiate(NFTPrefab);
 				int id = FindID();
 
 				NFT.transform.parent = transform;
-				NFT.transform.position = new Vector2(x + 0.5f, y - 0.5f);
-
 				NFTMatchNFT NFTScript = NFT.GetComponent<NFTMatchNFT>();
 				NFTScript.type = square.type;
 				NFTScript.id = id;
@@ -56,19 +50,25 @@ public class NFTMatchRenderer : MonoBehaviour {
 			}
 		}
 
-		Vector2Int[] index = new Vector2Int[dataScript.count];
+		int[] index = new int[dataScript.count];
 		for (int i = 0; i < dataScript.count; i++) {
 			NFTMatchGrid.GridSquare NFT = dataScript.grid[i];
 			if (NFT != null) {
 				int id = NFT.UI_ID;
-				index[id] = dataScript.IndexToXY(i);
+				index[id] = i + 1;
 			}
 		}
 
 		// Set the target to the corresponding coordinates of where that tile is found now
 		for (int i = 0; i < dataScript.count; i++) {
 			NFTMatchNFT NFTScript = NFTs[i].script;
-			NFTScript.target = index[i];
+			int pos = index[i];
+			if (pos == 0) { // Wasn't defined, so must have been deleted
+				NFTScript.deleted = true;
+			}
+			else {
+				NFTScript.target = dataScript.IndexToXY(pos - 1);
+			}
 		}
 	}
 

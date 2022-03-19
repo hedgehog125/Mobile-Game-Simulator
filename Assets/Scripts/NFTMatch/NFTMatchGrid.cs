@@ -218,8 +218,6 @@ public class NFTMatchGrid : MonoBehaviour {
 		if (endPosIndex == -1) return;
 
 		SwapPair(startPosIndex, endPosIndex);
-		ren.Rerender();
-		return; // todo
 
 		bool matched = false;
 		List<int> matchIDs = CheckMatches(startX, startY);
