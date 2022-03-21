@@ -35,6 +35,42 @@ public class NFTMatchGrid : MonoBehaviour {
 	private Vector2 mousePos;
 	private Vector2 startPos;
 	private Vector2 endPos;
+	private class MoveQueueItem {
+		public Vector2Int start;
+		public int startIndex;
+		public Vector2Int end;
+		public int endIndex;
+		public Vector2Int dir;
+		public bool isCheck;
+		public bool isSeparator;
+
+		public MoveQueueItem(
+			Vector2Int _start,
+			int _startIndex,
+			Vector2Int _end,
+			int _endIndex,
+			Vector2Int _dir
+		) {
+			start = _start;
+			startIndex = _startIndex;
+			end = _end;
+			endIndex = _endIndex;
+			dir = _dir;
+			isCheck = false;
+		}
+		public MoveQueueItem( // Check
+			Vector2Int _start,
+			int _startIndex
+		) {
+			start = _start;
+			startIndex = _startIndex;
+			isCheck = true;
+		}
+		public MoveQueueItem() { // Separator
+			isSeparator = true;
+		}
+	}
+	private List<MoveQueueItem> queue;
 
 	public int pubSize { get; private set; }
 	public int count { get; private set; }
@@ -49,7 +85,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		}
 		else {
 			endPos = mousePos;
-			Dragged();
+			QueueDragged();
 		}
 	}
 
@@ -65,8 +101,16 @@ public class NFTMatchGrid : MonoBehaviour {
 			baseGrid[i] = type;
 		}
 
+		queue = new List<MoveQueueItem>();
+
 		GenerateGrid();
 		ren.Rerender();
+	}
+
+	private void FixedUpdate() {
+		if (! ren.animating) {
+			ProcessDragQueue();
+		}
 	}
 
 	private void GenerateGrid() {
@@ -86,10 +130,15 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	public Vector2Int IndexToXY(int index) {
+		return IndexToXY(index, true);
+	}
+	public Vector2Int IndexToXY(int index, bool worldSpace) {
 		int x = index % size;
 		int y = Mathf.FloorToInt(index / size);
-		x -= size / 2;
-		y = (size / 2) - y;
+		if (worldSpace) {
+			x -= size / 2;
+			y = (size / 2) - y;
+		}
 
 		return new Vector2Int(x, y);
 	}
@@ -173,7 +222,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		CheckMatchesSub(x, y - 1, matches, matchType, alreadyDone);
 	}
 
-	private void Dragged() {
+	private void QueueDragged() {
 		Vector2 difference = startPos - endPos;
 		if (difference.magnitude < deadzone) return;
 
@@ -217,75 +266,81 @@ public class NFTMatchGrid : MonoBehaviour {
 		int endPosIndex = GetIndex(endX, endY);
 		if (endPosIndex == -1) return;
 
-		SwapPair(startPosIndex, endPosIndex);
+		queue.Add(new MoveQueueItem(
+			new Vector2Int(startX, startY),
+			startPosIndex,
+			new Vector2Int(endX, endY),
+			endPosIndex,
+			dir
+		));
+		queue.Add(new MoveQueueItem()); // Separator
+	}
 
-		bool matched = false;
-		List<int> matchIDs = CheckMatches(startX, startY);
-		if (matchIDs.Count < 3) {
-			matchIDs.Clear();
-		}
-		else {
-			matched = true;
-		}
-		int countWas = matchIDs.Count;
-		CheckMatches(endX, endY, matchIDs);
-		int newCount = matchIDs.Count - countWas;
-		if (newCount < 3) {
-			matchIDs.RemoveRange(countWas, newCount);
-		}
-		else {
-			matched = true;
-		}
+	private void ProcessDragQueue() {
+		bool isCheck = false;
+		do {
+			if (queue.Count == 0) return;
+			MoveQueueItem queuedItem = queue[0];
+			if (queuedItem.isSeparator) {
+				queue.RemoveAt(0);
+				if (ren.animating) return;
+				continue; // The next batch can be done a frame early since nothing changed (this also shouldn't include another batch of checks since the grid wasn't changed)
+			}
 
-		if (! matched) { // Revert
+			int startX = queuedItem.start.x;
+			int startY = queuedItem.start.x;
+			int startPosIndex = queuedItem.startIndex;
+
+			int endX = queuedItem.end.x;
+			int endY = queuedItem.end.x;
+			int endPosIndex = queuedItem.endIndex;
+			isCheck = queuedItem.isCheck;
+
 			SwapPair(startPosIndex, endPosIndex);
-			return;
-		}
 
-		foreach (int id in matchIDs) {
-			DeleteTile(id);
-		}
+			bool matched = false;
+			List<int> matchIDs = CheckMatches(startX, startY);
+			if (matchIDs.Count < 3) {
+				matchIDs.Clear();
+			}
+			else {
+				matched = true;
+			}
 
-		/*
-		TODO: delay until they've finished falling
-		while (true) {
-			List<int> toCheck = new List<int>();
+			if (! isCheck) {
+				int countWas = matchIDs.Count;
+				CheckMatches(endX, endY, matchIDs);
+				int newCount = matchIDs.Count - countWas;
+				if (newCount < 3) {
+					matchIDs.RemoveRange(countWas, newCount);
+				}
+				else {
+					matched = true;
+				}
+			}
+
+			if (! matched) { // Revert
+				SwapPair(startPosIndex, endPosIndex);
+				return;
+			}
+
+			foreach (int id in matchIDs) {
+				DeleteTile(id);
+			}
+
 			int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
 			for (int i = start; i >= 0; i--) {
 				int newID = FallTile(i);
-				if (newID != -1) toCheck.Add(newID);
-			}
-
-			if (toCheck.Count == 0) break;
-			else {
-				matchIDs.Clear();
-				foreach (int pos in toCheck) {
-					int x = pos % size;
-					int y = Mathf.FloorToInt(pos / size);
-
-					List<int> newMatches = CheckMatches(x, y);
-					if (newMatches.Count > 2) {
-						matchIDs.AddRange(newMatches);
-					}
-				}
-
-				List<string> todo = new List<string>();
-				foreach (int pos in toCheck) {
-					int x = pos % size;
-					int y = Mathf.FloorToInt(pos / size);
-
-					todo.Add(x + "," + y + "," + GetTypeAt(x, y));
-				}
-
-				foreach (int id in matchIDs) {
-					DeleteTile(id);
+				if (newID != -1) {
+					queue.Add(new MoveQueueItem(IndexToXY(newID, false), newID));
 				}
 			}
-		}
-		*/
+			queue.Add(new MoveQueueItem()); // Separator
 
-		// TODO: spawn new
+			// TODO: spawn new
 
-		ren.Rerender();
+			ren.Rerender();
+			queue.RemoveAt(0);
+		} while (isCheck); // Multiple checks are usually run after every drag. They're run in batches and any new checks that get queued are done in the next batch due to the separator
 	}
 }

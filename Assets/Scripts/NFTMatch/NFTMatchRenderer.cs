@@ -19,9 +19,15 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 	private bool initialized;
 
+	[HideInInspector] public bool animating;
+
 	private void Init() {
 		NFTs = new NFTRenderData[dataScript.count];
 		initialized = true;
+	}
+
+	private void FixedUpdate() {
+		animating = false;
 	}
 
 	public void Rerender() { // Called on update
@@ -70,6 +76,7 @@ public class NFTMatchRenderer : MonoBehaviour {
 				NFTScript.target = dataScript.IndexToXY(pos - 1);
 			}
 		}
+		animating = true;
 	}
 
 	private int FindID() {
