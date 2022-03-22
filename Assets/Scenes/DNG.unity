@@ -1493,6 +1493,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1518323068074865344, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: 07c7503c-8ec6-495e-bf89-4f14f6d1972e
+      objectReference: {fileID: 0}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2086,7 +2090,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
+  m_DefaultActionMap: 125ad3b7-5833-4485-a35a-7fb2dd54be7a
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!65 &6489136034268795251

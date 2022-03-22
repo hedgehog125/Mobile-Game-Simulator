@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGame: 1
+  backScene: PhoneMenu
 --- !u!114 &1518323068074865344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +73,6 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: 07c7503c-8ec6-495e-bf89-4f14f6d1972e
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

@@ -80,15 +80,8 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private void OnClick(InputValue input) {
-		Debug.Log("A");
 		if (input.isPressed) {
 			startPos = mousePos;
-
-			int startX = (int)(startPos.x + (size / 2));
-			int startY = (int)(size - (startPos.y + (size / 2)));
-
-			Debug.Log(startY);
-			Debug.Log(startX);
 		}
 		else {
 			endPos = mousePos;
@@ -176,7 +169,6 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private int FallTile(int posIndex) {
-		/*
 		int x = posIndex % size;
 		int y = Mathf.FloorToInt(posIndex / size);
 
@@ -185,22 +177,14 @@ public class NFTMatchGrid : MonoBehaviour {
 		while (GetTypeAt(x, y) == SquareType.Null) {
 			y++;
 			fallDistance++;
+			if (y == size) break;
 		}
 		if (fallDistance == 0) return -1;
-		else {
-			y--;
-			int index = NFTPositionIndexes[posIndex];
-			int newPosIndex = GetPosIndex(x, y);
 
-			NFTPositionIndexes[posIndex] = -1;
-			NFTPositionIndexes[newPosIndex] = index;
+		int newPosIndex = GetIndex(x, y - 1);
+		SwapPair(posIndex, newPosIndex);
 
-			GameObject NFT = NFTGrid[posIndex];
-			NFT.transform.position -= new Vector3(0, fallDistance, 0);
-			return newPosIndex;
-		}
-		*/
-		return -1;
+		return newPosIndex;
 	}
 
 	private List<int> CheckMatches(int x, int y, List<int> matches) {
@@ -294,60 +278,70 @@ public class NFTMatchGrid : MonoBehaviour {
 				continue; // The next batch can be done a frame early since nothing changed (this also shouldn't include another batch of checks since the grid wasn't changed)
 			}
 
-			int startX = queuedItem.start.x;
-			int startY = queuedItem.start.x;
-			int startPosIndex = queuedItem.startIndex;
+			if (ProcessDragQueueItem(queuedItem, out isCheck)) {
+				ren.Rerender();
+			}
+			queue.RemoveAt(0);
+		} while (isCheck); // Multiple checks are usually run after every drag. They're run in batches and any new checks that get queued are done in the next batch due to the separator
+	}
 
-			int endX = queuedItem.end.x;
-			int endY = queuedItem.end.x;
-			int endPosIndex = queuedItem.endIndex;
-			isCheck = queuedItem.isCheck;
+	private bool ProcessDragQueueItem(MoveQueueItem queuedItem, out bool isCheck) {
+		int startX = queuedItem.start.x;
+		int startY = queuedItem.start.y;
+		int startPosIndex = queuedItem.startIndex;
 
+		int endX = queuedItem.end.x;
+		int endY = queuedItem.end.y;
+		int endPosIndex = queuedItem.endIndex;
+		isCheck = queuedItem.isCheck;
+
+		if (! isCheck) {
 			SwapPair(startPosIndex, endPosIndex);
+		}
 
-			bool matched = false;
-			List<int> matchIDs = CheckMatches(startX, startY);
-			if (matchIDs.Count < 3) {
-				matchIDs.Clear();
+		bool matched = false;
+		List<int> matchIDs = CheckMatches(startX, startY);
+		if (matchIDs.Count < 3) {
+			matchIDs.Clear();
+		}
+		else {
+			matched = true;
+		}
+
+		if (! isCheck) {
+			int countWas = matchIDs.Count;
+			CheckMatches(endX, endY, matchIDs);
+			int newCount = matchIDs.Count - countWas;
+			if (newCount < 3) {
+				matchIDs.RemoveRange(countWas, newCount);
 			}
 			else {
 				matched = true;
 			}
+		}
 
+		if (! matched) { // Revert
 			if (! isCheck) {
-				int countWas = matchIDs.Count;
-				CheckMatches(endX, endY, matchIDs);
-				int newCount = matchIDs.Count - countWas;
-				if (newCount < 3) {
-					matchIDs.RemoveRange(countWas, newCount);
-				}
-				else {
-					matched = true;
-				}
-			}
-
-			if (! matched) { // Revert
 				SwapPair(startPosIndex, endPosIndex);
-				return;
 			}
+			return false;
+		}
 
-			foreach (int id in matchIDs) {
-				DeleteTile(id);
+		foreach (int id in matchIDs) {
+			DeleteTile(id);
+		}
+
+		int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
+		for (int i = start; i >= 0; i--) {
+			int newID = FallTile(i);
+			if (newID != -1) {
+				queue.Add(new MoveQueueItem(IndexToXY(newID, false), newID));
 			}
+		}
+		queue.Add(new MoveQueueItem()); // Separator
 
-			int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
-			for (int i = start; i >= 0; i--) {
-				int newID = FallTile(i);
-				if (newID != -1) {
-					queue.Add(new MoveQueueItem(IndexToXY(newID, false), newID));
-				}
-			}
-			queue.Add(new MoveQueueItem()); // Separator
-
-			// TODO: spawn new
-
-			ren.Rerender();
-			queue.RemoveAt(0);
-		} while (isCheck); // Multiple checks are usually run after every drag. They're run in batches and any new checks that get queued are done in the next batch due to the separator
+		// TODO: spawn new
+		Time.timeScale = 0.025f;
+		return true;
 	}
 }

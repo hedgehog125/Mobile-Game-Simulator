@@ -347,7 +347,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: BasicGame
+  m_DefaultActionMap: 1efbffa8-5576-43de-bc70-e5a516257680
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!61 &1352607031
@@ -390,6 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NFTPrefab: {fileID: 7592939756192900297, guid: c532a91a2e7b19842a76964b1a36ef99, type: 3}
   dataScript: {fileID: 1352607029}
+  animating: 0
 --- !u!1001 &1488490216
 PrefabInstance:
   m_ObjectHideFlags: 0
