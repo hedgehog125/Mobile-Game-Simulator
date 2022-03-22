@@ -341,7 +341,6 @@ public class NFTMatchGrid : MonoBehaviour {
 		queue.Add(new MoveQueueItem()); // Separator
 
 		// TODO: spawn new
-		Time.timeScale = 0.025f;
 		return true;
 	}
 }
