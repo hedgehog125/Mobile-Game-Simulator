@@ -80,8 +80,15 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private void OnClick(InputValue input) {
+		Debug.Log("A");
 		if (input.isPressed) {
 			startPos = mousePos;
+
+			int startX = (int)(startPos.x + (size / 2));
+			int startY = (int)(size - (startPos.y + (size / 2)));
+
+			Debug.Log(startY);
+			Debug.Log(startX);
 		}
 		else {
 			endPos = mousePos;
