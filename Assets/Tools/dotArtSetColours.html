@@ -1,0 +1,31 @@
+<script>
+    let canvas = document.createElement("canvas");
+    canvas.width = 10;
+    canvas.height = 10;
+    let ctx = canvas.getContext("2d");
+
+    const colors = [
+        "255,0,0",
+        "0,255,0",
+        "0,0,255",
+        "255,255,0",
+        "255,119,255",
+        "55,197,255"
+    ];
+
+    let y = 0;
+    while (y < canvas.height) {
+        let x = 0;
+        while (x < canvas.width) {
+            ctx.fillStyle = "rgb(" + colors[Math.round(Math.random() * (colors.length - 1))] + ")";
+            ctx.fillRect(x, y, 1, 1);
+
+            x++;
+        }
+        y++;
+    }
+
+    document.body = document.createElement("body");
+    document.body.appendChild(canvas);
+
+</script>

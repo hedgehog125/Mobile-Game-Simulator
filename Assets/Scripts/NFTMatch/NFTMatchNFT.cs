@@ -21,7 +21,9 @@ public class NFTMatchNFT : MonoBehaviour {
 			Color.red,
 			Color.green,
 			Color.blue,
-			Color.yellow
+			Color.yellow,
+			new Color(1f, 119 / 255f, 1f),
+			new Color(55 / 255f, 197 / 255f, 1f)
 		};
 
 		ren.color = colors[(int)type];

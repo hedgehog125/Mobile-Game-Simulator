@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NFTMatchRenderer : MonoBehaviour {
 	[SerializeField] private GameObject NFTPrefab;
-    [SerializeField] private NFTMatchGrid dataScript;
+	[SerializeField] private NFTMatchGrid dataScript;
 
 	private class NFTRenderData {
 		public Rigidbody2D rb;
@@ -15,14 +15,14 @@ public class NFTMatchRenderer : MonoBehaviour {
 			script = NFT.GetComponent<NFTMatchNFT>();
 		}
 	}
-	private NFTRenderData[] NFTs; // The order is unaffected by positions
+	private List<NFTRenderData> NFTs; // The order is unaffected by positions
 
 	private bool initialized;
 
 	[HideInInspector] public bool animating;
 
 	private void Init() {
-		NFTs = new NFTRenderData[dataScript.count];
+		NFTs = new List<NFTRenderData>();
 		initialized = true;
 	}
 
@@ -56,7 +56,7 @@ public class NFTMatchRenderer : MonoBehaviour {
 			}
 		}
 
-		int[] index = new int[dataScript.count];
+		int[] index = new int[NFTs.Count];
 		for (int i = 0; i < dataScript.count; i++) {
 			NFTMatchGrid.GridSquare NFT = dataScript.grid[i];
 			if (NFT != null) {
@@ -66,11 +66,14 @@ public class NFTMatchRenderer : MonoBehaviour {
 		}
 
 		// Set the target to the corresponding coordinates of where that tile is found now
-		for (int i = 0; i < dataScript.count; i++) {
+		for (int i = 0; i < NFTs.Count; i++) {
+			if (NFTs[i] == null) continue; // Already deleted
+
 			NFTMatchNFT NFTScript = NFTs[i].script;
 			int pos = index[i];
 			if (pos == 0) { // Wasn't defined, so must have been deleted
 				NFTScript.deleted = true;
+				NFTs[i] = null;
 			}
 			else {
 				NFTScript.target = dataScript.IndexToXY(pos - 1);
@@ -80,13 +83,10 @@ public class NFTMatchRenderer : MonoBehaviour {
 	}
 
 	private int FindID() {
-		for (int i = 0; i < NFTs.Length; i++) {
+		for (int i = 0; i < NFTs.Count; i++) {
 			if (NFTs[i] == null) return i;
 		}
-		return -1;
+		NFTs.Add(null);
+		return NFTs.Count - 1;
 	}
-
-	//private int[] Index() {
-
-	//}
 }

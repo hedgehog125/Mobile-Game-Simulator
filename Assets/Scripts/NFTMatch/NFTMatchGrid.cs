@@ -12,17 +12,25 @@ public class NFTMatchGrid : MonoBehaviour {
 	[SerializeField] private int size;
 	[SerializeField] private float deadzone;
 
-	[HideInInspector] public enum SquareType {
+	[HideInInspector] public static int squareTypeCount = 6;
+	[HideInInspector]
+	public enum SquareType {
 		Red,
 		Green,
 		Blue,
 		Yellow,
+		Pink,
+		SkyBlue,
 		Null
 	}
-	[HideInInspector] public class GridSquare {
+	[HideInInspector]
+	public class GridSquare {
 		public SquareType type;
 		public int UI_ID = -1;
 
+		public GridSquare() {
+			type = (SquareType)(Random.Range(0, squareTypeCount - 1));
+		}
 		public GridSquare(SquareType inputType) {
 			type = inputType;
 			// UI_ID is assigned by the renderer
@@ -97,8 +105,8 @@ public class NFTMatchGrid : MonoBehaviour {
 		string data = gridDataAsset.text;
 		baseGrid = new SquareType[count];
 		for (int i = 0; i < data.Length; i++) {
-			SquareType type = (SquareType)int.Parse(data[i].ToString()); 
-			baseGrid[i] = type;
+			int typeID = int.Parse(data[i].ToString());
+			baseGrid[i] = (SquareType)typeID;
 		}
 
 		queue = new List<MoveQueueItem>();
@@ -331,6 +339,8 @@ public class NFTMatchGrid : MonoBehaviour {
 			DeleteTile(id);
 		}
 
+		// Falling
+
 		int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
 		for (int i = start; i >= 0; i--) {
 			int newID = FallTile(i);
@@ -338,9 +348,16 @@ public class NFTMatchGrid : MonoBehaviour {
 				queue.Add(new MoveQueueItem(IndexToXY(newID, false), newID));
 			}
 		}
+
+		// Spawn replacements
+		for (int i = 0; i < count; i++) {
+			if (grid[i] == null) {
+				grid[i] = new GridSquare();
+				queue.Add(new MoveQueueItem(IndexToXY(i, false), i));
+			}
+		}
 		queue.Add(new MoveQueueItem()); // Separator
 
-		// TODO: spawn new
 		return true;
 	}
 }
