@@ -277,20 +277,25 @@ public class NFTMatchGrid : MonoBehaviour {
 
 	private void ProcessDragQueue() {
 		bool isCheck = false;
+		bool needsRender = false;
 		do {
 			if (queue.Count == 0) return;
 			MoveQueueItem queuedItem = queue[0];
 			if (queuedItem.isSeparator) {
 				queue.RemoveAt(0);
-				if (ren.animating) return;
+				if (ren.animating) break;
 				continue; // The next batch can be done a frame early since nothing changed (this also shouldn't include another batch of checks since the grid wasn't changed)
 			}
 
 			if (ProcessDragQueueItem(queuedItem, out isCheck)) {
-				ren.Rerender();
+				needsRender = true;
 			}
 			queue.RemoveAt(0);
 		} while (isCheck); // Multiple checks are usually run after every drag. They're run in batches and any new checks that get queued are done in the next batch due to the separator
+
+		if (needsRender) {
+			ren.Rerender();
+		}
 	}
 
 	private bool ProcessDragQueueItem(MoveQueueItem queuedItem, out bool isCheck) {

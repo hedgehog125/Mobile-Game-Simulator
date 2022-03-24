@@ -139,7 +139,6 @@ public class NFTMatchRenderer : MonoBehaviour {
 			}
 		}
 		animating = true;
-		Time.timeScale = 0.05f;
 	}
 
 	private int FindID() {
