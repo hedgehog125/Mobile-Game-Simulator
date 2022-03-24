@@ -3,16 +3,50 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NFTMatchNFT : MonoBehaviour {
+	[SerializeField] private float speed;
+
 	[HideInInspector] public NFTMatchGrid.SquareType type;
 	[HideInInspector] public int id;
+	[HideInInspector] public NFTMatchGrid dataScript;
 
+	private GameObject visible;
 	private SpriteRenderer ren;
+	private Animator anim;
 
-	[HideInInspector] public Vector2 target;
+	private Vector2 target;
+	private bool targetSet;
+
+	private Vector2 offset = new Vector2(0.5f, -0.5f);
+
+	public void ChangeTarget(Vector2Int _target) {
+		if (Vector2.Distance(target, _target) > 0.05f || (! targetSet)) {
+			target = _target + offset;
+			if (targetSet) {
+				animating = true;
+			}
+			else {
+				transform.position = target;
+				targetSet = true;
+			}
+		}
+	}
+	public void SetFallOffset(int amount) {
+		Vector3 pos = transform.position;
+		pos.y = ((dataScript.pubSize / 2) + amount) + (offset.y + 1);
+		transform.position = pos;
+
+		animating = true;
+	}
+
 	[HideInInspector] public bool deleted;
+	[HideInInspector] public bool animating { get; private set; }
 
 	private void Awake() {
-		ren = GetComponent<SpriteRenderer>();
+		visible = transform.GetChild(0).gameObject;
+
+		ren = visible.GetComponent<SpriteRenderer>();
+		anim = visible.GetComponent<Animator>();
+
 		Position();
 	}
 
@@ -34,10 +68,20 @@ public class NFTMatchNFT : MonoBehaviour {
 	}
 
 	private void Position() {
-		transform.position = target + new Vector2(0.5f, -0.5f);
+		if (animating) {
+			if (Vector2.Distance(transform.position, target) < 0.05f) { // At target
+				animating = false;
+				transform.position = target;
+			}
+			else {
+				Vector2 newPos = Vector2.MoveTowards(transform.position, target, Time.deltaTime * speed);
+				transform.position = newPos;
+			}
+		}
+
 		if (deleted) {
-			Destroy(gameObject);
-			return;
+			anim.SetBool("Delete", true);
+			ren.sortingLayerName = "Effects";
 		}
 	}
 }
