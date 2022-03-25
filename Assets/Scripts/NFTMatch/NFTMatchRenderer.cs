@@ -18,8 +18,11 @@ public class NFTMatchRenderer : MonoBehaviour {
 	private List<NFTRenderData> NFTs; // The order is unaffected by positions
 
 	private bool initialized;
+	private bool firstInit = true;
+	private Hashtable justMade;
 
-	[HideInInspector] public bool animating;
+	[HideInInspector] public bool animating { get; private set; }
+	private bool swapAnimating;
 
 	private class NFTFallData {
 		public int y;
@@ -37,51 +40,29 @@ public class NFTMatchRenderer : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		bool someAnimating = false;
-		foreach (NFTRenderData NFT in NFTs) {
-			if (NFT == null) continue;
+		if (animating) {
+			bool someAnimating = false;
+			foreach (NFTRenderData NFT in NFTs) {
+				if (NFT == null) continue;
 
-			if (NFT.script.animating) {
-				someAnimating = true;
+				if (NFT.script.animating) {
+					someAnimating = true;
+				}
 			}
-		}
 
-		if (! someAnimating) {
-			animating = false;
+			if (! someAnimating) {
+				if (swapAnimating) {
+					AfterSwap();
+					swapAnimating = false;
+				}
+				else {
+					animating = false;
+				}
+			}
 		}
 	}
 
-	public void Rerender() { // Called on update
-		bool firstInit = false;
-		if (! initialized) {
-			Init();
-			firstInit = true;
-		}
-
-		// Create any new NFTs that are needed
-		Hashtable justMade = new Hashtable();
-		for (int i = 0; i < dataScript.count; i++) {
-			NFTMatchGrid.GridSquare square = dataScript.grid[i];
-			if (square == null) continue;
-
-			if (square.UI_ID == -1) { // New
-				GameObject NFT = Instantiate(NFTPrefab);
-				int id = FindID();
-
-				NFT.transform.parent = transform;
-				NFTMatchNFT NFTScript = NFT.GetComponent<NFTMatchNFT>();
-				NFTScript.type = square.type;
-				NFTScript.id = id;
-				NFTScript.dataScript = dataScript;
-
-				NFTScript.Ready();
-
-				NFTs[id] = new NFTRenderData(NFT);
-				square.UI_ID = id;
-				justMade[id] = "1";
-			}
-		}
-
+	private void AfterSwap() {
 		int[] index = new int[NFTs.Count];
 		for (int i = 0; i < dataScript.count; i++) {
 			NFTMatchGrid.GridSquare NFT = dataScript.grid[i];
@@ -99,7 +80,7 @@ public class NFTMatchRenderer : MonoBehaviour {
 			NFTMatchNFT NFTScript = NFTs[i].script;
 			int pos = index[i];
 			if (pos == 0) { // Wasn't defined, so must have been deleted
-				NFTScript.deleted = true; // TODO: also set target when it's one that's been moved
+				NFTScript.deleted = true;
 				NFTs[i] = null;
 			}
 			else {
@@ -138,7 +119,62 @@ public class NFTMatchRenderer : MonoBehaviour {
 				}
 			}
 		}
+
+		firstInit = false;
+	}
+
+	public void Rerender() { // In theory, this will only ever be called in this form on a first init, in which case, the value isn't needed
+		Rerender(null);
+	}
+
+	public void Rerender(NFTMatchGrid.SwappedSquare[] swappedSquares) { // Called on update
+		firstInit = false;
+		if (! initialized) {
+			Init();
+			firstInit = true;
+		}
+
+		// Create any new NFTs that are needed
+		justMade = new Hashtable();
+		for (int i = 0; i < dataScript.count; i++) {
+			NFTMatchGrid.GridSquare square = dataScript.grid[i];
+			if (square == null) continue;
+
+			if (square.UI_ID == -1) { // New
+				GameObject NFT = Instantiate(NFTPrefab);
+				int id = FindID();
+
+				NFT.transform.parent = transform;
+				NFTMatchNFT NFTScript = NFT.GetComponent<NFTMatchNFT>();
+				NFTScript.type = square.type;
+				NFTScript.id = id;
+				NFTScript.dataScript = dataScript;
+
+				NFTScript.Ready(); // It won't be shown until the target is set though
+
+				NFTs[id] = new NFTRenderData(NFT);
+				square.UI_ID = id;
+				justMade[id] = "1";
+			}
+		}
+
 		animating = true;
+		if (firstInit) {
+			swapAnimating = false;
+			AfterSwap();
+		}
+		else {
+			swapAnimating = true;
+
+			SetSwappedTarget(swappedSquares[0]);
+			SetSwappedTarget(swappedSquares[1]);
+		}
+	}
+
+	private void SetSwappedTarget(NFTMatchGrid.SwappedSquare swappedSquare) {
+		if (swappedSquare == null) return;
+
+		NFTs[swappedSquare.UI_ID].script.ChangeTargetDir(swappedSquare.dir);
 	}
 
 	private int FindID() {

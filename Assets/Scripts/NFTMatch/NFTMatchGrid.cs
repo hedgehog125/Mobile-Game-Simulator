@@ -13,8 +13,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	[SerializeField] private float deadzone;
 
 	[HideInInspector] public static int squareTypeCount = 6;
-	[HideInInspector]
-	public enum SquareType {
+	[HideInInspector] public enum SquareType {
 		Red,
 		Green,
 		Blue,
@@ -23,8 +22,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		SkyBlue,
 		Null
 	}
-	[HideInInspector]
-	public class GridSquare {
+	[HideInInspector] public class GridSquare {
 		public SquareType type;
 		public int UI_ID = -1;
 
@@ -39,6 +37,16 @@ public class NFTMatchGrid : MonoBehaviour {
 
 	private SquareType[] baseGrid;
 	[HideInInspector] public GridSquare[] grid { get; private set; }
+
+	[HideInInspector] public class SwappedSquare {
+		public int UI_ID;
+		public Vector2Int dir;
+
+		public SwappedSquare(int _UI_ID, Vector2Int _dir) {
+			UI_ID = _UI_ID;
+			dir = _dir;
+		}
+	}
 
 	private Vector2 mousePos;
 	private Vector2 startPos;
@@ -276,10 +284,12 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private void ProcessDragQueue() {
+		SwappedSquare[] swappedSquares = new SwappedSquare[2];
+
 		bool isCheck = false;
 		bool needsRender = false;
 		do {
-			if (queue.Count == 0) return;
+			if (queue.Count == 0) break;
 			MoveQueueItem queuedItem = queue[0];
 			if (queuedItem.isSeparator) {
 				queue.RemoveAt(0);
@@ -287,18 +297,18 @@ public class NFTMatchGrid : MonoBehaviour {
 				continue; // The next batch can be done a frame early since nothing changed (this also shouldn't include another batch of checks since the grid wasn't changed)
 			}
 
-			if (ProcessDragQueueItem(queuedItem, out isCheck)) {
+			if (ProcessDragQueueItem(queuedItem, out isCheck, swappedSquares)) {
 				needsRender = true;
 			}
 			queue.RemoveAt(0);
 		} while (isCheck); // Multiple checks are usually run after every drag. They're run in batches and any new checks that get queued are done in the next batch due to the separator
 
 		if (needsRender) {
-			ren.Rerender();
+			ren.Rerender(swappedSquares);
 		}
 	}
 
-	private bool ProcessDragQueueItem(MoveQueueItem queuedItem, out bool isCheck) {
+	private bool ProcessDragQueueItem(MoveQueueItem queuedItem, out bool isCheck, SwappedSquare[] swappedSquares) {
 		int startX = queuedItem.start.x;
 		int startY = queuedItem.start.y;
 		int startPosIndex = queuedItem.startIndex;
@@ -338,6 +348,14 @@ public class NFTMatchGrid : MonoBehaviour {
 				SwapPair(startPosIndex, endPosIndex);
 			}
 			return false;
+		}
+
+		if (! isCheck) {
+			Vector2Int startDir = new Vector2Int(endX - startX, startY - endY); // Y is flipped for worldspace vs grid-space
+			Vector2Int endDir = startDir * -Vector2Int.one;
+
+			swappedSquares[0] = new SwappedSquare(grid[endPosIndex].UI_ID, startDir);
+			swappedSquares[1] = new SwappedSquare(grid[startPosIndex].UI_ID, endDir);
 		}
 
 		foreach (int id in matchIDs) {

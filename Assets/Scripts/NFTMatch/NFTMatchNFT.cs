@@ -27,9 +27,15 @@ public class NFTMatchNFT : MonoBehaviour {
 			else {
 				transform.position = target;
 				targetSet = true;
+
+				ren.enabled = true; // Make it visible now that the target is set and it's positioned properly
 			}
 		}
 	}
+	public void ChangeTargetDir(Vector2Int dir) {
+		ChangeTarget(new Vector2Int((int)(target.x - offset.x), (int)(target.y - offset.y)) + dir);
+	}
+
 	public void SetFallOffset(int amount) {
 		Vector3 pos = transform.position;
 		pos.y = ((dataScript.pubSize / 2) + amount) + (offset.y + 1);
