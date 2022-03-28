@@ -88,8 +88,9 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 	private List<MoveQueueItem> queue;
 
-	public int pubSize { get; private set; }
-	public int count { get; private set; }
+	[HideInInspector] public int pubSize { get; private set; }
+	[HideInInspector] public int count { get; private set; }
+	[HideInInspector] public int turnsUntilNFT { get; private set; } = 5;
 
 	private void OnPoint(InputValue input) {
 		mousePos = Camera.main.ScreenToWorldPoint(input.Get<Vector2>());
@@ -380,6 +381,10 @@ public class NFTMatchGrid : MonoBehaviour {
 			}
 		}
 		queue.Add(new MoveQueueItem()); // Separator
+
+		if (! isCheck) {
+			turnsUntilNFT--;
+		}
 
 		return true;
 	}
