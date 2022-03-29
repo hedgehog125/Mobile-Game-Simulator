@@ -15,6 +15,7 @@ public class BuyNFT : MonoBehaviour {
 	[SerializeField] private GameObject NFTCam;
 
 	[Header("Buttons")]
+	[SerializeField] private GameObject nextPurchaseText;
 	[SerializeField] private GameObject buyButton;
 	[SerializeField] private GameObject cancelButton;
 
@@ -47,6 +48,7 @@ public class BuyNFT : MonoBehaviour {
 	public void OnBuy() {
 		Simulation.Spend(NFTOb.value);
 		Save.ownedNFTs.Add(pendingData);
+		matchScript.BoughtNFT();
 
 		OnEither();
 	}
@@ -93,5 +95,6 @@ public class BuyNFT : MonoBehaviour {
 
 		but.interactable = true;
 		matchScript.inputPaused = false;
+		nextPurchaseText.SetActive(true);
 	}
 }

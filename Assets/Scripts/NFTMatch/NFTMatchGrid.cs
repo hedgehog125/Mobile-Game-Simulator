@@ -16,6 +16,9 @@ public class NFTMatchGrid : MonoBehaviour {
 	[HideInInspector] public int pubSize { get; private set; }
 	[HideInInspector] public int count { get; private set; }
 	[HideInInspector] public int matchesUntilNFT { get; private set; }
+	public void BoughtNFT() {
+		matchesUntilNFT += neededMatchesPerNFT;
+	}
 
 	[HideInInspector] public bool inputPaused;
 	[HideInInspector] public static readonly int squareTypeCount = 6;
