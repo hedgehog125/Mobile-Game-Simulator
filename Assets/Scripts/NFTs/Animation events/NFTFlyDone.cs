@@ -1,17 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class NFTFlyDone : StateMachineBehaviour {
     [SerializeField] private List<string> activateName;
 
-    private ChestController toActivate;
-    private void Awake() {
-        toActivate = Tools.GetNestedGameobject(activateName).GetComponent<ChestController>();
-    }
+	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+        NFTController myController = animator.gameObject.GetComponent<NFTController>();
 
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        if (toActivate) {
+        if (myController.resumeAnimation) {
+            ChestController toActivate = Tools.GetNestedGameobject(activateName).GetComponent<ChestController>();
             toActivate.ResumeAnimation();
         }
 

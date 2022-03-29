@@ -11,8 +11,14 @@ public class NFTMatchGrid : MonoBehaviour {
 	[Header("Misc")]
 	[SerializeField] private int size;
 	[SerializeField] private float deadzone;
+	[SerializeField] private int neededMatchesPerNFT;
 
-	[HideInInspector] public static int squareTypeCount = 6;
+	[HideInInspector] public int pubSize { get; private set; }
+	[HideInInspector] public int count { get; private set; }
+	[HideInInspector] public int matchesUntilNFT { get; private set; }
+
+	[HideInInspector] public bool inputPaused;
+	[HideInInspector] public static readonly int squareTypeCount = 6;
 	[HideInInspector] public enum SquareType {
 		Red,
 		Green,
@@ -88,10 +94,6 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 	private List<MoveQueueItem> queue;
 
-	[HideInInspector] public int pubSize { get; private set; }
-	[HideInInspector] public int count { get; private set; }
-	[HideInInspector] public int turnsUntilNFT { get; private set; } = 5;
-
 	private void OnPoint(InputValue input) {
 		mousePos = Camera.main.ScreenToWorldPoint(input.Get<Vector2>());
 	}
@@ -102,7 +104,9 @@ public class NFTMatchGrid : MonoBehaviour {
 		}
 		else {
 			endPos = mousePos;
-			QueueDragged();
+			if (! inputPaused) {
+				QueueDragged();
+			}
 		}
 	}
 
@@ -110,6 +114,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	private void Awake() {
 		pubSize = size;
 		count = size * size;
+		matchesUntilNFT = neededMatchesPerNFT;
 
 		string data = gridDataAsset.text;
 		baseGrid = new SquareType[count];
@@ -177,6 +182,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 	private void DeleteTile(int index) {
 		grid[index] = null;
+		matchesUntilNFT--;
 	}
 
 	public void SwapPair(int index1, int index2) {
@@ -381,10 +387,6 @@ public class NFTMatchGrid : MonoBehaviour {
 			}
 		}
 		queue.Add(new MoveQueueItem()); // Separator
-
-		if (! isCheck) {
-			turnsUntilNFT--;
-		}
 
 		return true;
 	}

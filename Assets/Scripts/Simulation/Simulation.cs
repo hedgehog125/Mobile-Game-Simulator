@@ -8,7 +8,11 @@ public class Simulation {
     public static int day;
 
     public static int spendTarget = 1000000;
-    public static int spent = 0;
+    public static int spent { get; private set; } = 0;
+    public static void Spend(int amount) {
+        spent += amount;
+        Save.UpdateSpent();
+	}
 
     public class dailyLimitProgress {
         public static int DNG;

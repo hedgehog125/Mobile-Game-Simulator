@@ -16,10 +16,10 @@ public class NextPurchaseController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		int turns = dataScript.turnsUntilNFT;
-		if (turns != lastTurns) {
-			if (turns > 0) {
-				text.text = $"Next NFT Purchase Unlock:\n{turns} more moves";
+		int matches = dataScript.matchesUntilNFT;
+		if (matches != lastTurns) {
+			if (matches > 0) {
+				text.text = $"Next NFT Purchase Unlock:\n{matches} more matched NFTs";
 				gameObject.SetActive(true);
 				buyButton.SetActive(false);
 			}
@@ -27,7 +27,7 @@ public class NextPurchaseController : MonoBehaviour {
 				gameObject.SetActive(false);
 				buyButton.SetActive(true);
 			}
-			lastTurns = dataScript.turnsUntilNFT;
+			lastTurns = dataScript.matchesUntilNFT;
 		}
 	}
 }

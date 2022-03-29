@@ -17,11 +17,11 @@ public class Save {
 			variationID = inputVariationID;
 		}
 	}
-	public class MiniGameSave {
-		public List<OwnedNFT> NFTs = new List<OwnedNFT>();
-	}
+	public static List<OwnedNFT> ownedNFTs = new List<OwnedNFT>();
+	
+	private static int spent;
 
-	public static class miniGameSaves {
-		public static MiniGameSave NFTSave = new MiniGameSave();
+	public static void UpdateSpent() {
+		spent = Simulation.spent;
 	}
 }

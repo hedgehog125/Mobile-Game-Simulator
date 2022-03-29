@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NFTController : MonoBehaviour {
+	[Header("Objects and references")]
 	[SerializeField] private List<Sprite> NFTImgAssets;
 	[SerializeField] private List<TextAsset> NFTAssets;
 	[SerializeField] private SpriteRenderer myRen;
 
+	[Header("Misc")]
+	[SerializeField] private int showoffTime;
+
 	[HideInInspector] public int NFT_ID;
 	[HideInInspector] public int variationID;
+	[HideInInspector] public bool resumeAnimation = true;
+	[HideInInspector] public bool canFly { get; private set; }
+	[HideInInspector] public int value { get; private set; }
 
 	private Animator anim;
+
+	private int showoffTick;
+
 	private void Awake() {
 		anim = GetComponent<Animator>();
 	}
@@ -24,7 +34,7 @@ public class NFTController : MonoBehaviour {
 			variationID = Random.Range(0, NFTAsset.variations - 1);
 			
 			newNFT = new Save.OwnedNFT(Save.OwnedNFT.Collections.DNG, NFT_ID, variationID);
-			if (! Save.miniGameSaves.NFTSave.NFTs.Contains(newNFT)) { // Make sure it's not already owned
+			if (! Save.ownedNFTs.Contains(newNFT)) { // Make sure it's not already owned
 				break;
 			}
 		}
@@ -66,5 +76,16 @@ public class NFTController : MonoBehaviour {
 
 	public void Fly() {
 		anim.SetBool("Fly", true);
+	}
+
+	private void FixedUpdate() {
+		if (! canFly) {
+			if (showoffTick == showoffTime) {
+				canFly = true;
+			}
+			else {
+				showoffTick++;
+			}
+		}
 	}
 }
