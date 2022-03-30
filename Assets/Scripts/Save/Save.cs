@@ -20,7 +20,6 @@ public class Save {
 	public static List<OwnedNFT> ownedNFTs = new List<OwnedNFT>();
 	
 	private static int spent;
-
 	public static void UpdateSpent() {
 		spent = Simulation.spent;
 	}

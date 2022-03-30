@@ -1180,7 +1180,7 @@ MonoBehaviour:
   ren: {fileID: 1352607032}
   size: 10
   deadzone: 0.5
-  neededMatchesPerNFT: 30
+  neededMatchesPerNFT: 50
   inputPaused: 0
 --- !u!114 &1352607030
 MonoBehaviour:

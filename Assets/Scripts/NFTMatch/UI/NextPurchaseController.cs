@@ -9,17 +9,17 @@ public class NextPurchaseController : MonoBehaviour {
 
 	private TextMeshProUGUI text;
 
-	private int lastTurns = 0;
+	private int lastMatchesNeeded = 0;
 
 	private void Awake() {
 		text = GetComponent<TextMeshProUGUI>();
 	}
 
 	private void FixedUpdate() {
-		int matches = dataScript.matchesUntilNFT;
-		if (matches != lastTurns) {
-			if (matches > 0) {
-				text.text = $"Next NFT Purchase Unlock:\n{matches} more matched NFTs";
+		int matchesNeeded = dataScript.matchesUntilNFT;
+		if (matchesNeeded != lastMatchesNeeded) {
+			if (matchesNeeded > 0) {
+				text.text = $"Next NFT Purchase Unlock:\n{matchesNeeded} more matched NFTs";
 				gameObject.SetActive(true);
 				buyButton.SetActive(false);
 			}
@@ -27,7 +27,7 @@ public class NextPurchaseController : MonoBehaviour {
 				gameObject.SetActive(false);
 				buyButton.SetActive(true);
 			}
-			lastTurns = dataScript.matchesUntilNFT;
+			lastMatchesNeeded = dataScript.matchesUntilNFT;
 		}
 	}
 }
