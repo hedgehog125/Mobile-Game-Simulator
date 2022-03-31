@@ -73,7 +73,7 @@ public class NFTMatchRenderer : MonoBehaviour {
 		}
 
 		// Set the target to the corresponding coordinates of where that tile is found now
-		List<NFTFallData>[] newFallOrder = new List<NFTFallData>[dataScript.pubSize]; // In reverse order
+		List<NFTFallData>[] newFallOrder = new List<NFTFallData>[dataScript.size]; // In reverse order
 		for (int i = 0; i < NFTs.Count; i++) {
 			if (NFTs[i] == null) continue; // Already deleted
 

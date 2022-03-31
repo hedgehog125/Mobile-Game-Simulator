@@ -47,7 +47,7 @@ public class BuyNFT : MonoBehaviour {
 
 	public void OnBuy() {
 		Simulation.Spend(NFTOb.value);
-		Save.ownedNFTs.Add(pendingData);
+		Simulation.currentSave.ownedNFTs.Add(pendingData);
 		matchScript.BoughtNFT();
 
 		OnEither();

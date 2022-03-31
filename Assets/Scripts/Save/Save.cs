@@ -17,10 +17,13 @@ public class Save {
 			variationID = inputVariationID;
 		}
 	}
-	public static List<OwnedNFT> ownedNFTs = new List<OwnedNFT>();
+	public List<OwnedNFT> ownedNFTs = new List<OwnedNFT>();
 	
-	private static int spent;
-	public static void UpdateSpent() {
-		spent = Simulation.spent;
+	public int spent;
+	public int spendTarget = 1000000;
+	public class NFTMatchSaveClass {
+		public int matchesUntilNFT; // Initialised when opened
+		public bool opened = false;
 	}
+	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 }

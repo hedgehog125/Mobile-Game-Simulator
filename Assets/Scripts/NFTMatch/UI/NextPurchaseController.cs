@@ -16,7 +16,7 @@ public class NextPurchaseController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		int matchesNeeded = dataScript.matchesUntilNFT;
+		int matchesNeeded = Simulation.currentSave.NFTMatchSave.matchesUntilNFT;
 		if (matchesNeeded != lastMatchesNeeded) {
 			if (matchesNeeded > 0) {
 				text.text = $"Next NFT Purchase Unlock:\n{matchesNeeded} more matched NFTs";
@@ -27,7 +27,7 @@ public class NextPurchaseController : MonoBehaviour {
 				gameObject.SetActive(false);
 				buyButton.SetActive(true);
 			}
-			lastMatchesNeeded = dataScript.matchesUntilNFT;
+			lastMatchesNeeded = matchesNeeded;
 		}
 	}
 }

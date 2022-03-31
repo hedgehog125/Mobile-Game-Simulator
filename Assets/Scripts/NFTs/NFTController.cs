@@ -34,7 +34,7 @@ public class NFTController : MonoBehaviour {
 			variationID = Random.Range(0, NFTAsset.variations - 1);
 			
 			newNFT = new Save.OwnedNFT(Save.OwnedNFT.Collections.DNG, NFT_ID, variationID);
-			if (! Save.ownedNFTs.Contains(newNFT)) { // Make sure it's not already owned
+			if (! Simulation.currentSave.ownedNFTs.Contains(newNFT)) { // Make sure it's not already owned
 				break;
 			}
 		}

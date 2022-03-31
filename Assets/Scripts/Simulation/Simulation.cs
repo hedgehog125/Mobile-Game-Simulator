@@ -7,11 +7,8 @@ public class Simulation {
     public static int time { get; private set; } = 27000;
     public static int day;
 
-    public static int spendTarget = 1000000;
-    public static int spent { get; private set; } = 0;
     public static void Spend(int amount) {
-        spent += amount;
-        Save.UpdateSpent();
+        currentSave.spent += amount;
 	}
 
     public class dailyLimitProgress {
@@ -31,8 +28,15 @@ public class Simulation {
 		}
 
     }
-
     private static void EndDay() {
         dailyLimitProgress.DNG = 0;
+	}
+
+    public static List<Save> saves = new List<Save>();
+    public static Save currentSave = NewSave();
+    public static Save NewSave() {
+        Save save = new Save();
+        saves.Add(save);
+        return save;
 	}
 }

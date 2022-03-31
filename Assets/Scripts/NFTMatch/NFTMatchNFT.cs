@@ -38,7 +38,7 @@ public class NFTMatchNFT : MonoBehaviour {
 
 	public void SetFallOffset(int amount) {
 		Vector3 pos = transform.position;
-		pos.y = ((dataScript.pubSize / 2) + amount) + (offset.y + 1);
+		pos.y = ((dataScript.size / 2) + amount) + (offset.y + 1);
 		transform.position = pos;
 
 		animating = true;

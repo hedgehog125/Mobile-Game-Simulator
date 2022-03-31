@@ -9,15 +9,14 @@ public class NFTMatchGrid : MonoBehaviour {
 	[SerializeField] private NFTMatchRenderer ren;
 
 	[Header("Misc")]
-	[SerializeField] private int size;
+	[SerializeField] public int size;
 	[SerializeField] private float deadzone;
 	[SerializeField] private int neededMatchesPerNFT;
+	[SerializeField] public int initialMatchesPerNFT;
 
-	[HideInInspector] public int pubSize { get; private set; }
 	[HideInInspector] public int count { get; private set; }
-	[HideInInspector] public int matchesUntilNFT { get; private set; }
 	public void BoughtNFT() {
-		matchesUntilNFT += neededMatchesPerNFT;
+		save.matchesUntilNFT += neededMatchesPerNFT;
 	}
 
 	[HideInInspector] public bool inputPaused;
@@ -56,6 +55,9 @@ public class NFTMatchGrid : MonoBehaviour {
 			dir = _dir;
 		}
 	}
+
+	private Save.NFTMatchSaveClass save;
+	private int waitingMatchesLeftReduce;
 
 	private Vector2 mousePos;
 	private Vector2 startPos;
@@ -115,9 +117,12 @@ public class NFTMatchGrid : MonoBehaviour {
 
 
 	private void Awake() {
-		pubSize = size;
 		count = size * size;
-		matchesUntilNFT = neededMatchesPerNFT;
+		save = Simulation.currentSave.NFTMatchSave;
+		if (! save.opened) {
+			save.matchesUntilNFT = initialMatchesPerNFT;
+			save.opened = true;
+		}
 
 		string data = gridDataAsset.text;
 		baseGrid = new SquareType[count];
@@ -134,6 +139,9 @@ public class NFTMatchGrid : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (! ren.animating) {
+			save.matchesUntilNFT -= waitingMatchesLeftReduce;
+			waitingMatchesLeftReduce = 0;
+
 			ProcessDragQueue();
 		}
 	}
@@ -185,7 +193,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 	private void DeleteTile(int index) {
 		grid[index] = null;
-		matchesUntilNFT--;
+		waitingMatchesLeftReduce++;
 	}
 
 	public void SwapPair(int index1, int index2) {
