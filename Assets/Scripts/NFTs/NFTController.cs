@@ -47,10 +47,10 @@ public class NFTController : MonoBehaviour {
 	public Save.OwnedNFT Randomize() {
 		Save.OwnedNFT newNFT;
 		while (true) { // Find a valid NFT. Who needs optimisation?
-			NFT_ID = Random.Range(0, NFTImgAssets.Count - 1);
+			NFT_ID = Random.Range(0, NFTImgAssets.Count);
 
 			NFTData NFTAsset = JsonUtility.FromJson<NFTData>(NFTAssets[NFT_ID].text);
-			variationID = Random.Range(0, NFTAsset.variations - 1);
+			variationID = Random.Range(0, NFTAsset.variations);
 			
 			newNFT = new Save.OwnedNFT(Save.OwnedNFT.Collections.DNG, NFT_ID, variationID);
 			if (! Simulation.currentSave.ownedNFTs.Contains(newNFT)) { // Make sure it's not already owned
