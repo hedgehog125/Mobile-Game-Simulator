@@ -26,4 +26,9 @@ public class Save {
 		public bool opened = false;
 	}
 	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
+
+	public class DNGSaveClass {
+		public int dailyLimitProgress;
+	}
+	public DNGSaveClass DNGSave = new DNGSaveClass();
 }

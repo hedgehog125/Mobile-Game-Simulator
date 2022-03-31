@@ -150,6 +150,13 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 1c24cd23a6b363d4e92605a21a345cb9, type: 3}
   - {fileID: 4900000, guid: ae372c7882b65cc43858426c37fc122f, type: 3}
   myRen: {fileID: 4032278111105531264}
+  priceTextPath:
+  - UI And Background
+  - PermanentUI
+  - NFTPrice
+  priceTextPathAlt:
+  - PermanentUI
+  - NFTPrice
   showoffTime: 182
   NFT_ID: 5
   variationID: 0

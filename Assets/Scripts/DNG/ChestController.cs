@@ -70,6 +70,7 @@ public class ChestController : MonoBehaviour {
 				if (spawnTick == spawnDelay) {
 					NFTOb = Instantiate(NFTPrefab, NFTHolder).GetComponent<NFTController>();
 					Simulation.currentSave.ownedNFTs.Add(NFTOb.Randomize());
+					NFTOb.displayAsValue = true;
 					NFTOb.Ready();
 				}
 				if (spawnTick == pauseDelay) {
@@ -87,14 +88,16 @@ public class ChestController : MonoBehaviour {
 	}
 
 	private void Open() {
-		if (Simulation.dailyLimitProgress.DNG == limit) {
+		Save.DNGSaveClass save = Simulation.currentSave.DNGSave;
+
+		if (save.dailyLimitProgress == limit) {
 			limitPopup.SetActive(true);
 		}
 		else {
 			state = States.Open;
 			keyObject.SetActive(true); // Play the animation
 			Simulation.Spend(cost);
-			Simulation.dailyLimitProgress.DNG++;
+			save.dailyLimitProgress++;
 		}
 	}
 

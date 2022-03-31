@@ -35,6 +35,7 @@ public class BuyNFT : MonoBehaviour {
 		NFTOb.resumeAnimation = false;
 
 		pendingData = NFTOb.Randomize();
+		NFTOb.animationModes.showMode = 1;
 		NFTOb.Ready();
 
 		mainCam.SetActive(false);
@@ -53,6 +54,7 @@ public class BuyNFT : MonoBehaviour {
 		OnEither();
 	}
 	public void OnDecline() {
+		NFTOb.animationModes.flyMode = 1;
 		OnEither();
 	}
 

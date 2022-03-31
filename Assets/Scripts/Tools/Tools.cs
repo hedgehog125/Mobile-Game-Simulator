@@ -7,6 +7,7 @@ public static class Tools {
         Transform currentTransform = GameObject.Find(names[0]).transform;
         for (int i = 1; i < names.Count; i++) {
             currentTransform = currentTransform.Find(names[i]);
+            if (currentTransform == null) return null;
         }
 
         return currentTransform.gameObject;

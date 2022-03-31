@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NFTController : MonoBehaviour {
 	[Header("Objects and references")]
 	[SerializeField] private List<Sprite> NFTImgAssets;
 	[SerializeField] private List<TextAsset> NFTAssets;
 	[SerializeField] private SpriteRenderer myRen;
+	[SerializeField] private List<string> priceTextPath;
+	[SerializeField] private List<string> priceTextPathAlt;
 
 	[Header("Misc")]
 	[SerializeField] private int showoffTime;
@@ -14,15 +17,31 @@ public class NFTController : MonoBehaviour {
 	[HideInInspector] public int NFT_ID;
 	[HideInInspector] public int variationID;
 	[HideInInspector] public bool resumeAnimation = true;
+	[HideInInspector] public bool displayAsValue;
 	[HideInInspector] public bool canFly { get; private set; }
 	[HideInInspector] public int value { get; private set; }
 
+	public class AnimationModes {
+		public int showMode;
+		public int flyMode;
+	}
+	[HideInInspector] public AnimationModes animationModes = new AnimationModes();
+
 	private Animator anim;
+	private TextMeshProUGUI priceText;
+	private GameObject priceTextOb;
 
 	private int showoffTick;
 
 	private void Awake() {
 		anim = GetComponent<Animator>();
+
+		GameObject ob = Tools.GetNestedGameobject(priceTextPath);
+		if (ob == null) ob = Tools.GetNestedGameobject(priceTextPathAlt);
+		if (ob != null) {
+			priceTextOb = ob;
+			priceText = ob.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
+		}
 	}
 
 	public Save.OwnedNFT Randomize() {
@@ -72,10 +91,25 @@ public class NFTController : MonoBehaviour {
 			ren.enabled = true;
 			colorIndex += 3;
 		}
+
+		value = NFT.values[variationID];
+		if (priceText != null) {
+			priceText.text = displayAsValue? $"Value: £{value}" : $"Price: £{value}";
+			priceTextOb.SetActive(true);
+		}
+
+		anim.SetInteger("ShowMode", animationModes.showMode);
 	}
 
 	public void Fly() {
 		anim.SetBool("Fly", true);
+		anim.SetInteger("FlyMode", animationModes.flyMode);
+	}
+
+	private void OnDestroy() {
+		if (priceText != null) {
+			priceTextOb.SetActive(false);
+		}
 	}
 
 	private void FixedUpdate() {

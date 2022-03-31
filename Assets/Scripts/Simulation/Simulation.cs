@@ -11,10 +11,6 @@ public class Simulation {
         currentSave.spent += amount;
 	}
 
-    public class dailyLimitProgress {
-        public static int DNG;
-    }
-
     public static void IncreaseTime(int amount) {
         int dayLength = 72000;
 
@@ -29,7 +25,7 @@ public class Simulation {
 
     }
     private static void EndDay() {
-        dailyLimitProgress.DNG = 0;
+        currentSave.DNGSave.dailyLimitProgress = 0;
 	}
 
     public static List<Save> saves = new List<Save>();

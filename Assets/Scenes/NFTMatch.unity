@@ -1397,6 +1397,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PermanentUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1163360915439389367, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578645000172570138, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619212552283750866, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020555881658784373, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
 --- !u!224 &1488490217 stripped
@@ -1488,7 +1504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0.39215687}
+  m_Color: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
