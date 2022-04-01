@@ -7,5 +7,6 @@ public class CloseDNGPopup : MonoBehaviour {
 
     public void OnClick() {
 		popup.SetActive(false);
+		Debug.Log("B");
 	}
 }

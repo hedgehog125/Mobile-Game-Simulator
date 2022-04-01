@@ -109,6 +109,7 @@ public class NFTController : MonoBehaviour {
 	private void OnDestroy() {
 		if (priceText != null) {
 			priceTextOb.SetActive(false);
+			Debug.Log("I");
 		}
 	}
 

@@ -22,9 +22,11 @@ public class NextPurchaseController : MonoBehaviour {
 				text.text = $"Next NFT Purchase Unlock:\n{matchesNeeded} more matched NFTs";
 				gameObject.SetActive(true);
 				buyButton.SetActive(false);
+				Debug.Log("G");
 			}
 			else {
 				gameObject.SetActive(false);
+				Debug.Log("H");
 				buyButton.SetActive(true);
 			}
 			lastMatchesNeeded = matchesNeeded;
