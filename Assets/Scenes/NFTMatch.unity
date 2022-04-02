@@ -274,7 +274,7 @@ MonoBehaviour:
   matchScript: {fileID: 1352607029}
   mainCam: {fileID: 274217682}
   NFTCam: {fileID: 1891931719}
-  nextPurchaseText: {fileID: 1796783714}
+  nextPurchaseText: {fileID: 1796783718}
   buyButton: {fileID: 259627142}
   cancelButton: {fileID: 970992387}
 --- !u!1 &144612891
@@ -1180,7 +1180,7 @@ MonoBehaviour:
   ren: {fileID: 1352607032}
   size: 10
   deadzone: 0.5
-  neededMatchesPerNFT: 50
+  neededMatchesPerNFT: 125
   initialMatchesPerNFT: 5
   inputPaused: 0
 --- !u!114 &1352607030
