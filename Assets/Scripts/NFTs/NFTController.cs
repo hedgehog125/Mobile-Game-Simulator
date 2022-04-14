@@ -94,7 +94,7 @@ public class NFTController : MonoBehaviour {
 
 		value = NFT.values[variationID];
 		if (priceText != null) {
-			priceText.text = displayAsValue? $"Value: £{value}" : $"Price: £{value}";
+			priceText.text = displayAsValue? $"Value: Â£{value}" : $"Price: Â£{value}";
 			priceTextOb.SetActive(true);
 		}
 

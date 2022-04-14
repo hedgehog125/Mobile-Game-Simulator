@@ -322,6 +322,24 @@ public class NFTMatchGrid : MonoBehaviour {
 		} while (isCheck); // Multiple checks are usually run after every drag. They're run in batches and any new checks that get queued are done in the next batch due to the separator
 
 		if (needsRender) {
+			// Process falling tiles
+			int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
+			for (int i = start; i >= 0; i--) {
+				int newID = FallTile(i);
+				if (newID != -1) {
+					queue.Add(new MoveQueueItem(IndexToXY(newID, false), newID));
+				}
+			}
+
+			// Spawn replacements
+			for (int i = 0; i < count; i++) {
+				if (grid[i] == null) {
+					grid[i] = new GridSquare();
+					queue.Add(new MoveQueueItem(IndexToXY(i, false), i));
+				}
+			}
+			queue.Add(new MoveQueueItem()); // Separator
+
 			ren.Rerender(swappedSquares);
 		}
 	}
@@ -380,24 +398,7 @@ public class NFTMatchGrid : MonoBehaviour {
 			DeleteTile(id);
 		}
 
-		// Falling
-
-		int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
-		for (int i = start; i >= 0; i--) {
-			int newID = FallTile(i);
-			if (newID != -1) {
-				queue.Add(new MoveQueueItem(IndexToXY(newID, false), newID));
-			}
-		}
-
-		// Spawn replacements
-		for (int i = 0; i < count; i++) {
-			if (grid[i] == null) {
-				grid[i] = new GridSquare();
-				queue.Add(new MoveQueueItem(IndexToXY(i, false), i));
-			}
-		}
-		queue.Add(new MoveQueueItem()); // Separator
+		// Falling tiles are processed later so they don't effect the other checks this frame
 
 		return true;
 	}

@@ -173,8 +173,10 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 	private void SetSwappedTarget(NFTMatchGrid.SwappedSquare swappedSquare) {
 		if (swappedSquare == null) return;
+		NFTRenderData NFT = NFTs[swappedSquare.UI_ID];
+		if (NFT == null) return;
 
-		NFTs[swappedSquare.UI_ID].script.ChangeTargetDir(swappedSquare.dir);
+		NFT.script.ChangeTargetDir(swappedSquare.dir);
 	}
 
 	private int FindID() {
