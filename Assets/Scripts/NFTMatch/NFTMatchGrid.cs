@@ -147,12 +147,32 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private void GenerateGrid() {
-		grid = new GridSquare[size * size];
-		for (int i = 0; i < baseGrid.Length; i++) {
-			grid[i] = new GridSquare(baseGrid[i]);
-		}
+		grid = new GridSquare[count];
+		while (true) {
+			List<int> newTiles = new List<int>();
+			for (int i = 0; i < count; i++) {
+				if (grid[i] == null) {
+					grid[i] = new GridSquare();
+					newTiles.Add(i);
+				}
+			}
 
-		// TODO: rotate and flip randomly (or depending on the number of plays? Use as seed?)
+			bool matched = false;
+			foreach (int index in newTiles) {
+				Vector2Int xy = IndexToXY(index, false);
+
+				List<int> matchIDs = CheckMatches(xy[0], xy[1]);
+
+				if (matchIDs.Count >= 3) {
+					foreach (int deleteIndex in matchIDs) {
+						DeleteTile(deleteIndex, false);
+					}
+					matched = true;
+				}
+			}
+
+			if (! matched) break;
+		}
 	}
 
 	public int GetIndex(int x, int y) {
@@ -187,13 +207,21 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private void DeleteTile(int x, int y) {
+		DeleteTile(x, y, true);
+	}
+	private void DeleteTile(int x, int y, bool reduceWait) {
 		int index = GetIndex(x, y);
 		if (index == -1) return;
-		DeleteTile(index);
+		DeleteTile(index, reduceWait);
 	}
 	private void DeleteTile(int index) {
+		DeleteTile(index, true);
+	}
+	private void DeleteTile(int index, bool reduceWait) {
 		grid[index] = null;
-		waitingMatchesLeftReduce++;
+		if (reduceWait) {
+			waitingMatchesLeftReduce++;
+		}
 	}
 
 	public void SwapPair(int index1, int index2) {
@@ -368,11 +396,11 @@ public class NFTMatchGrid : MonoBehaviour {
 		}
 
 		if (! isCheck) {
-			int countWas = matchIDs.Count;
+			int added = matchIDs.Count;
 			CheckMatches(endX, endY, matchIDs);
-			int newCount = matchIDs.Count - countWas;
+			int newCount = matchIDs.Count - added;
 			if (newCount < 3) {
-				matchIDs.RemoveRange(countWas, newCount);
+				matchIDs.RemoveRange(added, newCount);
 			}
 			else {
 				matched = true;
