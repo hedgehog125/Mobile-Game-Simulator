@@ -9,14 +9,18 @@ tools/lotsOfImages and imageToData: upload and download logic partly made before
 
 === Made by others ===
 = Images =
-4 leaf clover: based off of the heart from https://www.kenney.nl/assets/pixel-platformer under CC0 1.0 Universal
 Lucky 7: uses explosion from https://www.flickr.com/photos/pahudson/3224209758 and a deep fry filter: https://deepfriedmemes.com/
 Crying emoji: https://github.com/twitter/twemoji under an MIT license (https://github.com/twitter/twemoji/blob/master/LICENSE )
+Crypto image: https://imveste.com/the-5-best-crypto-insurance-coins-or-insurance-tokens/
 
 = Reference images =
 Baboon: https://en.wikipedia.org/wiki/Baboon#/media/File:Olive_baboon_Ngorongoro.jpg
 Gorilla: https://en.wikipedia.org/wiki/Gorilla#/media/File:Gorille_des_plaines_de_l'ouest_%C3%A0_l'Espace_Zoologique.jpg
 Orangutan: https://www.istockphoto.com/photo/female-orangutan-looks-thoughtfully-through-the-glass-gm657928620-119948753
+Ape: https://www.britannica.com/animal/ape
+Monkey: https://en.wikipedia.org/wiki/Monkey#/media/File:Bonnet_macaque_(Macaca_radiata)_Photograph_By_Shantanu_Kuveskar.jpg
+The 4 leaf clover is based off of the heart from https://www.kenney.nl/assets/pixel-platformer under CC0 1.0 Universal
+Chimpanzee: https://www.gettyimages.co.uk/detail/photo/common-chimpanzee-kibale-forest-national-park-royalty-free-image/625850102?adppopup=true
 
 
 = 3D models =
@@ -25,9 +29,12 @@ Key: https://sketchfab.com/3d-models/zelda-ocarina-of-time-small-key-13ac63725a4
 Picture frame: https://sketchfab.com/3d-models/fancy-picture-frame-b54984abe2394345a81621719bf8bf1a under CC BY 4.0
 
 = Music =
+Splashing around: https://www.youtube.com/watch?v=TFZRA2_LCro&list=PLMKRp0DXWwG-yCme0a3b917RFLUPFiaqT&index=11 
 
 = Videos =
 Discord mod meme original: https://www.tiktok.com/@angelicalopez1991/video/6879904155339656454?is_copy_url=1&is_from_webapp=v1&q=Angelicalopez1991&t=1650225170322 (used in the NFT Match intro cutscene)
+Dramatic car footage: https://www.youtube.com/watch?v=ba7JNTI17uo
+
 
 = SFX =
 Collect NFT: https://freesound.org/people/shinephoenixstormcrow/sounds/337049/ under CC BY 3.0
