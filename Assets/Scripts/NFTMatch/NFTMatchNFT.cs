@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NFTMatchNFT : MonoBehaviour {
+	[Header("Objects and references")]
+	[SerializeField] private List<Sprite> NFTs;
+
+	[Header("Misc")]
 	[SerializeField] private float speed;
 
 	[HideInInspector] public NFTMatchGrid.SquareType type;
@@ -66,7 +70,8 @@ public class NFTMatchNFT : MonoBehaviour {
 			new Color(55 / 255f, 197 / 255f, 1f)
 		};
 
-		ren.color = colors[(int)type];
+		//ren.color = colors[(int)type];
+		ren.sprite = NFTs[(int)type];
 	}
 
 	private void Update() {
