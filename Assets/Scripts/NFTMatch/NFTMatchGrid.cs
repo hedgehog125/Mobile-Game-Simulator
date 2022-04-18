@@ -418,8 +418,13 @@ public class NFTMatchGrid : MonoBehaviour {
 			Vector2Int startDir = new Vector2Int(endX - startX, startY - endY); // Y is flipped for worldspace vs grid-space
 			Vector2Int endDir = startDir * -Vector2Int.one;
 
-			swappedSquares[0] = new SwappedSquare(grid[endPosIndex].UI_ID, startDir);
-			swappedSquares[1] = new SwappedSquare(grid[startPosIndex].UI_ID, endDir);
+			GridSquare startSquare = grid[startPosIndex];
+			GridSquare endSquare = grid[endPosIndex];
+
+			if (startSquare != null && endSquare != null) {
+				swappedSquares[0] = new SwappedSquare(endSquare.UI_ID, startDir);
+				swappedSquares[1] = new SwappedSquare(startSquare.UI_ID, endDir);
+			}
 		}
 
 		foreach (int id in matchIDs) {
