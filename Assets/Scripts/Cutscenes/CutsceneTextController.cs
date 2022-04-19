@@ -17,6 +17,7 @@ public class CutsceneTextController : MonoBehaviour {
 	[SerializeField] private List<string> displayText;
 	[SerializeField] private int autoShowDelay;
 	[SerializeField] private string nextScene;
+	[SerializeField] private bool stayOnLast;
 
 	private int autoShowTick;
 	private int textID;
@@ -26,8 +27,13 @@ public class CutsceneTextController : MonoBehaviour {
 			if (buttonPrompt.activeSelf) {
 				textID++;
 				if (textID == displayText.Count) {
-					gameObject.SetActive(false);
-					SceneManager.LoadScene(nextScene);
+					if (stayOnLast) {
+						textID--;
+					}
+					else {
+						gameObject.SetActive(false);
+						SceneManager.LoadScene(nextScene);
+					}
 				}
 				else {
 					text.text = displayText[textID];
@@ -36,7 +42,9 @@ public class CutsceneTextController : MonoBehaviour {
 				}
 			}
 			else {
-				buttonPrompt.SetActive(true);
+				if ((! stayOnLast) || textID != displayText.Count - 1) {
+					buttonPrompt.SetActive(true);
+				}
 			}
 		}
 	}
@@ -47,7 +55,9 @@ public class CutsceneTextController : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (autoShowTick == autoShowDelay) {
-			buttonPrompt.SetActive(true);
+			if ((! stayOnLast) || textID != displayText.Count - 1) {
+				buttonPrompt.SetActive(true);
+			}
 		}
 		else {
 			autoShowTick++;

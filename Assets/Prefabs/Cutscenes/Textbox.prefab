@@ -172,7 +172,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -15, y: 15}
-  m_SizeDelta: {x: 250, y: 75}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &2497518187855386050
 CanvasRenderer:
@@ -371,6 +371,7 @@ MonoBehaviour:
   - 
   autoShowDelay: 75
   nextScene: 
+  stayOnLast: 0
 --- !u!114 &2497518187951691230
 MonoBehaviour:
   m_ObjectHideFlags: 0
