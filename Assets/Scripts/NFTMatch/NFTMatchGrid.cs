@@ -7,6 +7,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	[Header("Objects and references")]
 	[SerializeField] private TextAsset gridDataAsset;
 	[SerializeField] private NFTMatchRenderer ren;
+	[SerializeField] private GameObject tutorialBox;
 
 	[Header("Misc")]
 	[SerializeField] public int size;
@@ -119,8 +120,9 @@ public class NFTMatchGrid : MonoBehaviour {
 	private void Awake() {
 		count = size * size;
 		save = Simulation.currentSave.NFTMatchSave;
-		if (save.plays == 2) { // Plays will have been incremented by here, and the first is for the cutscene
+		if (save.plays == 1) { // Plays will have been incremented by here
 			save.matchesUntilNFT = initialMatchesPerNFT;
+			tutorialBox.SetActive(true);
 		}
 
 		string data = gridDataAsset.text;
@@ -349,6 +351,8 @@ public class NFTMatchGrid : MonoBehaviour {
 		} while (isCheck); // Multiple checks are usually run after every drag. They're run in batches and any new checks that get queued are done in the next batch due to the separator
 
 		if (needsRender) {
+			tutorialBox.SetActive(false);
+
 			// Process falling tiles
 			int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
 			for (int i = start; i >= 0; i--) {

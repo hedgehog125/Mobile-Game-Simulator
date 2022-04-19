@@ -10,7 +10,7 @@ public class NFTMatchMiscController : MonoBehaviour {
 		Save.NFTMatchSaveClass save = Simulation.currentSave.NFTMatchSave;
 
 		save.plays++;
-		if (save.plays == 1) {
+		if (save.plays == 0) { // Starts at -1
 			Simulation.preventClose = true;
 			SceneManager.LoadScene(introScene);
 		}

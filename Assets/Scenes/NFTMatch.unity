@@ -663,6 +663,11 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &282708842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2497518187951691225, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+  m_PrefabInstance: {fileID: 1679769557}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &430334980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,6 +1227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridDataAsset: {fileID: 4900000, guid: 656b5e218d6bb5a449d9102b75b39319, type: 3}
   ren: {fileID: 1352607032}
+  tutorialBox: {fileID: 282708842}
   size: 10
   deadzone: 0.5
   neededMatchesPerNFT: 125
@@ -1496,6 +1502,179 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1679769557
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1488490217}
+    m_Modifications:
+    - target: {fileID: 2497518187951691225, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_Name
+      value: Textbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691225, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: stayOnLast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[0]
+      value: Welcome to NFT Match!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[1]
+      value: Here you'll be able to play to gain the right to purcahse *exclusive*
+        NFTs!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[2]
+      value: How many more you have to match before you can buy is displayed on the
+        right
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[3]
+      value: NFT purchase unlocks stack if you don't use them
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[4]
+      value: So feel free to play a bit beyond the unlock if you aren't ready yet
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[5]
+      value: Just keep in mind you'll have less choice since you have to buy them
+        all at once
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[6]
+      value: You can choose which to buy by cancelling and rebuying, although this
+        might upset some of the team due to the uncertainty of your purchase :(
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[7]
+      value: Anyway, the gameplay is pretty easy, you just drag an NFT towards another
+        to swap them
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[8]
+      value: 'However! This will have to make 3 or more NFTs of the same type adjacent,
+        otherwise they''ll swap back and it won''t count :O '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[9]
+      value: It may or may not be similar to another game
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[10]
+      value: (although my grandma does struggle with *this* version though for some
+        reason,
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[11]
+      value: maybe her eyes don't let her see the full variety of the beautiful NFTs?
+        Surely she could still do well even without that great aspect though?)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[12]
+      value: Anyway, have fun. For the metaverse!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[13]
+      value: Drag some NFTs to match them
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
 --- !u!1 &1711905084
 GameObject:
   m_ObjectHideFlags: 0

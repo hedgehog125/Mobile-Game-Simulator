@@ -30,7 +30,7 @@ public class Save {
 	public int spendTarget = 1000000;
 	public class NFTMatchSaveClass {
 		public int matchesUntilNFT; // Initialised when opened
-		public int plays = 0; // Note that this is one more than the actual due to the intro cutscene
+		public int plays = -1; // The 1st is the cutscene which doesn't count as a play
 	}
 	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 
