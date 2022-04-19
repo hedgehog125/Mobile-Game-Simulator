@@ -26,4 +26,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cutscenes/Intro/Intro4.unity
     guid: 3cea36a98a153024ba8d01ae33c57db3
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Intro/Intro5.unity
+    guid: 36fb0bcded041ed47a38b458d47c334e
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Intro/Intro6.unity
+    guid: 14ce6803084d2514f9a177b70fd2e358
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/Intro/Intro7.unity
+    guid: 67d785eabf4db6249ba6232bb02d90b8
+  - enabled: 1
+    path: Assets/Scenes/PhoneMenuIntro.unity
+    guid: 90cb6a61d8200b947a511e11c24582f1
   m_configObjects: {}

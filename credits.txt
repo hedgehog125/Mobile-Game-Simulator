@@ -10,7 +10,7 @@ tools/lotsOfImages and imageToData: upload and download logic partly made before
 === Made by others ===
 = Images =
 Lucky 7: uses explosion from https://www.flickr.com/photos/pahudson/3224209758 and a deep fry filter: https://deepfriedmemes.com/
-Crying emoji: https://github.com/twitter/twemoji under an MIT license (https://github.com/twitter/twemoji/blob/master/LICENSE )
+Crying emoji and thinking emoji: https://github.com/twitter/twemoji under an MIT license (https://github.com/twitter/twemoji/blob/master/LICENSE )
 Crypto image: https://imveste.com/the-5-best-crypto-insurance-coins-or-insurance-tokens/
 
 = Reference images =
