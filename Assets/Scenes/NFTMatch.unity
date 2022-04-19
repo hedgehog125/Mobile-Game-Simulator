@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f6e4cc3b7acfd469b6ce4839dac980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introScene: 
+  introScene: NFTMatchIntro
 --- !u!1 &259627142
 GameObject:
   m_ObjectHideFlags: 0

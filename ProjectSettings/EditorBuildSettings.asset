@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PhoneMenuIntro.unity
     guid: 90cb6a61d8200b947a511e11c24582f1
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/NFTMatchIntro.unity
+    guid: 22281e148f37e8f4e8191599e6826993
   m_configObjects: {}
