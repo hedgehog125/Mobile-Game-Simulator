@@ -119,9 +119,8 @@ public class NFTMatchGrid : MonoBehaviour {
 	private void Awake() {
 		count = size * size;
 		save = Simulation.currentSave.NFTMatchSave;
-		if (! save.opened) {
+		if (save.plays == 2) { // Plays will have been incremented by here, and the first is for the cutscene
 			save.matchesUntilNFT = initialMatchesPerNFT;
-			save.opened = true;
 		}
 
 		string data = gridDataAsset.text;

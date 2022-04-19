@@ -11,6 +11,22 @@ PrefabInstance:
       propertyPath: m_Text
       value: Kyle
       objectReference: {fileID: 0}
+    - target: {fileID: 1744180081010087111, guid: e6243d9271d456546bbde74790fd4ba7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744180081010087111, guid: e6243d9271d456546bbde74790fd4ba7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744180081010087111, guid: e6243d9271d456546bbde74790fd4ba7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744180081010087111, guid: e6243d9271d456546bbde74790fd4ba7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7384985731010806813, guid: e6243d9271d456546bbde74790fd4ba7, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Save {
+	public int gamesUnlocked = 1;
+
+	public class WatchedClass {
+		public bool intro;
+	}
+	public WatchedClass watched = new WatchedClass();
+
     public class OwnedNFT {
 		public enum Collections {
 			DNG
@@ -23,7 +30,7 @@ public class Save {
 	public int spendTarget = 1000000;
 	public class NFTMatchSaveClass {
 		public int matchesUntilNFT; // Initialised when opened
-		public bool opened = false;
+		public int plays = 0; // Note that this is one more than the actual due to the intro cutscene
 	}
 	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 
