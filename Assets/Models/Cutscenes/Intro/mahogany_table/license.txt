@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mahogany Table
+* source:	https://sketchfab.com/3d-models/mahogany-table-e9ef3eadee9d4491b7c59fdbb19c30cd
+* author:	myndman (https://sketchfab.com/myndman)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mahogany Table" (https://sketchfab.com/3d-models/mahogany-table-e9ef3eadee9d4491b7c59fdbb19c30cd) by myndman (https://sketchfab.com/myndman) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

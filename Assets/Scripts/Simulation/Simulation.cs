@@ -7,6 +7,8 @@ public class Simulation {
     public static int time { get; private set; } = 27000;
     public static int day;
 
+    public static bool preventClose;
+
     public static void Spend(int amount) {
         currentSave.spent += amount;
 	}

@@ -12,8 +12,10 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	private bool isTheGlobalController;
 
 	private void OnClose(InputValue input) {
-		if (input.isPressed) {
-			SceneManager.LoadScene(backScene);
+		if (isTheGlobalController && (! Simulation.preventClose)) {
+			if (input.isPressed) {
+				SceneManager.LoadScene(backScene);
+			}
 		}
 	}
 
