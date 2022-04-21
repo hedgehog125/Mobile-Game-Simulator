@@ -6,12 +6,11 @@ public class NFTMatchNFT : MonoBehaviour {
 	[Header("Objects and references")]
 	[SerializeField] private List<Sprite> NFTs;
 
-	[Header("Misc")]
-	[SerializeField] private float speed;
-
 	[HideInInspector] public NFTMatchGrid.SquareType type;
 	[HideInInspector] public int id;
+	[HideInInspector] public bool swapping;
 	[HideInInspector] public NFTMatchGrid dataScript;
+	[HideInInspector] public NFTMatchRenderer parentScript;
 
 	private GameObject visible;
 	private SpriteRenderer ren;
@@ -19,6 +18,8 @@ public class NFTMatchNFT : MonoBehaviour {
 
 	private Vector2 target;
 	private bool targetSet;
+
+	private bool falling;
 
 	private Vector2 offset = new Vector2(0.5f, -0.5f);
 
@@ -34,6 +35,10 @@ public class NFTMatchNFT : MonoBehaviour {
 
 				ren.enabled = true; // Make it visible now that the target is set and it's positioned properly
 			}
+
+			if (target.y < transform.position.y) {
+				falling = true;
+			}
 		}
 	}
 	public void ChangeTargetDir(Vector2Int dir) {
@@ -46,6 +51,7 @@ public class NFTMatchNFT : MonoBehaviour {
 		transform.position = pos;
 
 		animating = true;
+		falling = true;
 	}
 
 	[HideInInspector] public bool deleted;
@@ -81,10 +87,11 @@ public class NFTMatchNFT : MonoBehaviour {
 	private void Position() {
 		if (animating) {
 			if (Vector2.Distance(transform.position, target) < 0.05f) { // At target
-				animating = false;
-				transform.position = target;
+				Finish();
 			}
 			else {
+				float speed = falling? parentScript.fallSpeed : parentScript.speed;
+
 				Vector2 newPos = Vector2.MoveTowards(transform.position, target, Time.deltaTime * speed);
 				transform.position = newPos;
 			}
@@ -94,5 +101,13 @@ public class NFTMatchNFT : MonoBehaviour {
 			anim.SetBool("Delete", true);
 			ren.sortingLayerName = "Effects";
 		}
+	}
+
+	private void Finish() {
+		animating = false;
+		falling = false;
+		swapping = false;
+
+		transform.position = target;
 	}
 }

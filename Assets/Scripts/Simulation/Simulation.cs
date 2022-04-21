@@ -55,6 +55,10 @@ public class Simulation {
         if (currentSave == null) {
             currentSave = NewSave();
             Debug.LogWarning("Had to generate save, this should only happen if you're running from a different scene than the main menu.");
+
+            // Set some values for easier development
+            currentSave.watched.intro = true;
+            currentSave.NFTMatchSave.plays = 1;
 		}
 	}
 

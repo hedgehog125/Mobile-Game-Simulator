@@ -3,8 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NFTMatchRenderer : MonoBehaviour {
+	[Header("Objects and references")]
 	[SerializeField] private GameObject NFTPrefab;
 	[SerializeField] private NFTMatchGrid dataScript;
+
+	[Header("Misc")]
+	[SerializeField] private float baseSpeed;
+	[SerializeField] private float startSpeedIncrease;
+	[SerializeField] private float maxStartSpeed;
+	[SerializeField] private float fallAcceleration;
+	[SerializeField] private float maxSpeed;
+
+	[HideInInspector] public float speed { get; private set; }
+	[HideInInspector] public float fallSpeed { get; private set; }
+	private float baseSpeedCounteracted;
 
 	private class NFTRenderData {
 		public Rigidbody2D rb;
@@ -23,6 +35,7 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 	[HideInInspector] public bool animating { get; private set; }
 	private bool swapAnimating;
+	private int justFinishedTick;
 
 	private class NFTFallData {
 		public int y;
@@ -37,6 +50,10 @@ public class NFTMatchRenderer : MonoBehaviour {
 	private void Init() {
 		NFTs = new List<NFTRenderData>();
 		initialized = true;
+
+		baseSpeedCounteracted = baseSpeed - startSpeedIncrease; // It gets increased even for a single batch of matches so it needs counteracting
+		speed = baseSpeedCounteracted;
+		fallSpeed = baseSpeed;
 	}
 
 	private void FixedUpdate() {
@@ -50,6 +67,8 @@ public class NFTMatchRenderer : MonoBehaviour {
 				}
 			}
 
+			fallSpeed = Mathf.Min(fallSpeed + (fallAcceleration / 50), maxSpeed);
+			justFinishedTick = 0;
 			if (! someAnimating) {
 				if (swapAnimating) {
 					AfterSwap();
@@ -57,6 +76,19 @@ public class NFTMatchRenderer : MonoBehaviour {
 				}
 				else {
 					animating = false;
+					justFinishedTick = 1;
+				}
+			}
+		}
+		else {
+			fallSpeed = baseSpeed;
+			if (justFinishedTick != 0) {
+				if (justFinishedTick == 2) {
+					justFinishedTick = 0;
+					speed = baseSpeedCounteracted;
+				}
+				else {
+					justFinishedTick++;
 				}
 			}
 		}
@@ -128,6 +160,8 @@ public class NFTMatchRenderer : MonoBehaviour {
 	}
 
 	public void Rerender(NFTMatchGrid.SwappedSquare[] swappedSquares) { // Called on update
+		speed = Mathf.Min(speed + startSpeedIncrease, maxStartSpeed);
+
 		firstInit = false;
 		if (! initialized) {
 			Init();
@@ -146,9 +180,11 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 				NFT.transform.parent = transform;
 				NFTMatchNFT NFTScript = NFT.GetComponent<NFTMatchNFT>();
+
 				NFTScript.type = square.type;
 				NFTScript.id = id;
 				NFTScript.dataScript = dataScript;
+				NFTScript.parentScript = this;
 
 				NFTScript.Ready(); // It won't be shown until the target is set though
 
@@ -177,6 +213,7 @@ public class NFTMatchRenderer : MonoBehaviour {
 		if (NFT == null) return;
 
 		NFT.script.ChangeTargetDir(swappedSquare.dir);
+		NFT.script.swapping = true;
 	}
 
 	private int FindID() {

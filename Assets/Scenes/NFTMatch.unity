@@ -1277,6 +1277,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NFTPrefab: {fileID: 7592939756192900297, guid: c532a91a2e7b19842a76964b1a36ef99, type: 3}
   dataScript: {fileID: 1352607029}
+  baseSpeed: 3.5
+  startSpeedIncrease: 0.3
+  maxStartSpeed: 5
+  fallAcceleration: 3
+  maxSpeed: 6
 --- !u!1 &1463049744
 GameObject:
   m_ObjectHideFlags: 0

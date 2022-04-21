@@ -9,13 +9,18 @@ public class NextPurchaseController : MonoBehaviour {
 
 	private TextMeshProUGUI text;
 
-	private int lastMatchesNeeded = 0;
+	private int lastMatchesNeeded = -1;
 
 	private void Awake() {
 		text = GetComponent<TextMeshProUGUI>();
+		UpdateIfNeeded();
 	}
 
 	private void FixedUpdate() {
+		UpdateIfNeeded();
+	}
+
+	private void UpdateIfNeeded() {
 		int matchesNeeded = Simulation.currentSave.NFTMatchSave.matchesUntilNFT;
 		if (matchesNeeded != lastMatchesNeeded) {
 			UpdateDisplay();
