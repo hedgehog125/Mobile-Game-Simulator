@@ -7,16 +7,19 @@ public class NFTMatchRenderer : MonoBehaviour {
 	[SerializeField] private GameObject NFTPrefab;
 	[SerializeField] private NFTMatchGrid dataScript;
 
-	[Header("Misc")]
+	[Header("Speeds, timings and accelerations")]
 	[SerializeField] private float baseSpeed;
 	[SerializeField] private float startSpeedIncrease;
 	[SerializeField] private float maxStartSpeed;
 	[SerializeField] private float fallAcceleration;
 	[SerializeField] private float maxSpeed;
+	[SerializeField] private float failedMatchSpeedReduction;
+	[SerializeField] private int failedMatchWaitTime;
 
 	[HideInInspector] public float speed { get; private set; }
 	[HideInInspector] public float fallSpeed { get; private set; }
 	private float baseSpeedCounteracted;
+	private int failedMatchWaitTick;
 
 	private class NFTRenderData {
 		public Rigidbody2D rb;
@@ -35,7 +38,10 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 	[HideInInspector] public bool animating { get; private set; }
 	private bool swapAnimating;
+	private bool failedMatchAnimating;
 	private int justFinishedTick;
+
+	private NFTMatchGrid.SwappedSquare[] afterFailedSwap;
 
 	private class NFTFallData {
 		public int y;
@@ -58,25 +64,42 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (animating) {
-			bool someAnimating = false;
-			foreach (NFTRenderData NFT in NFTs) {
-				if (NFT == null) continue;
+			if (failedMatchWaitTick != 0) {
+				if (failedMatchWaitTick == failedMatchWaitTime) {
+					SetSwappedTarget(afterFailedSwap[0]);
+					SetSwappedTarget(afterFailedSwap[1]);
+					afterFailedSwap = null;
+					failedMatchWaitTick = 0;
 
-				if (NFT.script.animating) {
-					someAnimating = true;
-				}
-			}
-
-			fallSpeed = Mathf.Min(fallSpeed + (fallAcceleration / 50), maxSpeed);
-			justFinishedTick = 0;
-			if (! someAnimating) {
-				if (swapAnimating) {
-					AfterSwap();
+					// Technically these aren't correct but it means I don't need a separate variable to store the state it's in for this
+					failedMatchAnimating = false;
 					swapAnimating = false;
 				}
 				else {
-					animating = false;
-					justFinishedTick = 1;
+					failedMatchWaitTick++;
+				}
+			}
+			else {
+				bool someAnimating = false;
+				foreach (NFTRenderData NFT in NFTs) {
+					if (NFT == null) continue;
+
+					if (NFT.script.animating) {
+						someAnimating = true;
+					}
+				}
+
+				fallSpeed = Mathf.Min(fallSpeed + (fallAcceleration / 50), maxSpeed);
+				justFinishedTick = 0;
+				if (!someAnimating) {
+					if (swapAnimating) {
+						AfterSwap();
+						swapAnimating = false;
+					}
+					else {
+						animating = false;
+						justFinishedTick = 1;
+					}
 				}
 			}
 		}
@@ -95,6 +118,12 @@ public class NFTMatchRenderer : MonoBehaviour {
 	}
 
 	private void AfterSwap() {
+		if (failedMatchAnimating) {
+			failedMatchWaitTick = 1;
+
+			return;
+		}
+
 		int[] index = new int[NFTs.Count];
 		for (int i = 0; i < dataScript.count; i++) {
 			NFTMatchGrid.GridSquare NFT = dataScript.grid[i];
@@ -207,13 +236,45 @@ public class NFTMatchRenderer : MonoBehaviour {
 		}
 	}
 
+	public void FailedMatch(NFTMatchGrid.SwappedSquare[] swappedSquares) {
+		if (swappedSquares[0] == null || swappedSquares[1] == null) return;
+		speed = baseSpeed / failedMatchSpeedReduction;
+
+		bool dir1 = true;
+		bool dir2 = false;
+		if (swappedSquares[0].dir.x != swappedSquares[1].dir.x) {
+			if (swappedSquares[0].dir.x == -1) {
+				dir1 = true;
+				dir2 = false;
+			}
+		}
+
+		SetSwappedTarget(swappedSquares[0], true, dir1);
+		SetSwappedTarget(swappedSquares[1], true, dir2);
+
+		afterFailedSwap = new NFTMatchGrid.SwappedSquare[2];
+		afterFailedSwap[0] = new NFTMatchGrid.SwappedSquare(swappedSquares[0].UI_ID, swappedSquares[1].dir); // These are already swapped again so they'll put the tiles back in the original positions
+		afterFailedSwap[1] = new NFTMatchGrid.SwappedSquare(swappedSquares[1].UI_ID, swappedSquares[0].dir);
+
+		animating = true;
+		failedMatchAnimating = true;
+		swapAnimating = true;
+	}
+
 	private void SetSwappedTarget(NFTMatchGrid.SwappedSquare swappedSquare) {
+		SetSwappedTarget(swappedSquare, false, false);
+	}
+	private void SetSwappedTarget(NFTMatchGrid.SwappedSquare swappedSquare, bool shake, bool shakeDir) {
 		if (swappedSquare == null) return;
 		NFTRenderData NFT = NFTs[swappedSquare.UI_ID];
 		if (NFT == null) return;
 
-		NFT.script.ChangeTargetDir(swappedSquare.dir);
-		NFT.script.swapping = true;
+		NFTMatchNFT script = NFT.script;
+
+		script.swapping = true;
+		script.shake = shake;
+		script.shakeDir = shakeDir;
+		script.ChangeTargetDir(swappedSquare.dir);
 	}
 
 	private int FindID() {

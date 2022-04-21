@@ -335,6 +335,7 @@ public class NFTMatchGrid : MonoBehaviour {
 
 		bool isCheck = false;
 		bool needsRender = false;
+		bool isFailedMatch = false;
 		do {
 			if (queue.Count == 0) break;
 			MoveQueueItem queuedItem = queue[0];
@@ -344,7 +345,7 @@ public class NFTMatchGrid : MonoBehaviour {
 				continue; // The next batch can be done a frame early since nothing changed (this also shouldn't include another batch of checks since the grid wasn't changed)
 			}
 
-			if (ProcessDragQueueItem(queuedItem, out isCheck, swappedSquares)) {
+			if (ProcessDragQueueItem(queuedItem, out isCheck, swappedSquares, out isFailedMatch) || isFailedMatch) {
 				needsRender = true;
 			}
 			queue.RemoveAt(0);
@@ -353,29 +354,34 @@ public class NFTMatchGrid : MonoBehaviour {
 		if (needsRender) {
 			tutorialBox.SetActive(false);
 
-			// Process falling tiles
-			int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
-			for (int i = start; i >= 0; i--) {
-				int newID = FallTile(i);
-				if (newID != -1) {
-					queue.Add(new MoveQueueItem(IndexToXY(newID, false), newID));
-				}
+			if (isFailedMatch) {
+				ren.FailedMatch(swappedSquares);
 			}
-
-			// Spawn replacements
-			for (int i = 0; i < count; i++) {
-				if (grid[i] == null) {
-					grid[i] = new GridSquare();
-					queue.Add(new MoveQueueItem(IndexToXY(i, false), i));
+			else {
+				// Process falling tiles
+				int start = (grid.Length - 1) - size; // Skip the bottom row, it can't fall
+				for (int i = start; i >= 0; i--) {
+					int newID = FallTile(i);
+					if (newID != -1) {
+						queue.Add(new MoveQueueItem(IndexToXY(newID, false), newID));
+					}
 				}
-			}
-			queue.Add(new MoveQueueItem()); // Separator
 
-			ren.Rerender(swappedSquares);
+				// Spawn replacements
+				for (int i = 0; i < count; i++) {
+					if (grid[i] == null) {
+						grid[i] = new GridSquare();
+						queue.Add(new MoveQueueItem(IndexToXY(i, false), i));
+					}
+				}
+				queue.Add(new MoveQueueItem()); // Separator
+
+				ren.Rerender(swappedSquares);
+			}
 		}
 	}
 
-	private bool ProcessDragQueueItem(MoveQueueItem queuedItem, out bool isCheck, SwappedSquare[] swappedSquares) {
+	private bool ProcessDragQueueItem(MoveQueueItem queuedItem, out bool isCheck, SwappedSquare[] swappedSquares, out bool isFailedMatch) {
 		int startX = queuedItem.start.x;
 		int startY = queuedItem.start.y;
 		int startPosIndex = queuedItem.startIndex;
@@ -384,6 +390,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		int endY = queuedItem.end.y;
 		int endPosIndex = queuedItem.endIndex;
 		isCheck = queuedItem.isCheck;
+		isFailedMatch = false;
 
 		if (! isCheck) {
 			SwapPair(startPosIndex, endPosIndex);
@@ -410,14 +417,7 @@ public class NFTMatchGrid : MonoBehaviour {
 			}
 		}
 
-		if (! matched) { // Revert
-			if (! isCheck) {
-				SwapPair(startPosIndex, endPosIndex);
-			}
-			return false;
-		}
-
-		if (! isCheck) {
+		if (! isCheck) { // These values are still used even if there's no match
 			Vector2Int startDir = new Vector2Int(endX - startX, startY - endY); // Y is flipped for worldspace vs grid-space
 			Vector2Int endDir = startDir * -Vector2Int.one;
 
@@ -428,6 +428,14 @@ public class NFTMatchGrid : MonoBehaviour {
 				swappedSquares[0] = new SwappedSquare(endSquare.UI_ID, startDir);
 				swappedSquares[1] = new SwappedSquare(startSquare.UI_ID, endDir);
 			}
+		}
+
+		if (! matched) { // Revert
+			if (! isCheck) {
+				SwapPair(startPosIndex, endPosIndex);
+				isFailedMatch = true;
+			}
+			return false;
 		}
 
 		foreach (int id in matchIDs) {

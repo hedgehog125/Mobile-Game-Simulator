@@ -1282,6 +1282,8 @@ MonoBehaviour:
   maxStartSpeed: 5
   fallAcceleration: 3
   maxSpeed: 6
+  failedMatchSpeedReduction: 1.25
+  failedMatchWaitTime: 100
 --- !u!1 &1463049744
 GameObject:
   m_ObjectHideFlags: 0

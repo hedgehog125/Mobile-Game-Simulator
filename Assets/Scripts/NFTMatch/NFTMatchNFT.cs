@@ -8,9 +8,11 @@ public class NFTMatchNFT : MonoBehaviour {
 
 	[HideInInspector] public NFTMatchGrid.SquareType type;
 	[HideInInspector] public int id;
-	[HideInInspector] public bool swapping;
 	[HideInInspector] public NFTMatchGrid dataScript;
 	[HideInInspector] public NFTMatchRenderer parentScript;
+	[HideInInspector] public bool shake;
+	[HideInInspector] public bool shakeDir;
+	[HideInInspector] public bool swapping;
 
 	private GameObject visible;
 	private SpriteRenderer ren;
@@ -36,7 +38,7 @@ public class NFTMatchNFT : MonoBehaviour {
 				ren.enabled = true; // Make it visible now that the target is set and it's positioned properly
 			}
 
-			if (target.y < transform.position.y) {
+			if (target.y < transform.position.y && (! swapping)) {
 				falling = true;
 			}
 		}
@@ -107,6 +109,11 @@ public class NFTMatchNFT : MonoBehaviour {
 		animating = false;
 		falling = false;
 		swapping = false;
+
+		if (shake) {
+			anim.SetTrigger("Shake");
+			anim.SetBool("ShakeDir", shakeDir);
+		}
 
 		transform.position = target;
 	}
