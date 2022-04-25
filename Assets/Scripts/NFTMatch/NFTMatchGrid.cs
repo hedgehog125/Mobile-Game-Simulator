@@ -12,7 +12,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	[Header("Misc")]
 	[SerializeField] public int size;
 	[SerializeField] private float deadzone;
-	[SerializeField] private int neededMatchesPerNFT;
+	[SerializeField] public int neededMatchesPerNFT;
 	[SerializeField] public int initialMatchesPerNFT;
 
 	[HideInInspector] public int count { get; private set; }
@@ -356,6 +356,7 @@ public class NFTMatchGrid : MonoBehaviour {
 
 			if (isFailedMatch) {
 				ren.FailedMatch(swappedSquares);
+				queue.Clear();
 			}
 			else {
 				// Process falling tiles
@@ -374,6 +375,7 @@ public class NFTMatchGrid : MonoBehaviour {
 						queue.Add(new MoveQueueItem(IndexToXY(i, false), i));
 					}
 				}
+
 				queue.Add(new MoveQueueItem()); // Separator
 
 				ren.Rerender(swappedSquares);

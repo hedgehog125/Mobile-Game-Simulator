@@ -1,45 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class NextPurchaseController : MonoBehaviour {
+	[Header("Objects and references")]
 	[SerializeField] private NFTMatchGrid dataScript;
 	[SerializeField] private GameObject buyButton;
 
-	private TextMeshProUGUI text;
+	[Header("")]
+	[SerializeField] private float changeSpeed;
 
-	private int lastMatchesNeeded = -1;
+	private Slider slider;
 
 	private void Awake() {
-		text = GetComponent<TextMeshProUGUI>();
-		UpdateIfNeeded();
+		slider = GetComponent<Slider>();
+		UpdateDisplay();
 	}
 
-	private void FixedUpdate() {
-		UpdateIfNeeded();
-	}
-
-	private void UpdateIfNeeded() {
-		int matchesNeeded = Simulation.currentSave.NFTMatchSave.matchesUntilNFT;
-		if (matchesNeeded != lastMatchesNeeded) {
-			UpdateDisplay();
-			lastMatchesNeeded = matchesNeeded;
-		}
+	private void Update() {
+		UpdateDisplay();
 	}
 
 	public void UpdateDisplay() {
-		int matchesNeeded = Simulation.currentSave.NFTMatchSave.matchesUntilNFT;
-		if (matchesNeeded > 0) {
-			text.text = $"Next NFT Purchase Unlock:\n{matchesNeeded} more matched NFTs";
-			gameObject.SetActive(true);
-			buyButton.SetActive(false);
-			Debug.Log("G");
+		int untilPurchase = Simulation.currentSave.NFTMatchSave.matchesUntilNFT;
+		float maxFrameChange = changeSpeed * Time.deltaTime;
+		float target = 1 - (untilPurchase / (float)dataScript.neededMatchesPerNFT);
+
+		if (Mathf.Abs(target - slider.value) < maxFrameChange) {
+			slider.value = target;
 		}
 		else {
-			gameObject.SetActive(false);
-			Debug.Log("H");
-			buyButton.SetActive(true);
+			slider.value += maxFrameChange * (target > slider.value? 1 : -1);
+
+			if (untilPurchase == 0) {
+
+			}
 		}
 	}
 }

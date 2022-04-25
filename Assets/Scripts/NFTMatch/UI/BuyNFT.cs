@@ -39,7 +39,6 @@ public class BuyNFT : MonoBehaviour {
 		NFTOb.Ready();
 
 		mainCam.SetActive(false);
-		Debug.Log("==========");
 		NFTCam.SetActive(true);
 		but.interactable = false;
 
@@ -63,7 +62,6 @@ public class BuyNFT : MonoBehaviour {
 		NFTOb.Fly();
 
 		buyButton.SetActive(false);
-		Debug.Log("D");
 		cancelButton.SetActive(false);
 		pendingData = null;
 	}
@@ -96,11 +94,9 @@ public class BuyNFT : MonoBehaviour {
 
 		mainCam.SetActive(true);
 		NFTCam.SetActive(false);
-		Debug.Log("E");
 
 		but.interactable = true;
 		matchScript.inputPaused = false;
 		nextPurchaseText.UpdateDisplay();
-		Debug.Log("F");
 	}
 }

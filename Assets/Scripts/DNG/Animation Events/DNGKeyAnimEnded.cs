@@ -12,7 +12,6 @@ public class DNGKeyAnimEnded : StateMachineBehaviour {
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         animator.gameObject.SetActive(false);
-        Debug.Log("A");
 
         if (toActivate) {
             toActivate.StartAnimation();
