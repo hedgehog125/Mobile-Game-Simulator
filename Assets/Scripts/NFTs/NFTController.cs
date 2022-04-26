@@ -44,19 +44,25 @@ public class NFTController : MonoBehaviour {
 		}
 	}
 
-	public Save.OwnedNFT Randomize() {
-		Save.OwnedNFT newNFT;
-		while (true) { // Find a valid NFT. Who needs optimisation?
-			NFT_ID = Random.Range(0, NFTImgAssets.Count);
+	public Save.DNGSaveClass.OwnedNFT Randomize() {
+		Save.DNGSaveClass.OwnedNFT newNFT;
+		List<Save.DNGSaveClass.OwnedNFT> notBought = new List<Save.DNGSaveClass.OwnedNFT>();
 
-			NFTData NFTAsset = JsonUtility.FromJson<NFTData>(NFTAssets[NFT_ID].text);
-			variationID = Random.Range(0, NFTAsset.variations);
-			
-			newNFT = new Save.OwnedNFT(Save.OwnedNFT.Collections.DNG, NFT_ID, variationID);
-			if (! Simulation.currentSave.ownedNFTs.Contains(newNFT)) { // Make sure it's not already owned
-				break;
+		for (int id = 0; id < NFTImgAssets.Count; id++) {
+			NFTData NFTAsset = JsonUtility.FromJson<NFTData>(NFTAssets[id].text);
+
+			for (int vID = 0; vID < NFTAsset.variations; vID++) {
+				newNFT = new Save.DNGSaveClass.OwnedNFT(id, vID);
+
+				if (! Simulation.currentSave.DNGSave.ownedNFTs.Contains(newNFT)) {
+					notBought.Add(newNFT);
+				}
 			}
 		}
+
+		newNFT = notBought[Random.Range(0, notBought.Count)];
+		NFT_ID = newNFT.baseID;
+		variationID = newNFT.variationID;
 
 		return newNFT;
 	}

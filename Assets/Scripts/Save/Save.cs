@@ -9,22 +9,6 @@ public class Save {
 		public bool intro;
 	}
 	public WatchedClass watched = new WatchedClass();
-
-    public class OwnedNFT {
-		public enum Collections {
-			DNG
-		}
-		public Collections collection;
-		public int baseID;
-		public int variationID;
-
-		public OwnedNFT(Collections inputCollection, int inputBaseID, int inputVariationID) {
-			collection = inputCollection;
-			baseID = inputBaseID;
-			variationID = inputVariationID;
-		}
-	}
-	public List<OwnedNFT> ownedNFTs = new List<OwnedNFT>();
 	
 	public int spent;
 	public int spendTarget = 1000000;
@@ -36,6 +20,17 @@ public class Save {
 
 	public class DNGSaveClass {
 		public int dailyLimitProgress;
+
+		public class OwnedNFT {
+			public int baseID;
+			public int variationID;
+
+			public OwnedNFT(int inputBaseID, int inputVariationID) {
+				baseID = inputBaseID;
+				variationID = inputVariationID;
+			}
+		}
+		public List<OwnedNFT> ownedNFTs = new List<OwnedNFT>();
 	}
 	public DNGSaveClass DNGSave = new DNGSaveClass();
 }

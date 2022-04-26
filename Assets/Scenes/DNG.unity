@@ -2062,7 +2062,7 @@ MonoBehaviour:
   NFTPrefab: {fileID: 5789902606421634592, guid: a877742cff93c4209b9b3638a746eb1c, type: 3}
   NFTHolder: {fileID: 749862396}
   limitPopup: {fileID: 558468364}
-  spawnDelay: 50
+  spawnDelay: 150
   pauseDelay: 182
   finishDelay: 228
   cost: 500

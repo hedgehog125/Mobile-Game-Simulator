@@ -22,7 +22,7 @@ public class BuyNFT : MonoBehaviour {
 	private Button but;
 	private NFTController NFTOb;
 
-	private Save.OwnedNFT pendingData;
+	private Save.DNGSaveClass.OwnedNFT pendingData;
 	private bool waiting;
 	private bool shownButtons;
 
@@ -48,7 +48,7 @@ public class BuyNFT : MonoBehaviour {
 
 	public void OnBuy() {
 		Simulation.Spend(NFTOb.value);
-		Simulation.currentSave.ownedNFTs.Add(pendingData);
+		Simulation.currentSave.DNGSave.ownedNFTs.Add(pendingData);
 		matchScript.BoughtNFT();
 
 		OnEither();
