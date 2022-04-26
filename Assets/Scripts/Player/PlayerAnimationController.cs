@@ -17,9 +17,7 @@ public class PlayerAnimationController : MonoBehaviour {
 		}
 
 
-		Debug.Log(moveScript.turnAmount);
 		// TODO: call if turnAmount changes
-		// TODO: remove collider from generator
 		bool turning = moveScript.turnAmount != 0;
 		if (wasTurning && (! turning)) {
 			moveScript.OnRotateAnimationFinished();

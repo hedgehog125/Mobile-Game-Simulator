@@ -154,6 +154,50 @@ Transform:
   m_Father: {fileID: 1806087620}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &147369094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 147369095}
+  - component: {fileID: 147369096}
+  m_Layer: 0
+  m_Name: Bottom
+  m_TagString: DeathPlane
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &147369095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147369094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 20}
+  m_Children: []
+  m_Father: {fileID: 1806087620}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &147369096
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147369094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &189990279
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,8 +984,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chunkPrefab: {fileID: 2626290613066816990, guid: 86e48430ac427fc47abedeac110032e1, type: 3}
-  grassTile: {fileID: 4880858857011061378, guid: 272e3a4e77f4eec41a1e587f1bcee08b, type: 3}
-  fencePrefab: {fileID: 5804803561937286238, guid: fdca489cbac9e403498d0834968257e6, type: 3}
+  tiles:
+  - {fileID: 2547871844201224130, guid: ee8ce1047a2276a439622d87cc9e0399, type: 3}
+  - {fileID: 5804803561937286238, guid: fdca489cbac9e403498d0834968257e6, type: 3}
+  - {fileID: 8556833049924082169, guid: 1e6e8b440c9fe4a42a0310c77d09210f, type: 3}
   cutoffTop: 13
   cutoffBottom: -2.5
   buffer: 0.5
@@ -1307,6 +1353,7 @@ Transform:
   m_Children:
   - {fileID: 127355460}
   - {fileID: 756381843}
+  - {fileID: 147369095}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
