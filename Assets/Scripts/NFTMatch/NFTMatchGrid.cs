@@ -143,7 +143,18 @@ public class NFTMatchGrid : MonoBehaviour {
 			save.matchesUntilNFT -= waitingMatchesLeftReduce;
 			waitingMatchesLeftReduce = 0;
 
+			BotchedFix();
+
 			ProcessDragQueue();
+		}
+	}
+
+	private void BotchedFix() { // I don't feel like actually trying to find and fix the root problem here so I'll just do this
+		foreach (GridSquare tile in grid) {
+			if (tile == null) {
+				ren.Rerender();
+				return;
+			}
 		}
 	}
 
