@@ -71,7 +71,6 @@ public class ChestController : MonoBehaviour {
 				if (spawnTick == spawnDelay) {
 					NFTOb = Instantiate(NFTPrefab, NFTHolder).GetComponent<NFTController>();
 					Simulation.currentSave.DNGSave.ownedNFTs.Add(NFTOb.Randomize());
-					NFTOb.displayAsValue = true;
 					NFTOb.Ready();
 				}
 				if (spawnTick == pauseDelay) {

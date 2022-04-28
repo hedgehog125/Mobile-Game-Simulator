@@ -17,7 +17,6 @@ public class NFTController : MonoBehaviour {
 	[HideInInspector] public int NFT_ID;
 	[HideInInspector] public int variationID;
 	[HideInInspector] public bool resumeAnimation = true;
-	[HideInInspector] public bool displayAsValue;
 	[HideInInspector] public bool canFly { get; private set; }
 	[HideInInspector] public int value { get; private set; }
 
@@ -100,7 +99,7 @@ public class NFTController : MonoBehaviour {
 
 		value = NFT.values[variationID];
 		if (priceText != null) {
-			priceText.text = displayAsValue? $"Value: £{value}" : $"Price: £{value}";
+			priceText.text = $"Value: £{value}";
 			priceTextOb.SetActive(true);
 		}
 

@@ -11,7 +11,8 @@ public class Save {
 	public WatchedClass watched = new WatchedClass();
 	
 	public int spent;
-	public int spendTarget = 1000000;
+	public int knowledgePoints;
+
 	public class NFTMatchSaveClass {
 		public int matchesUntilNFT; // Initialised when opened
 		public int plays = -1; // The 1st is the cutscene which doesn't count as a play
