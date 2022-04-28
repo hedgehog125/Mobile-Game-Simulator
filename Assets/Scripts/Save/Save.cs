@@ -14,8 +14,7 @@ public class Save {
 	public int knowledgePoints;
 
 	public class NFTMatchSaveClass {
-		public int matchesUntilNFT; // Initialised when opened
-		public int plays = -1; // The 1st is the cutscene which doesn't count as a play
+		public int plays;
 	}
 	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 

@@ -1,7 +1,7 @@
 === Self plagiarism: ===
 = Images =
 NFTs bad: Assets/Images/I hate NFTs lineup/nftsBad.png (fully made beforehand)
-Dessert destruction tiles: almost entirely made beforehand (when I was 10 :P), they're supposed to be bad so it's a good fit
+Dessert Destruction tiles: Assets/Images/NFTMatch/Tiles : almost entirely made beforehand (when I was 10 :P), they're supposed to be bad so it's a good fit
 
 = Code =
 tools/lotsOfImages and imageToData: upload and download logic partly made beforehand, required modification to work outside of my framework

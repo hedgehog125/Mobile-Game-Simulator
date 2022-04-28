@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Simulation {
-    private static string introScene = "Intro1";
+    private static string introScene = "Intro";
     private static string resumeScene = "PhoneMenu";
 
     public static bool inGame;
