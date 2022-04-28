@@ -9,6 +9,7 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private GameObject NFTPrefab;
 	[SerializeField] private Transform NFTHolder;
 	[SerializeField] private GameObject limitPopup;
+	[SerializeField] private ParticleSystem particles; 
 
 	[Header("Delays")]
 	[SerializeField] private int spawnDelay;
@@ -98,6 +99,8 @@ public class ChestController : MonoBehaviour {
 			keyObject.SetActive(true); // Play the animation
 			Simulation.Spend(cost);
 			save.dailyLimitProgress++;
+
+			particles.Play();
 		}
 	}
 
@@ -112,6 +115,8 @@ public class ChestController : MonoBehaviour {
 	public void PauseAnimation() {
 		anim.enabled = false;
 		animating = false;
+
+		particles.Stop();
 	}
 
 	public void ResumeAnimation() {
