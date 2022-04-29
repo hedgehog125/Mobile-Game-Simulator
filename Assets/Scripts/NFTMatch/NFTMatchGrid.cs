@@ -12,13 +12,8 @@ public class NFTMatchGrid : MonoBehaviour {
 	[Header("Misc")]
 	[SerializeField] public int size;
 	[SerializeField] private float deadzone;
-	[SerializeField] public int neededMatchesPerNFT;
-	[SerializeField] public int initialMatchesPerNFT;
 
 	[HideInInspector] public int count { get; private set; }
-	public void BoughtNFT() {
-		save.matchesUntilNFT += neededMatchesPerNFT;
-	}
 
 	[HideInInspector] public bool inputPaused;
 	[HideInInspector] public static readonly int squareTypeCount = 6;
@@ -58,7 +53,6 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private Save.NFTMatchSaveClass save;
-	private int waitingMatchesLeftReduce;
 
 	private Vector2 mousePos;
 	private Vector2 startPos;
@@ -121,7 +115,6 @@ public class NFTMatchGrid : MonoBehaviour {
 		count = size * size;
 		save = Simulation.currentSave.NFTMatchSave;
 		if (save.plays == 1) { // Plays will have been incremented by here
-			save.matchesUntilNFT = initialMatchesPerNFT;
 			tutorialBox.SetActive(true);
 		}
 
@@ -140,9 +133,6 @@ public class NFTMatchGrid : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (! ren.animating) {
-			save.matchesUntilNFT -= waitingMatchesLeftReduce;
-			waitingMatchesLeftReduce = 0;
-
 			ProcessDragQueue();
 		}
 	}
@@ -166,7 +156,7 @@ public class NFTMatchGrid : MonoBehaviour {
 
 				if (matchIDs.Count >= 3) {
 					foreach (int deleteIndex in matchIDs) {
-						DeleteTile(deleteIndex, false);
+						DeleteTile(deleteIndex);
 					}
 					matched = true;
 				}
@@ -208,21 +198,12 @@ public class NFTMatchGrid : MonoBehaviour {
 	}
 
 	private void DeleteTile(int x, int y) {
-		DeleteTile(x, y, true);
-	}
-	private void DeleteTile(int x, int y, bool reduceWait) {
 		int index = GetIndex(x, y);
 		if (index == -1) return;
-		DeleteTile(index, reduceWait);
+		DeleteTile(index);
 	}
 	private void DeleteTile(int index) {
-		DeleteTile(index, true);
-	}
-	private void DeleteTile(int index, bool reduceWait) {
 		grid[index] = null;
-		if (reduceWait) {
-			waitingMatchesLeftReduce++;
-		}
 	}
 
 	public void SwapPair(int index1, int index2) {

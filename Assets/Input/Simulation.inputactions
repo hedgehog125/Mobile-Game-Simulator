@@ -9,7 +9,7 @@
                     "name": "Close",
                     "type": "Value",
                     "id": "9564c5e8-57da-41a3-bb6b-4f938305bf64",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 }
