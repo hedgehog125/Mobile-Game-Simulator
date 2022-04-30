@@ -5,6 +5,7 @@ using UnityEngine;
 public class NFTMatchNFT : MonoBehaviour {
 	[Header("Objects and references")]
 	[SerializeField] private List<Sprite> NFTs;
+	[SerializeField] private AudioSource matchSound;
 
 	[HideInInspector] public NFTMatchGrid.SquareType type;
 	[HideInInspector] public int id;
@@ -22,6 +23,7 @@ public class NFTMatchNFT : MonoBehaviour {
 	private bool targetSet;
 
 	private bool falling;
+	private bool deleteStarted;
 
 	private Vector2 offset = new Vector2(0.5f, -0.5f);
 
@@ -100,8 +102,13 @@ public class NFTMatchNFT : MonoBehaviour {
 		}
 
 		if (deleted) {
-			anim.SetBool("Delete", true);
-			ren.sortingLayerName = "Effects";
+			if (! deleteStarted) {
+				anim.SetBool("Delete", true);
+				ren.sortingLayerName = "Effects";
+				matchSound.Play();
+
+				deleteStarted = true;
+			}
 		}
 	}
 

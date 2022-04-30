@@ -259,7 +259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f6e4cc3b7acfd469b6ce4839dac980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introScene: NFTMatchIntro
 --- !u!1 &274217682
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,8 +674,6 @@ MonoBehaviour:
   tutorialBox: {fileID: 282708842}
   size: 10
   deadzone: 0.5
-  neededMatchesPerNFT: 125
-  initialMatchesPerNFT: 5
   inputPaused: 0
 --- !u!114 &1352607030
 MonoBehaviour:
@@ -904,7 +901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_AnchorMax.x

@@ -9,6 +9,7 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private GameObject NFTPrefab;
 	[SerializeField] private Transform NFTHolder;
 	[SerializeField] private GameObject limitPopup;
+	[SerializeField] private AudioSource limitMusic;
 	[SerializeField] private ParticleSystem particles; 
 
 	[Header("Delays")]
@@ -91,7 +92,10 @@ public class ChestController : MonoBehaviour {
 		Save.DNGSaveClass save = Simulation.currentSave.DNGSave;
 
 		if (save.dailyLimitProgress == limit) {
-			limitPopup.SetActive(true);
+			if (! limitPopup.activeSelf) {
+				limitPopup.SetActive(true);
+				limitMusic.Play();
+			}
 		}
 		else {
 			state = States.Open;
