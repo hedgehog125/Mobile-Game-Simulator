@@ -18,30 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NFTMatch.unity
     guid: 9350810dc932f52448455ce23d7175fb
   - enabled: 1
-    path: Assets/Scenes/Cutscenes/Intro/Intro1.unity
-    guid: 538e4e407c65a8043b9234622908f216
-  - enabled: 1
     path: Assets/Scenes/Cutscenes/Intro/Intro.unity
     guid: 5af9675f3ef38e247ba3394c06670f2a
   - enabled: 1
-    path: Assets/Scenes/Cutscenes/Intro/Intro3.unity
-    guid: d5f776b1c0f962a40b67f588486bd286
-  - enabled: 1
-    path: Assets/Scenes/Cutscenes/Intro/Intro4.unity
-    guid: 3cea36a98a153024ba8d01ae33c57db3
-  - enabled: 1
-    path: Assets/Scenes/Cutscenes/Intro/Intro5.unity
-    guid: 36fb0bcded041ed47a38b458d47c334e
-  - enabled: 1
-    path: Assets/Scenes/Cutscenes/Intro/Intro6.unity
-    guid: 14ce6803084d2514f9a177b70fd2e358
-  - enabled: 1
-    path: Assets/Scenes/Cutscenes/Intro/Intro7.unity
-    guid: 67d785eabf4db6249ba6232bb02d90b8
-  - enabled: 1
     path: Assets/Scenes/PhoneMenuIntro.unity
     guid: 90cb6a61d8200b947a511e11c24582f1
-  - enabled: 1
-    path: Assets/Scenes/Cutscenes/NFTMatchIntro.unity
-    guid: 22281e148f37e8f4e8191599e6826993
   m_configObjects: {}

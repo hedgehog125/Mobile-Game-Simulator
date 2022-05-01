@@ -9,8 +9,11 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private GameObject NFTPrefab;
 	[SerializeField] private Transform NFTHolder;
 	[SerializeField] private GameObject limitPopup;
+	[SerializeField] private ParticleSystem particles;
+
+	[Header("SFX")]
 	[SerializeField] private AudioSource limitMusic;
-	[SerializeField] private ParticleSystem particles; 
+	[SerializeField] private AudioSource closeSound;
 
 	[Header("Delays")]
 	[SerializeField] private int spawnDelay;
@@ -125,6 +128,8 @@ public class ChestController : MonoBehaviour {
 	public void ResumeAnimation() {
 		anim.enabled = true;
 		animating = true;
+
+		closeSound.Play();
 	}
 
 	public void ResetAnimation() {

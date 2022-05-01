@@ -28,16 +28,17 @@ Chimpanzee: https://www.gettyimages.co.uk/detail/photo/common-chimpanzee-kibale-
 Loot box: https://sketchfab.com/3d-models/treasure-chest-b46fd9edd44e412fa76f9b9a2b86281c under CC BY 4.0
 Key: https://sketchfab.com/3d-models/zelda-ocarina-of-time-small-key-13ac63725a49435789ad7fab51a0804b under CC BY 4.0
 Picture frame: https://sketchfab.com/3d-models/fancy-picture-frame-b54984abe2394345a81621719bf8bf1a under CC BY 4.0
-Human characters heavily based off of: https://sketchfab.com/3d-models/low-poly-human-b8a3e8505b6443f6a2a9f07c3d5fa37d under CC BY 4.0
+Human characters base model: https://sketchfab.com/3d-models/low-poly-human-b8a3e8505b6443f6a2a9f07c3d5fa37d under CC BY 4.0
 Table: https://sketchfab.com/3d-models/mahogany-table-e9ef3eadee9d4491b7c59fdbb19c30cd under CC BY 4.0
 
 = Music =
 Splashing around: https://www.youtube.com/watch?v=TFZRA2_LCro&list=PLMKRp0DXWwG-yCme0a3b917RFLUPFiaqT&index=11
-Sad music: https://freesound.org/people/Migfus20/sounds/559834/ under CC BY 4.0
+Sad music (I increased the volume): https://freesound.org/people/Migfus20/sounds/559834/ under CC BY 4.0
 
 = SFX =
 Collect NFT: https://freesound.org/people/shinephoenixstormcrow/sounds/337049/ under CC BY 3.0
 Dessert Destruction Match: https://freesound.org/people/DrMinky/sounds/166184/ under CC BY 3.0
+Key turning sound: https://freesound.org/people/180007/sounds/445519/ under CC0 1.0
 
 = Videos =
 Discord mod meme original: https://www.tiktok.com/@angelicalopez1991/video/6879904155339656454?is_copy_url=1&is_from_webapp=v1&q=Angelicalopez1991&t=1650225170322 (used in the NFT Match intro cutscene)
