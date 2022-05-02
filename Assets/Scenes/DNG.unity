@@ -554,7 +554,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 50
   field of view: 60
   orthographic: 0
   orthographic size: 10
@@ -3016,6 +3016,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 407072562}
+    - target: {fileID: 8450540904532024281, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 8450540904532024282, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
       propertyPath: m_Name
       value: BackgroundCanvas
