@@ -25,15 +25,16 @@ public class UIKnowledgePoint : MonoBehaviour {
 	private void Inspect() {
 		List<string> message = new List<string>(fact);
 
-		if (Simulation.currentSave.knowledgePointsGot[knowledgeID]) {
+		bool[] pointsGot = Simulation.currentSave.knowledgePointsGot;
+
+		if (pointsGot[knowledgeID]) {
 			message.Insert(0, "Ted: You've already found this fact but here it is again...");
 		}
+		else {
+			Simulation.currentSave.knowledgePoints++;
+			pointsGot[knowledgeID] = true;
+		}
 
-
-		Display(message);
-	}
-
-	private void Display(List<string> message) {
-
+		Simulation.textBox.Display(message);
 	}
 }

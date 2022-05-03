@@ -7,7 +7,7 @@ public class Simulation {
     public const string introScene = "Intro";
     public const string phoneScene = "PhoneMenu";
     public const string resumeScene = phoneScene;
-    public CutsceneTextController textbox;
+    public static CutsceneTextController textBox;
 
 
     public static Difficulty difficulty;

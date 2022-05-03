@@ -786,11 +786,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 506918994}
+  - component: {fileID: 506918997}
   - component: {fileID: 506918999}
   - component: {fileID: 506918998}
   - component: {fileID: 506918995}
   - component: {fileID: 506918996}
-  - component: {fileID: 506918997}
   m_Layer: 5
   m_Name: KnowledgePoint
   m_TagString: Untagged
@@ -919,7 +919,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knowledgeID: 0
-  fact: []
+  fact:
+  - among
 --- !u!114 &506918998
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,7 +32,9 @@ public class CutsceneTextController : MonoBehaviour {
 					}
 					else {
 						gameObject.SetActive(false);
-						SceneManager.LoadScene(nextScene);
+						if (nextScene != "") {
+							SceneManager.LoadScene(nextScene);
+						}
 					}
 				}
 				else {
@@ -50,6 +52,10 @@ public class CutsceneTextController : MonoBehaviour {
 	}
 
 	private void Awake() {
+		MultiAwake();
+	}
+
+	private void MultiAwake() {
 		text.text = displayText[0];
 	}
 
@@ -62,5 +68,16 @@ public class CutsceneTextController : MonoBehaviour {
 		else {
 			autoShowTick++;
 		}
+	}
+
+	public void Display(List<string> message) {
+		displayText = message;
+
+		textID = 0;
+		autoShowTick = 0;
+		nextScene = "";
+
+		gameObject.SetActive(true);
+		MultiAwake();
 	}
 }

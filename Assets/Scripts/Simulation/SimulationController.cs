@@ -37,6 +37,8 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 			globalController.backScene = backScene;
 			globalController.textBox = textBox;
 		}
+
+		SyncToSimulation();
 	}
 
 	private void FixedUpdate() {
@@ -49,5 +51,9 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		if (Simulation.inGame) {
 			Simulation.IncreaseTime(1);
 		}
+	}
+
+	public void SyncToSimulation() {
+		Simulation.textBox = globalController.textBox;
 	}
 }
