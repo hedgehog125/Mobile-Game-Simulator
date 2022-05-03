@@ -10,6 +10,7 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private Transform NFTHolder;
 	[SerializeField] private GameObject limitPopup;
 	[SerializeField] private ParticleSystem particles;
+	[SerializeField] private GameObject priceText;
 
 	[Header("SFX")]
 	[SerializeField] private AudioSource limitMusic;
@@ -84,7 +85,7 @@ public class ChestController : MonoBehaviour {
 			}
 			else if (state == States.Close) {
 				if (spawnTick == finishDelay) {
-					ResetAnimation();
+					Finish();
 				}
 			}
 			spawnTick++;
@@ -107,6 +108,7 @@ public class ChestController : MonoBehaviour {
 			save.dailyLimitProgress++;
 
 			particles.Play();
+			priceText.SetActive(false);
 		}
 	}
 
@@ -138,5 +140,11 @@ public class ChestController : MonoBehaviour {
 		anim.SetBool("Reset", true);
 
 		state = States.WaitToOpen;
+	}
+
+	public void Finish() {
+		ResetAnimation();
+
+		priceText.SetActive(true);
 	}
 }

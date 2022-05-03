@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Save {
-	public int gamesUnlocked = 1;
 
 	public class WatchedClass {
 		public bool intro;
@@ -12,6 +11,11 @@ public class Save {
 	
 	public int spent;
 	public int knowledgePoints;
+	public int timeLeft;
+	public int gamesUnlocked = 1;
+	public int difficultyLevel = 1;
+
+	public bool[] knowledgePointsGot = new bool[1];
 
 	public class NFTMatchSaveClass {
 		public int plays;
@@ -33,4 +37,10 @@ public class Save {
 		public List<OwnedNFT> ownedNFTs = new List<OwnedNFT>();
 	}
 	public DNGSaveClass DNGSave = new DNGSaveClass();
+
+	public Save() {
+		Simulation.Difficulty difficulty = new Simulation.Difficulty(difficultyLevel);
+
+		timeLeft = difficulty.gameTimeLimit;
+	}
 }

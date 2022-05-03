@@ -237,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -313,7 +313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: nextScene
-      value: NFTMatch
+      value: PhoneMenu
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.size

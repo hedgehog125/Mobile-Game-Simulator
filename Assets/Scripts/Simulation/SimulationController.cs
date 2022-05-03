@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class SimulationController : MonoBehaviour { // Handles anything that needs to continually change over time in the Simulation global state
     [SerializeField] private bool isGame;
 	[SerializeField] public string backScene = "PhoneMenu";
+	[SerializeField] private CutsceneTextController textBox;
 
 	private static SimulationController globalController;
 	private bool isTheGlobalController;
@@ -34,6 +35,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		}
 		else { // Set the variables of the global controller to the values provided by this new controller
 			globalController.backScene = backScene;
+			globalController.textBox = textBox;
 		}
 	}
 

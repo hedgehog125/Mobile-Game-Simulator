@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -482,7 +482,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[0]
+      value: 'Ted: Alright, we''ll start off with Definetly Not Gambling'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[1]
+      value: 'Ted: Look out for anything bad it does and then tell me'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[2]
       value: Click to tap on an app and open it
       objectReference: {fileID: 0}
     m_RemovedComponents: []

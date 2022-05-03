@@ -4,12 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Simulation {
-    private static string introScene = "Intro";
-    private static string resumeScene = "PhoneMenu";
+    public const string introScene = "Intro";
+    public const string phoneScene = "PhoneMenu";
+    public const string resumeScene = phoneScene;
+    public CutsceneTextController textbox;
+
+
+    public static Difficulty difficulty;
+    public class Difficulty {
+        public int gameTimeLimit;
+
+        public Difficulty(int level) {
+            if (level == 0) {
+
+			}
+            else if (level == 1) {
+                gameTimeLimit = (5 * 60) * 50;
+			}
+		}
+    }
 
     public static bool inGame;
-    public static int time { get; private set; } = 27000;
-    public static int day;
 
     public static bool preventClose;
 
@@ -18,21 +33,18 @@ public class Simulation {
 	}
 
     public static void IncreaseTime(int amount) {
-        int dayLength = 72000;
-
-        time += amount;
-        int dayIncrease = Mathf.FloorToInt(time / dayLength);
-        if (dayIncrease != 0) {
-            EndDay();
-
-            day += dayIncrease;
-            time %= dayLength;
-		}
-
+        currentSave.timeLeft -= amount;
+        if (currentSave.timeLeft < 0) {
+            TimesUp();
+        }
     }
-    private static void EndDay() {
-        currentSave.DNGSave.dailyLimitProgress = 0;
-	}
+
+    private static void TimesUp() {
+        currentSave.timeLeft = difficulty.gameTimeLimit;
+        currentSave.gamesUnlocked++;
+
+        SceneManager.LoadScene(phoneScene);
+    }
 
     public static void StartPlaying() {
         if (currentSave.watched.intro) {
@@ -68,6 +80,8 @@ public class Simulation {
     public static Save NewSave() {
         Save save = new Save();
         saves.Add(save);
+        difficulty = new Difficulty(save.difficultyLevel);
+
         return save;
 	}
 }
