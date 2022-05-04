@@ -179,10 +179,10 @@ MonoBehaviour:
   priceTextPath:
   - UI And Background
   - PermanentUI
-  - NFTPrice
+  - NFTValue
   priceTextPathAlt:
   - PermanentUI
-  - NFTPrice
+  - NFTValue
   showoffTime: 182
   NFT_ID: 5
   variationID: 0

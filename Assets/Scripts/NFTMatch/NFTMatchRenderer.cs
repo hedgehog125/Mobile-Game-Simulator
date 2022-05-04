@@ -239,7 +239,9 @@ public class NFTMatchRenderer : MonoBehaviour {
 	}
 
 	public void FailedMatch(NFTMatchGrid.SwappedSquare[] swappedSquares) {
-		// if (swappedSquares[0] == null || swappedSquares[1] == null) return;
+		if (swappedSquares[0] == null || swappedSquares[1] == null) {
+			return;
+		}
 		speed = baseSpeed / failedMatchSpeedReduction;
 
 		bool dir1 = true;

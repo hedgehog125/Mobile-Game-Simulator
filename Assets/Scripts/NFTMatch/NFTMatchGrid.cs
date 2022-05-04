@@ -133,6 +133,12 @@ public class NFTMatchGrid : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (! ren.animating) {
+			foreach (GridSquare tile in grid) {
+				if (tile == null) {
+					Debug.Log("A");
+				}
+			}
+
 			ProcessDragQueue();
 		}
 	}
@@ -322,7 +328,7 @@ public class NFTMatchGrid : MonoBehaviour {
 			MoveQueueItem queuedItem = queue[0];
 			if (queuedItem.isSeparator) {
 				queue.RemoveAt(0);
-				if (ren.animating) break;
+				if (needsRender) break;
 				continue; // The next batch can be done a frame early since nothing changed (this also shouldn't include another batch of checks since the grid wasn't changed)
 			}
 
@@ -337,7 +343,18 @@ public class NFTMatchGrid : MonoBehaviour {
 
 			if (isFailedMatch) {
 				ren.FailedMatch(swappedSquares);
-				queue.Clear();
+
+				// Delete any queued drags that were set to happen after this
+				int i = 0;
+				while (i < queue.Count) {
+					MoveQueueItem queued = queue[i];
+					if (! (queued.isCheck || queued.isSeparator)) {
+						queue.RemoveRange(i, 2);
+					}
+					else {
+						i++;
+					}
+				}
 			}
 			else {
 				// Process falling tiles
