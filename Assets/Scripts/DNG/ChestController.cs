@@ -11,6 +11,7 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private GameObject limitPopup;
 	[SerializeField] private ParticleSystem particles;
 	[SerializeField] private GameObject priceText;
+	[SerializeField] private GameObject textBox;
 
 	[Header("SFX")]
 	[SerializeField] private AudioSource limitMusic;
@@ -54,7 +55,8 @@ public class ChestController : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (clicking) {
-			if (! limitPopup.activeSelf) {
+			bool canOpen = ! (limitPopup.activeSelf || textBox.activeSelf);
+			if (canOpen) {
 				if (state == States.WaitToOpen) {
 					Ray ray = Camera.main.ScreenPointToRay(mousePos);
 					if (Physics.Raycast(ray)) {

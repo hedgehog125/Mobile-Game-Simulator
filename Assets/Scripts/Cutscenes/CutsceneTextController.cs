@@ -16,8 +16,9 @@ public class CutsceneTextController : MonoBehaviour {
 	[Header("")]
 	[SerializeField] private List<string> displayText;
 	[SerializeField] private int autoShowDelay;
-	[SerializeField] private string nextScene;
-	[SerializeField] private bool stayOnLast;
+	[SerializeField] public string nextScene;
+	[SerializeField] public bool stayOnLast;
+	[SerializeField] private bool deactivateIfWatched = true;
 
 	private int autoShowTick;
 	private int textID;
@@ -52,6 +53,21 @@ public class CutsceneTextController : MonoBehaviour {
 	}
 
 	private void Awake() {
+		if (deactivateIfWatched) {
+			Save save = Simulation.currentSave;
+
+			if (Simulation.gameName == "DNG") {
+				if (save.DNGSave.plays != 0) {
+					gameObject.SetActive(false);
+				}
+			}
+			else if (Simulation.gameName == "NFTMatch") {
+				if (save.NFTMatchSave.plays != 0) {
+					gameObject.SetActive(false);
+				}
+			}
+		}
+
 		MultiAwake();
 	}
 

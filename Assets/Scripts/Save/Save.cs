@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Save {
-
 	public class WatchedClass {
 		public bool intro;
 	}
@@ -15,15 +13,17 @@ public class Save {
 	public int gamesUnlocked = 1;
 	public int difficultyLevel = 1;
 
-	public bool[] knowledgePointsGot = new bool[1];
+	public bool[] knowledgePointsGot = new bool[2];
 
-	public class NFTMatchSaveClass {
+	public class BaseGameSave {
 		public int plays;
 	}
+
+	public class NFTMatchSaveClass : BaseGameSave {}
 	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 
-	public class DNGSaveClass {
-		public int dailyLimitProgress;
+	public class DNGSaveClass : BaseGameSave {
+		public int dailyLimitProgress = 4;
 
 		public class OwnedNFT {
 			public int baseID;

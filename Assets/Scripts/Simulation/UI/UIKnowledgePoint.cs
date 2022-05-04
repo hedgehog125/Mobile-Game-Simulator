@@ -31,10 +31,13 @@ public class UIKnowledgePoint : MonoBehaviour {
 			message.Insert(0, "Ted: You've already found this fact but here it is again...");
 		}
 		else {
+			message.Insert(0, "Ted: Nice work, lemme see what I can find about this...");
+
 			Simulation.currentSave.knowledgePoints++;
 			pointsGot[knowledgeID] = true;
 		}
 
+		Simulation.textBox.stayOnLast = false;
 		Simulation.textBox.Display(message);
 	}
 }

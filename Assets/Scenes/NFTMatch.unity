@@ -980,6 +980,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: gameIntroCutscene
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.size
       value: 14
       objectReference: {fileID: 0}
@@ -1049,6 +1053,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+--- !u!114 &1679769558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2497518187951691229, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+  m_PrefabInstance: {fileID: 1679769557}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282708842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616271efa5ab4224f8863aeece5025d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1827914830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1059,6 +1074,14 @@ PrefabInstance:
     - target: {fileID: 1518323068074865344, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_DefaultActionMap
       value: 07c7503c-8ec6-495e-bf89-4f14f6d1972e
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 1679769558}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: gameName
+      value: NFTMatch
       objectReference: {fileID: 0}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_RootOrder

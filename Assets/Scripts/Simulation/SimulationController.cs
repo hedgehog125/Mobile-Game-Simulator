@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class SimulationController : MonoBehaviour { // Handles anything that needs to continually change over time in the Simulation global state
+	// In the main controller, these values will still be the initial values when switching scenes, the Simulation class has the current values
     [SerializeField] private bool isGame;
+	[SerializeField] private string gameName;
 	[SerializeField] public string backScene = "PhoneMenu";
 	[SerializeField] private CutsceneTextController textBox;
 
@@ -24,21 +26,18 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	private void Awake() { // Only called when it's first initialised, not when it's kept between scenes
 		inputModule = GetComponent<PlayerInput>();
 
-		Simulation.inGame = isGame;
 		if (globalController == null) {
 			DontDestroyOnLoad(gameObject);
 			globalController = this;
 			isTheGlobalController = true;
 			inputModule.enabled = true;
 
+			SyncToSimulation();
 			Simulation.Init();
 		}
-		else { // Set the variables of the global controller to the values provided by this new controller
-			globalController.backScene = backScene;
-			globalController.textBox = textBox;
+		else {
+			SyncToSimulation();
 		}
-
-		SyncToSimulation();
 	}
 
 	private void FixedUpdate() {
@@ -54,6 +53,8 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	}
 
 	public void SyncToSimulation() {
-		Simulation.textBox = globalController.textBox;
+		Simulation.textBox = textBox;
+		Simulation.inGame = isGame;
+		Simulation.gameName = gameName;
 	}
 }

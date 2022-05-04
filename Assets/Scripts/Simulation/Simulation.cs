@@ -25,6 +25,7 @@ public class Simulation {
     }
 
     public static bool inGame;
+    public static string gameName;
 
     public static bool preventClose;
 
@@ -70,7 +71,10 @@ public class Simulation {
 
             // Set some values for easier development
             currentSave.watched.intro = true;
+
+            currentSave.DNGSave.plays = 1;
             currentSave.NFTMatchSave.plays = 1;
+
             currentSave.gamesUnlocked = 2;
 		}
 	}
