@@ -724,8 +724,8 @@ MonoBehaviour:
   maxStartSpeed: 5
   fallAcceleration: 3
   maxSpeed: 6
-  failedMatchSpeedReduction: 1.25
-  failedMatchWaitTime: 100
+  failedMatchSpeedReduction: 1
+  failedMatchWaitTime: 60
 --- !u!1001 &1488490216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -901,7 +901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_AnchorMax.x

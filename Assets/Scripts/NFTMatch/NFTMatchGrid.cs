@@ -133,12 +133,6 @@ public class NFTMatchGrid : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (! ren.animating) {
-			foreach (GridSquare tile in grid) {
-				if (tile == null) {
-					Debug.Log("A");
-				}
-			}
-
 			ProcessDragQueue();
 		}
 	}

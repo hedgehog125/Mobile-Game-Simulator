@@ -98,7 +98,6 @@ public class NFTMatchRenderer : MonoBehaviour {
 					}
 					else {
 						animating = false;
-						Debug.Log("B");
 						justFinishedTick = 1;
 					}
 				}
@@ -225,7 +224,6 @@ public class NFTMatchRenderer : MonoBehaviour {
 		}
 
 		animating = true;
-		Debug.Log("Hmm3");
 		if (firstInit) {
 			swapAnimating = false;
 			AfterSwap();
@@ -239,9 +237,6 @@ public class NFTMatchRenderer : MonoBehaviour {
 	}
 
 	public void FailedMatch(NFTMatchGrid.SwappedSquare[] swappedSquares) {
-		if (swappedSquares[0] == null || swappedSquares[1] == null) {
-			return;
-		}
 		speed = baseSpeed / failedMatchSpeedReduction;
 
 		bool dir1 = true;
@@ -261,7 +256,6 @@ public class NFTMatchRenderer : MonoBehaviour {
 		afterFailedSwap[1] = new NFTMatchGrid.SwappedSquare(swappedSquares[1].UI_ID, swappedSquares[0].dir);
 
 		animating = true;
-		Debug.Log("A");
 		failedMatchAnimating = true;
 		swapAnimating = true;
 	}
