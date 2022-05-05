@@ -10,7 +10,6 @@ public class CutsceneTextController : MonoBehaviour {
 	[Header("Objects and references")]
     [SerializeField] private Image img;
     [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] private GameObject textOb;
 	[SerializeField] private GameObject buttonPrompt;
 
 	[Header("")]
@@ -23,6 +22,8 @@ public class CutsceneTextController : MonoBehaviour {
 	private int autoShowTick;
 	private int textID;
 
+	private int deactivateTick;
+
 	private void OnAdvance(InputValue input) {
 		if (input.isPressed) {
 			if (buttonPrompt.activeSelf) {
@@ -32,8 +33,10 @@ public class CutsceneTextController : MonoBehaviour {
 						textID--;
 					}
 					else {
-						gameObject.SetActive(false);
-						if (nextScene != "") {
+						if (nextScene == "") {
+							deactivateTick = 1;
+						}
+						else {
 							SceneManager.LoadScene(nextScene);
 						}
 					}
@@ -48,6 +51,18 @@ public class CutsceneTextController : MonoBehaviour {
 				if ((! stayOnLast) || textID != displayText.Count - 1) {
 					buttonPrompt.SetActive(true);
 				}
+			}
+		}
+	}
+
+	private void OnPrevious(InputValue input) {
+		if (input.isPressed) {
+			if (textID != 0) {
+				textID--;
+
+				text.text = displayText[textID];
+				autoShowTick = 0;
+				buttonPrompt.SetActive(false);
 			}
 		}
 	}
@@ -85,13 +100,25 @@ public class CutsceneTextController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		if (autoShowTick == autoShowDelay) {
-			if ((! stayOnLast) || textID != displayText.Count - 1) {
-				buttonPrompt.SetActive(true);
+		if (deactivateTick == 0) {
+			if (autoShowTick == autoShowDelay) {
+				if ((! stayOnLast) || textID != displayText.Count - 1) {
+					buttonPrompt.SetActive(true);
+				}
+			}
+			else {
+				autoShowTick++;
 			}
 		}
 		else {
-			autoShowTick++;
+			if (deactivateTick == 2) {
+				gameObject.SetActive(false);
+
+				deactivateTick = 0;
+			}
+			else {
+				deactivateTick++;
+			}
 		}
 	}
 

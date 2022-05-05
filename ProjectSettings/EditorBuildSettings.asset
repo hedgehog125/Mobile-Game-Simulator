@@ -20,7 +20,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cutscenes/Intro/Intro.unity
     guid: 5af9675f3ef38e247ba3394c06670f2a
-  - enabled: 1
-    path: Assets/Scenes/PhoneMenuIntro.unity
-    guid: 90cb6a61d8200b947a511e11c24582f1
   m_configObjects: {}

@@ -11,7 +11,7 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private GameObject limitPopup;
 	[SerializeField] private ParticleSystem particles;
 	[SerializeField] private GameObject priceText;
-	[SerializeField] private GameObject textBox;
+	[SerializeField] private CutsceneTextController textBox;
 
 	[Header("SFX")]
 	[SerializeField] private AudioSource limitMusic;
@@ -25,6 +25,7 @@ public class ChestController : MonoBehaviour {
 	[Header("Misc")]
 	[SerializeField] private int cost;
 	[SerializeField] private int limit;
+	[SerializeField] private List<string> firstOpenMessage;
 
 	private Animator anim;
 	private bool clicking;
@@ -33,6 +34,7 @@ public class ChestController : MonoBehaviour {
 	private int spawnTick;
 	private NFTController NFTOb;
 	private bool animating;
+	private bool firstOpenMessageShown;
 
 	private enum States {
 		WaitToOpen,
@@ -55,7 +57,7 @@ public class ChestController : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (clicking) {
-			bool canOpen = ! (limitPopup.activeSelf || textBox.activeSelf);
+			bool canOpen = ! (limitPopup.activeSelf || textBox.gameObject.activeSelf);
 			if (canOpen) {
 				if (state == States.WaitToOpen) {
 					Ray ray = Camera.main.ScreenPointToRay(mousePos);
@@ -70,6 +72,9 @@ public class ChestController : MonoBehaviour {
 					NFTOb.Fly(); // Next stage
 					state = States.Close;
 				}
+			}
+			else {
+				clicking = false;
 			}
 		}
 
@@ -148,5 +153,12 @@ public class ChestController : MonoBehaviour {
 		ResetAnimation();
 
 		priceText.SetActive(true);
+		Debug.Log(firstOpenMessageShown);
+		if (Simulation.currentSave.DNGSave.plays == 1 && (! firstOpenMessageShown)) {
+			textBox.stayOnLast = true;
+			textBox.Display(firstOpenMessage);
+
+			firstOpenMessageShown = true;
+		}
 	}
 }

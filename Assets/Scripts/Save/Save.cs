@@ -23,7 +23,7 @@ public class Save {
 	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 
 	public class DNGSaveClass : BaseGameSave {
-		public int dailyLimitProgress = 4;
+		public int dailyLimitProgress;
 
 		public class OwnedNFT {
 			public int baseID;
