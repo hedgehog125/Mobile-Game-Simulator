@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Simulation {
-    public const string introScene = "Intro";
     public const string phoneScene = "PhoneMenu";
-    public const string resumeScene = phoneScene;
     public static CutsceneTextController textBox;
 
 
@@ -48,12 +46,7 @@ public class Simulation {
     }
 
     public static void StartPlaying() {
-        if (currentSave.watched.intro) {
-            SceneManager.LoadScene(resumeScene);
-		}
-        else {
-            SceneManager.LoadScene(introScene);
-        }
+        SceneManager.LoadScene(phoneScene);
     }
 
     

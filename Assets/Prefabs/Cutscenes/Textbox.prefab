@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: __
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: f069a00562ad14ad190fd2c174db625e, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: c0e63a2fed8db44b3afe95db7a6cff30, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 2497518187951691227}
   - component: {fileID: 2497518187951691229}
   - component: {fileID: 2497518187951691230}
-  - component: {fileID: 5758831160711387437}
+  - component: {fileID: 2379481480718489923}
   m_Layer: 5
   m_Name: Textbox
   m_TagString: Untagged
@@ -372,6 +372,7 @@ MonoBehaviour:
   autoShowDelay: 75
   nextScene: 
   stayOnLast: 0
+  deactivateIfWatched: 1
 --- !u!114 &2497518187951691230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,7 +403,7 @@ MonoBehaviour:
   m_DefaultActionMap: Default
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5758831160711387437
+--- !u!114 &2379481480718489923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -411,11 +412,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2497518187951691225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 2, y: 2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.29411766}
+  m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &2497518188614074487
 GameObject:

@@ -60,11 +60,20 @@ public class CutsceneTextController : MonoBehaviour {
 				if (save.DNGSave.plays != 0) {
 					gameObject.SetActive(false);
 				}
+				save.DNGSave.plays++;
 			}
 			else if (Simulation.gameName == "NFTMatch") {
 				if (save.NFTMatchSave.plays != 0) {
 					gameObject.SetActive(false);
 				}
+				save.NFTMatchSave.plays++;
+
+			}
+			else if (Simulation.gameName == "PhoneMenu") {
+				if (save.watched.intro) {
+					gameObject.SetActive(false);
+				}
+				save.watched.intro = true;
 			}
 		}
 

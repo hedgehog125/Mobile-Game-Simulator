@@ -16,7 +16,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	private PlayerInput inputModule;
 
 	private void OnClose(InputValue input) {
-		if (isTheGlobalController && (! Simulation.preventClose) && backScene != "") {
+		if ((! Simulation.preventClose) && backScene != "") {
 			if (input.isPressed) {
 				SceneManager.LoadScene(backScene);
 			}
@@ -36,6 +36,8 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 			Simulation.Init();
 		}
 		else {
+			globalController.backScene = backScene;
+
 			SyncToSimulation();
 		}
 	}
