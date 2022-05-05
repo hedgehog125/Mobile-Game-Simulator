@@ -14,7 +14,7 @@ public class CutsceneTextController : MonoBehaviour {
 
 	[Header("")]
 	[SerializeField] private List<string> displayText;
-	[SerializeField] private int autoShowDelay;
+	[SerializeField] private int autoShowDelay = 75;
 	[SerializeField] public string nextScene;
 	[SerializeField] public bool stayOnLast;
 	[SerializeField] private bool deactivateIfWatched = true;
@@ -25,7 +25,7 @@ public class CutsceneTextController : MonoBehaviour {
 	private int deactivateTick;
 
 	private void OnAdvance(InputValue input) {
-		if (input.isPressed) {
+		if (input.isPressed && deactivateTick == 0) {
 			if (buttonPrompt.activeSelf) {
 				textID++;
 				if (textID == displayText.Count) {

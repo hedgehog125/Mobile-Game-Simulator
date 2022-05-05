@@ -1521,6 +1521,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8450540904532024262, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
   m_PrefabInstance: {fileID: 8450540906081276758}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1728590005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+  m_PrefabInstance: {fileID: 165413765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616271efa5ab4224f8863aeece5025d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1749450327
 GameObject:
   m_ObjectHideFlags: 0
@@ -2914,7 +2925,7 @@ MonoBehaviour:
   limitPopup: {fileID: 558468364}
   particles: {fileID: 2024174214}
   priceText: {fileID: 351660564}
-  textBox: {fileID: 0}
+  textBox: {fileID: 1728590005}
   limitMusic: {fileID: 6489136034268795254}
   closeSound: {fileID: 6489136034268795253}
   spawnDelay: 150

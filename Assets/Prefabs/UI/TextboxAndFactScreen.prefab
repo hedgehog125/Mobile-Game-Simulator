@@ -698,6 +698,7 @@ GameObject:
   - component: {fileID: 2380121536759977795}
   - component: {fileID: 1327593814837610828}
   - component: {fileID: 8493884856374258038}
+  - component: {fileID: 1245280191981025307}
   m_Layer: 5
   m_Name: FactPage
   m_TagString: Untagged
@@ -763,6 +764,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1245280191981025307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021272230747625404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6317d7bdb1a2084b982cb367bdc86bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: {fileID: 6470782947647120965}
+  bodyText: {fileID: 5949386804657955186}
+  buttonPrompt: {fileID: 646303945120495964}
+  autoShowDelay: 75
 --- !u!1001 &9103363726341935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -971,6 +988,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f483b89b751a64a88f0591bb59aa6c, type: 3}
+--- !u!1 &646303945120495964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2488415786471383777, guid: f9f483b89b751a64a88f0591bb59aa6c, type: 3}
+  m_PrefabInstance: {fileID: 3058088160321788861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &646303945120495965 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2488415786471383776, guid: f9f483b89b751a64a88f0591bb59aa6c, type: 3}
