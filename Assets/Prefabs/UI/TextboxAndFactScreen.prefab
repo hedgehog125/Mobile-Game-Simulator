@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 7766303451181859047}
   - component: {fileID: 8323974761170018046}
   - component: {fileID: 3914332009534061804}
-  - component: {fileID: 833469063240830640}
+  - component: {fileID: 2436485359243223}
   m_Layer: 5
   m_Name: Textbox
   m_TagString: Untagged
@@ -311,7 +311,7 @@ MonoBehaviour:
   nextScene: 
   stayOnLast: 0
   deactivateIfWatched: 1
---- !u!114 &833469063240830640
+--- !u!114 &2436485359243223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.29411766}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &3720368545055119960
@@ -472,6 +472,7 @@ GameObject:
   - component: {fileID: 2854318695248250047}
   - component: {fileID: 4131687915606625482}
   - component: {fileID: 559465234924376145}
+  - component: {fileID: 7221726704383985274}
   m_Layer: 5
   m_Name: Page
   m_TagString: Untagged
@@ -553,6 +554,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 0.7070706
+--- !u!114 &7221726704383985274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5559448871292546314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8087426377604832233
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,9 +664,9 @@ MonoBehaviour:
   m_fontSize: 40
   m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -881,14 +897,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9f483b89b751a64a88f0591bb59aa6c, type: 3}
---- !u!1 &2497518187855386062 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2488415786471383777, guid: f9f483b89b751a64a88f0591bb59aa6c, type: 3}
-  m_PrefabInstance: {fileID: 9103363726341935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2497518187855386063 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2488415786471383776, guid: f9f483b89b751a64a88f0591bb59aa6c, type: 3}
+  m_PrefabInstance: {fileID: 9103363726341935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2497518187855386062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2488415786471383777, guid: f9f483b89b751a64a88f0591bb59aa6c, type: 3}
   m_PrefabInstance: {fileID: 9103363726341935}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3058088160321788861

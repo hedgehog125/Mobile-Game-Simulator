@@ -7,6 +7,7 @@ public class Simulation {
     public const string introCutscene = "Intro";
     public const string phoneScene = "PhoneMenu";
     public static CutsceneTextController textBox;
+    public static FactPageController factBox;
 
 
     public static Difficulty difficulty;
@@ -26,6 +27,7 @@ public class Simulation {
     public static bool inGame;
     public static string gameName;
 
+    public static bool menuPopupActive;
     public static bool preventClose;
 
     public static void Spend(int amount) {

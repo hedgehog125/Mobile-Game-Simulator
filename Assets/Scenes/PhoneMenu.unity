@@ -515,6 +515,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+--- !u!1 &603610887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2497518187951691225, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+  m_PrefabInstance: {fileID: 603610886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &974109416 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8572892035014698617, guid: fadf385870dd14f008ed20e1a5708559, type: 3}
@@ -615,6 +620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PermanentUI
       objectReference: {fileID: 0}
+    - target: {fileID: 712655498799083689, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
 --- !u!224 &1488490217 stripped
@@ -645,6 +654,10 @@ PrefabInstance:
       propertyPath: backScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: textAndFactOb
+      value: 
+      objectReference: {fileID: 603610887}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_RootOrder
       value: 2

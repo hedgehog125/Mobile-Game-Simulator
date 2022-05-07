@@ -377,6 +377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+--- !u!1 &737228972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2497518187951691225, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+  m_PrefabInstance: {fileID: 737228971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &784981215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -392,9 +397,13 @@ PrefabInstance:
       propertyPath: backScene
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: textAndFactOb
+      value: 
+      objectReference: {fileID: 737228972}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -764,6 +773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PermanentUI
       objectReference: {fileID: 0}
+    - target: {fileID: 712655498799083689, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7619212552283750866, guid: d414454ca1bc133409eb98891bc52fb8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -953,7 +966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
       propertyPath: m_LocalPosition.x

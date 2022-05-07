@@ -1285,6 +1285,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908994368}
   m_CullTransparentMesh: 1
+--- !u!1 &1189755432 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2497518187951691225, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+  m_PrefabInstance: {fileID: 165413765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1193371548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +1903,10 @@ PrefabInstance:
       propertyPath: gameName
       value: DNG
       objectReference: {fileID: 0}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: textAndFactOb
+      value: 
+      objectReference: {fileID: 1189755432}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2056,7 +2065,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!23 &2785242621241662004
 MeshRenderer:
@@ -2115,7 +2124,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!23 &3075657777915272195
 MeshRenderer:
@@ -2351,58 +2360,77 @@ PrefabInstance:
       value: Logo
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
+      propertyPath: fact
+      value: "Despite what the name might imply, this game probably *is* actually
+        gambling. Because you still spend money in the hopes of getting something
+        valuable. But at least you can't cash out the NFTs to get actual money. Which
+        is fortunately the case for most other mobile games, possibly because that
+        would make it illegal gambling in some countries such as the Netherlands.
+        But since it wouldn\u2019t necessarily increase revenue, it probably wouldn\u2019t
+        always be worth the risk to make it even more like gambling.\n\nDefinitely
+        Not Gambling is unfortunately not the only mobile game to have loot boxes
+        though. In fact, nearly 60% of mobile games do. What's even worse is virtually
+        all of those games have a 12+ age rating or lower. And it's only a marginally
+        lower rate for games under that rating but at least it drops down to \u2018only\u2019
+        about 40% when you only look at mobile games rated 3+.\n\nBut despite what
+        the low ratings seem to be encouraging and the stories of children spending
+        thousands on their parents\u2019 credit cards, almost all of the spending
+        is done by adults. These games prey on people that are just generally in
+        a bad place in life or have mental health problems like gambling addictions,
+        since there\u2019s a strong link between loot boxes and gambling addictions.\n\nHave
+        fun laughing at some more bad NFTs I guess then?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
+      propertyPath: title
+      value: 'DNG Malpractice: General and Claims not to be Gambling'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: knowledgeID
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.size
-      value: 10
+      value: 1328
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[0]
-      value: 'Ted: This game probably *is* actually gambling'
+      value: 68
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[1]
-      value: 'Ted: Because you still spend money in the hopes of getting something
-        valuable'
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[2]
-      value: 'Ted: At least you can''t cash out the NFTs to get actual money, fortunately
-        like most of the others'
+      value: 115
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[3]
-      value: 'Ted: But it''s unfortunately not the only mobile game to have loot
-        boxes'
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[4]
-      value: 'Ted: In fact, nearly 60% of mobile games do'
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[5]
-      value: 'Ted: What''s even worse is virtually all of those games have a 12+
-        age rating'
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[6]
-      value: 'Ted: And it''s basically the same rate for 7+ games'
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[7]
-      value: 'Ted: At least it''s a decent amount lower for 3+ games with ''only''
-        about 40% having them'
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[8]
-      value: 'Ted: I''m not sure if it makes it better or worse though that the majority
-        of mobile game spending is from adults with addictions instead of children'
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.data[9]
-      value: 'Ted: Anyway, have fun seeing how bad the NFTs get I guess...?'
+      value: 104
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
@@ -3630,7 +3658,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &9100006652098916869
 GameObject:

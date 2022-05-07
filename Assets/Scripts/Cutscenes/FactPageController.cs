@@ -48,6 +48,7 @@ public class FactPageController : MonoBehaviour { // I don't feel like trying to
 		autoShowTick = 0;
 		deactivateTick = 0;
 
+		gameObject.SetActive(true);
 		buttonPrompt.SetActive(false);
 	}
 }

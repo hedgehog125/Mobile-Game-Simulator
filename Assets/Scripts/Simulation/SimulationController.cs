@@ -9,7 +9,10 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
     [SerializeField] private bool isGame;
 	[SerializeField] private string gameName;
 	[SerializeField] public string backScene = "PhoneMenu";
-	[SerializeField] private CutsceneTextController textBox;
+	[SerializeField] private GameObject textAndFactOb;
+
+	private CutsceneTextController myTextbox;
+	private FactPageController myFactBox;
 
 	private static SimulationController globalController;
 	private bool isTheGlobalController;
@@ -25,6 +28,9 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 
 	private void Awake() { // Only called when it's first initialised, not when it's kept between scenes
 		inputModule = GetComponent<PlayerInput>();
+		myTextbox = textAndFactOb.transform.GetChild(0).GetComponent<CutsceneTextController>();
+		myFactBox = textAndFactOb.transform.GetChild(1).GetComponent<FactPageController>();
+
 
 		if (globalController == null) {
 			DontDestroyOnLoad(gameObject);
@@ -52,10 +58,17 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		if (Simulation.inGame) {
 			Simulation.IncreaseTime(1);
 		}
+
+		bool textBoxShowing = Simulation.textBox == null? false : Simulation.textBox.gameObject.activeSelf;
+		bool factBoxShowing = Simulation.factBox == null? false : Simulation.factBox.gameObject.activeSelf;
+
+		Simulation.menuPopupActive = textBoxShowing || factBoxShowing;
 	}
 
 	public void SyncToSimulation() {
-		Simulation.textBox = textBox;
+		Simulation.textBox = myTextbox;
+		Simulation.factBox = myFactBox;
+
 		Simulation.inGame = isGame;
 		Simulation.gameName = gameName;
 	}

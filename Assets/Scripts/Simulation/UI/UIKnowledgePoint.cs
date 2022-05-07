@@ -5,9 +5,13 @@ using UnityEngine.InputSystem;
 
 public class UIKnowledgePoint : MonoBehaviour {
 	[SerializeField] private int knowledgeID;
-	[SerializeField] private List<string> fact;
+	[SerializeField] private string title;
+
+	[TextArea(10, 10)]
+	[SerializeField] private string fact;
 
     private bool mouseTouching;
+	private bool dialogueWaiting;
 
 	public void OnEnter() {
 		mouseTouching = true;
@@ -23,15 +27,17 @@ public class UIKnowledgePoint : MonoBehaviour {
 	}
 
 	private void Inspect() {
-		List<string> message = new List<string>(fact);
+		if (Simulation.menuPopupActive) return;
 
 		bool[] pointsGot = Simulation.currentSave.knowledgePointsGot;
 
+		List<string> message = new List<string>();
 		if (pointsGot[knowledgeID]) {
-			message.Insert(0, "Ted: You've already found this fact but here it is again...");
+			message.Add("Ted: You've already found this fact but here it is again...");
 		}
 		else {
-			message.Insert(0, "Ted: Nice work, lemme see what I can find about this...");
+			message.Add("Ted: Nice work, one second... *frantically researches and writes*");
+			message.Add("Ted: Tada...");
 
 			Simulation.currentSave.knowledgePoints++;
 			pointsGot[knowledgeID] = true;
@@ -39,5 +45,15 @@ public class UIKnowledgePoint : MonoBehaviour {
 
 		Simulation.textBox.stayOnLast = false;
 		Simulation.textBox.Display(message);
+
+		dialogueWaiting = true;
+	}
+
+	private void FixedUpdate() {
+		if (dialogueWaiting && (! Simulation.menuPopupActive)) {
+			Simulation.factBox.Display(title, fact);
+
+			dialogueWaiting = false;
+		}
 	}
 }

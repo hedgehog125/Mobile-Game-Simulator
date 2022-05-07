@@ -57,8 +57,10 @@ public class ChestController : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (clicking) {
-			bool canOpen = ! (limitPopup.activeSelf || textBox.gameObject.activeSelf);
-			if (canOpen) {
+			if (Simulation.menuPopupActive) {
+				clicking = false;
+			}
+			else {
 				if (state == States.WaitToOpen) {
 					Ray ray = Camera.main.ScreenPointToRay(mousePos);
 					if (Physics.Raycast(ray)) {
@@ -72,9 +74,6 @@ public class ChestController : MonoBehaviour {
 					NFTOb.Fly(); // Next stage
 					state = States.Close;
 				}
-			}
-			else {
-				clicking = false;
 			}
 		}
 
