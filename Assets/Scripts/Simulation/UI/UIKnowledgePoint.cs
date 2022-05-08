@@ -10,32 +10,30 @@ public class UIKnowledgePoint : MonoBehaviour {
 
 	[TextArea(10, 10)]
 	[SerializeField] private string fact;
+	[SerializeField] private Animator textToGrow;
 
-	[Header("")]
 	[SerializeField] private UIKnowledgePointInner inner;
-	[SerializeField] private ParticleSystem particles;
 
-    private bool mouseTouching;
-
+    private bool outerMouseTouching;
 	private bool dialogueWaiting;
 
 	public void OnEnter() {
-		mouseTouching = true;
+		outerMouseTouching = true;
 	}
 	public void OnLeave() {
-		mouseTouching = false;
+		outerMouseTouching = false;
 	}
 
 	public void OnPointClick(InputValue input) {
 		if (input.isPressed) {
-			if (mouseTouching) {
+			if (outerMouseTouching) {
+				Debug.Log("A");
+				if (textToGrow != null) {
+					textToGrow.SetTrigger("Near");
+				}
+
 				if (inner.mouseTouching) {
 					Inspect();
-				}
-				else {
-					if (! particles.isPlaying) {
-						particles.Play();
-					}
 				}
 			}
 		}

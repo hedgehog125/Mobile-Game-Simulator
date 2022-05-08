@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3324213232951677902}
   - component: {fileID: 3324213232951677900}
   - component: {fileID: 3324213232951677901}
+  - component: {fileID: 5679349006154911077}
   m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
@@ -100,8 +101,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 100
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -135,6 +136,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &5679349006154911077
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324213232951677903}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c2d7537c2e6d46a39f0fa3a9753e788, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1886047363513263431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,6 +250,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
+      propertyPath: textToGrow
+      value: 
+      objectReference: {fileID: 5679349006154911077}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
 --- !u!224 &3544395715028995061 stripped
