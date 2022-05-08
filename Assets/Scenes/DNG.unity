@@ -2178,6 +2178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnowledgePoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3106550301176196785, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3106550301176196786, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

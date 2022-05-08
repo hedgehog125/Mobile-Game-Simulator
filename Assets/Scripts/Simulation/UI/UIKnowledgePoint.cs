@@ -4,13 +4,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UIKnowledgePoint : MonoBehaviour {
+	[Header("Main")]
 	[SerializeField] private int knowledgeID;
 	[SerializeField] private string title;
 
 	[TextArea(10, 10)]
 	[SerializeField] private string fact;
 
+	[Header("")]
+	[SerializeField] private UIKnowledgePointInner inner;
+	[SerializeField] private ParticleSystem particles;
+
     private bool mouseTouching;
+
 	private bool dialogueWaiting;
 
 	public void OnEnter() {
@@ -21,8 +27,17 @@ public class UIKnowledgePoint : MonoBehaviour {
 	}
 
 	public void OnPointClick(InputValue input) {
-		if (input.isPressed && mouseTouching) {
-			Inspect();
+		if (input.isPressed) {
+			if (mouseTouching) {
+				if (inner.mouseTouching) {
+					Inspect();
+				}
+				else {
+					if (! particles.isPlaying) {
+						particles.Play();
+					}
+				}
+			}
 		}
 	}
 
