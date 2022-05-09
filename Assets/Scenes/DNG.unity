@@ -965,7 +965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &558468365
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1598,7 +1598,7 @@ Animator:
   m_GameObject: {fileID: 1050584959}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c2d7537c2e6d46a39f0fa3a9753e788, type: 2}
+  m_Controller: {fileID: 9100000, guid: 154a6cfb8b810ba479ce64f12f8b5fb4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75.8
+  m_fontSize: 75.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
