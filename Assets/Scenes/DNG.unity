@@ -509,10 +509,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TextboxAndFactScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 2497518187951691225, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2497518187951691226, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -687,6 +683,7 @@ GameObject:
   - component: {fileID: 360497139}
   - component: {fileID: 360497141}
   - component: {fileID: 360497140}
+  - component: {fileID: 360497142}
   m_Layer: 5
   m_Name: SmallMessage
   m_TagString: Untagged
@@ -810,6 +807,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360497138}
   m_CullTransparentMesh: 1
+--- !u!95 &360497142
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360497138}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d231879a541c8b48aa16d6cb2ac8836, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &407072560
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &558468365
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1375,7 +1391,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 57.55
+  m_fontSize: 57.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1891,7 +1907,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 74.55
+  m_fontSize: 77.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
