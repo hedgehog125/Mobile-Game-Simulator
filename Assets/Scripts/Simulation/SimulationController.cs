@@ -63,6 +63,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		bool factBoxShowing = Simulation.factBox == null? false : Simulation.factBox.gameObject.activeSelf;
 
 		Simulation.menuPopupActive = textBoxShowing || factBoxShowing;
+		Simulation.stayOnLastActive = textBoxShowing?  Simulation.textBox.stayOnLast : false;
 	}
 
 	public void SyncToSimulation() {

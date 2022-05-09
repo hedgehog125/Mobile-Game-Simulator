@@ -27,20 +27,20 @@ public class UIKnowledgePoint : MonoBehaviour {
 	public void OnPointClick(InputValue input) {
 		if (input.isPressed) {
 			if (outerMouseTouching) {
-				if (textToGrow != null) {
-					textToGrow.SetTrigger("Near");
-				}
+				if ((! Simulation.menuPopupActive) || Simulation.stayOnLastActive) {
+					if (textToGrow != null) {
+						textToGrow.SetTrigger("Near");
+					}
 
-				if (inner.mouseTouching) {
-					Inspect();
+					if (inner.mouseTouching) {
+						Inspect();
+					}
 				}
 			}
 		}
 	}
 
 	private void Inspect() {
-		if (Simulation.menuPopupActive) return;
-
 		bool[] pointsGot = Simulation.currentSave.knowledgePointsGot;
 
 		List<string> message = new List<string>();

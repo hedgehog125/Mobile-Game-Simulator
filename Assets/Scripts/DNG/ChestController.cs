@@ -35,7 +35,7 @@ public class ChestController : MonoBehaviour {
 	private NFTController NFTOb;
 	private bool animating;
 	private bool firstOpenMessageShown;
-	private int dailyLimitProgress = 5;
+	private int dailyLimitProgress = 4;
 
 	private enum States {
 		WaitToOpen,

@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 56.65
+  m_fontSize: 57.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1963,7 +1963,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75.75
+  m_fontSize: 74.55
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3338,9 +3338,10 @@ MonoBehaviour:
   firstOpenMessage:
   - 'Ted: Do you see what I mean about this game? The name''s a bit misleading...'
   - 'Ted: Maybe that''s something to look into'
-  - 'Ted: Anyway, if you want to investigate a malpractice, just point at it and
-    I''ll take a look'
-  - 'Ted: There are 3 in this game'
+  - 'Ted: Anyway, if you want to investigate something bad a game does, just point
+    at it and I''ll take a look'
+  - 'Ted: There are 3 malpractices to find in this game'
+  - 'Ted: Try and find as many of them as you can. You''ve got 5 minutes'
   - Right click to point at a malpractice
 --- !u!114 &6489136034268795250
 MonoBehaviour:

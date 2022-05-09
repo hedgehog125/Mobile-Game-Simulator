@@ -28,6 +28,7 @@ public class Simulation {
     public static string gameName;
 
     public static bool menuPopupActive;
+    public static bool stayOnLastActive;
     public static bool preventClose;
 
     public static void Spend(int amount) {
