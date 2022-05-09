@@ -27,7 +27,6 @@ public class UIKnowledgePoint : MonoBehaviour {
 	public void OnPointClick(InputValue input) {
 		if (input.isPressed) {
 			if (outerMouseTouching) {
-				Debug.Log("A");
 				if (textToGrow != null) {
 					textToGrow.SetTrigger("Near");
 				}

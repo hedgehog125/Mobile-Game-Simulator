@@ -35,6 +35,7 @@ public class ChestController : MonoBehaviour {
 	private NFTController NFTOb;
 	private bool animating;
 	private bool firstOpenMessageShown;
+	private int dailyLimitProgress = 5;
 
 	private enum States {
 		WaitToOpen,
@@ -101,7 +102,7 @@ public class ChestController : MonoBehaviour {
 	private void Open() {
 		Save.DNGSaveClass save = Simulation.currentSave.DNGSave;
 
-		if (save.dailyLimitProgress == limit) {
+		if (dailyLimitProgress == limit) {
 			if (! limitPopup.activeSelf) {
 				limitPopup.SetActive(true);
 				limitMusic.Play();
@@ -111,7 +112,7 @@ public class ChestController : MonoBehaviour {
 			state = States.Open;
 			keyObject.SetActive(true); // Play the animation
 			Simulation.Spend(cost);
-			save.dailyLimitProgress++;
+			dailyLimitProgress++;
 
 			particles.Play();
 			priceText.SetActive(false);

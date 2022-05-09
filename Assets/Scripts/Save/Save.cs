@@ -13,7 +13,7 @@ public class Save {
 	public int gamesUnlocked = 1;
 	public int difficultyLevel = 1;
 
-	public bool[] knowledgePointsGot = new bool[2];
+	public bool[] knowledgePointsGot = new bool[100];
 
 	public class BaseGameSave {
 		public int plays;
@@ -23,8 +23,6 @@ public class Save {
 	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 
 	public class DNGSaveClass : BaseGameSave {
-		public int dailyLimitProgress;
-
 		public class OwnedNFT {
 			public int baseID;
 			public int variationID;
