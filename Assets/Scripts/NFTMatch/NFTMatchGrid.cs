@@ -12,6 +12,7 @@ public class NFTMatchGrid : MonoBehaviour {
 	[Header("Misc")]
 	[SerializeField] public int size;
 	[SerializeField] private float deadzone;
+	[SerializeField] private int scorePerMatch;
 
 	[HideInInspector] public int count { get; private set; }
 
@@ -435,6 +436,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		foreach (int id in matchIDs) {
 			DeleteTile(id);
 		}
+		Simulation.currentSave.NFTMatchSave.score += matchIDs.Count * scorePerMatch;
 
 		// Falling tiles are processed later so they don't effect the other checks this frame
 

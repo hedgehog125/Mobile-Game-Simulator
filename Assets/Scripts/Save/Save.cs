@@ -19,9 +19,6 @@ public class Save {
 		public int plays;
 	}
 
-	public class NFTMatchSaveClass : BaseGameSave {}
-	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
-
 	public class DNGSaveClass : BaseGameSave {
 		public class OwnedNFT {
 			public int baseID;
@@ -35,6 +32,11 @@ public class Save {
 		public List<OwnedNFT> ownedNFTs = new List<OwnedNFT>();
 	}
 	public DNGSaveClass DNGSave = new DNGSaveClass();
+
+	public class NFTMatchSaveClass : BaseGameSave {
+		public int score;
+	}
+	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 
 	public Save() {
 		Simulation.Difficulty difficulty = new Simulation.Difficulty(difficultyLevel);
