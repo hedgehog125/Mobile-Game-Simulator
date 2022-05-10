@@ -48,8 +48,8 @@ public class UIKnowledgePoint : MonoBehaviour {
 			message.Add("Ted: You've already found this fact but here it is again...");
 		}
 		else {
-			message.Add("Ted: Nice work, one second... *frantically researches and writes*");
-			message.Add("Ted: Tada...");
+			message.Add("Ted: Nice work, give me 5 or 10 minutes...");
+			message.Add("Ted: Alright, have a read...");
 
 			Simulation.currentSave.knowledgePoints++;
 			pointsGot[knowledgeID] = true;

@@ -55,7 +55,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	}
 
 	private void Tick() {
-		if (Simulation.inGame) {
+		if (Simulation.inGame && ((! Simulation.menuPopupActive) || Simulation.stayOnLastActive)) {
 			Simulation.IncreaseTime(1);
 		}
 

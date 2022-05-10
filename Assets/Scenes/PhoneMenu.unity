@@ -507,7 +507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[0]
-      value: 'Ted: Alright, we''''ll start off with Definitely Not Gambling'
+      value: 'Ted: Alright, we''ll start off with Definitely Not Gambling'
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[1]

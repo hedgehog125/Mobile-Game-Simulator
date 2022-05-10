@@ -7,6 +7,7 @@ public class ScrambleTextAnimation : StateMachineBehaviour {
     [SerializeField] private float scrambleDelay;
     [SerializeField] private float unscrambleEndTime;
     [SerializeField] private float unscrambleSpeedReduction;
+    [SerializeField] private string baseTextInput;
 
     private const string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,./\\[]<>`~§'";
 
@@ -20,7 +21,12 @@ public class ScrambleTextAnimation : StateMachineBehaviour {
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         text = animator.gameObject.GetComponent<TextMeshProUGUI>();
-        baseText = text.text;
+        if (baseTextInput == "") {
+            baseText = text.text;
+		}
+        else {
+            baseText = baseTextInput;
+		}
 
         charText = new char[baseText.Length];
         for (int i = 0; i < baseText.Length; i++) {

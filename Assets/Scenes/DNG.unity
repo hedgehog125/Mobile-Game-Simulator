@@ -616,7 +616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[0]
-      value: 'Ted: Ah yes, Definitely Not Gambling. I''''m sure that title is 100%
+      value: 'Ted: Ah yes, Definitely Not Gambling. I''m sure that title is 100%
         factual...'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3338,11 +3338,11 @@ MonoBehaviour:
   firstOpenMessage:
   - 'Ted: Do you see what I mean about this game? The name''s a bit misleading...'
   - 'Ted: Maybe that''s something to look into'
-  - 'Ted: Anyway, if you want to investigate something bad a game does, just point
-    at it and I''ll take a look'
-  - 'Ted: There are 3 malpractices to find in this game'
+  - 'Ted: Anyway, if you spot something bad the game does then point at it and I''ll
+    research it'
+  - 'Ted: There are 2 malpractices to find in this game'
   - 'Ted: Try and find as many of them as you can. You''ve got 5 minutes'
-  - Right click to point at a malpractice
+  - Right click to point out a malpractice
 --- !u!114 &6489136034268795250
 MonoBehaviour:
   m_ObjectHideFlags: 0
