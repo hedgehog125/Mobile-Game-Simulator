@@ -6,9 +6,21 @@ using UnityEngine.SceneManagement;
 public class Simulation {
     public const string introCutscene = "Intro";
     public const string phoneScene = "PhoneMenu";
+
+    private static List<string> gotAllMessage;
+    private static List<string> timeUpMessage;
+    private const string firstUnlockMessage = "Press backspace to swipe up and go to the homescreen";
+
     public static CutsceneTextController textBox;
     public static FactPageController factBox;
 
+    static Simulation() {
+        gotAllMessage = new List<string>();
+        gotAllMessage.Add("Ted: Nice, you got them all. I've installed the next game now");
+
+        timeUpMessage = new List<string>();
+        timeUpMessage.Add("Ted: And time's up. You can continue playing if you like but I'll only research things in the next game");
+    }
 
     public static Difficulty difficulty;
     public class Difficulty {
@@ -25,10 +37,13 @@ public class Simulation {
     }
 
     public static bool inGame;
-    public static string gameName;
+    public static int gameID;
 
     public static bool menuPopupActive;
     public static bool stayOnLastActive;
+    public static bool revisitingGame;
+    public static bool gotAllInGame;
+
     public static bool preventClose;
 
     public static void Spend(int amount) {
@@ -41,12 +56,41 @@ public class Simulation {
             TimesUp();
         }
     }
+    public static void GotAllPoints() {
+        Progress(false, gotAllMessage);
+    }
+
 
     private static void TimesUp() {
-        currentSave.timeLeft = difficulty.gameTimeLimit;
-        currentSave.gamesUnlocked++;
+        Progress(false, timeUpMessage);
+    }
 
-        SceneManager.LoadScene(phoneScene);
+    private static void Progress(bool changeScene, List<string> message) {
+        currentSave.timeLeft = difficulty.gameTimeLimit;
+
+        bool firstNewUnlock = false;
+        if (gameID <= currentSave.gamesUnlocked) { // Unlock the next game if that doesn't decrease the progress
+            currentSave.gamesUnlocked = gameID + 1;
+            firstNewUnlock = gameID == 1;
+        }
+
+        if (changeScene) {
+            SceneManager.LoadScene(phoneScene);
+            return;
+        }
+        
+        if (message != null) {
+            List<string> newMessage = new List<string>(message);
+
+            textBox.stayOnLast = false;
+            textBox.nextScene = "";
+            if (firstNewUnlock) {
+                newMessage.Add(firstUnlockMessage);
+                textBox.stayOnLast = true;
+            }
+            
+            textBox.Display(newMessage);
+        }
     }
 
     public static void StartPlaying() {
@@ -77,7 +121,7 @@ public class Simulation {
             currentSave.DNGSave.plays = 1;
             currentSave.NFTMatchSave.plays = 1;
 
-            currentSave.gamesUnlocked = 2;
+            currentSave.gamesUnlocked = 1;
 		}
 	}
 

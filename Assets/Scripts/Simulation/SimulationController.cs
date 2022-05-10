@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class SimulationController : MonoBehaviour { // Handles anything that needs to continually change over time in the Simulation global state
 	// In the main controller, these values will still be the initial values when switching scenes, the Simulation class has the current values
     [SerializeField] private bool isGame;
-	[SerializeField] private string gameName;
+	[SerializeField] private int gameID = -1;
 	[SerializeField] public string backScene = "PhoneMenu";
 	[SerializeField] private GameObject textAndFactOb;
+	[SerializeField] public List<int> knowledgePoints;
 
 	private CutsceneTextController myTextbox;
 	private FactPageController myFactBox;
@@ -17,6 +18,8 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	private static SimulationController globalController;
 	private bool isTheGlobalController;
 	private PlayerInput inputModule;
+
+	private int gotAllTick;
 
 	private void OnClose(InputValue input) {
 		if ((! Simulation.preventClose) && backScene != "") {
@@ -43,6 +46,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		}
 		else {
 			globalController.backScene = backScene;
+			globalController.knowledgePoints = knowledgePoints;
 
 			SyncToSimulation();
 		}
@@ -55,15 +59,49 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	}
 
 	private void Tick() {
-		if (Simulation.inGame && ((! Simulation.menuPopupActive) || Simulation.stayOnLastActive)) {
-			Simulation.IncreaseTime(1);
-		}
+		UpdateSimulationVars();
 
+		if (Simulation.inGame) {
+			if (
+				((! Simulation.menuPopupActive) || Simulation.stayOnLastActive)
+				&& (! Simulation.revisitingGame)
+			) {
+				Simulation.IncreaseTime(1);
+
+				if (Simulation.gotAllInGame) {
+					if (gotAllTick == 60) {
+						Simulation.GotAllPoints();
+						gotAllTick = 0;
+					}
+					else {
+						gotAllTick++;
+					}
+				}
+				else {
+					gotAllTick = 0;
+				}
+			}
+		}
+	}
+
+	private void UpdateSimulationVars() {
 		bool textBoxShowing = Simulation.textBox == null? false : Simulation.textBox.gameObject.activeSelf;
 		bool factBoxShowing = Simulation.factBox == null? false : Simulation.factBox.gameObject.activeSelf;
 
 		Simulation.menuPopupActive = textBoxShowing || factBoxShowing;
-		Simulation.stayOnLastActive = textBoxShowing?  Simulation.textBox.stayOnLast : false;
+		Simulation.stayOnLastActive = textBoxShowing ? Simulation.textBox.stayOnLast : false;
+		Simulation.revisitingGame = gameID == 0 || gameID == -1? false : Simulation.currentSave.gamesUnlocked != gameID;
+
+		bool gotAll = true;
+		if (knowledgePoints.Count != 0) {
+			foreach (int id in knowledgePoints) {
+				if (!Simulation.currentSave.knowledgePointsGot[id]) {
+					gotAll = false;
+					break;
+				}
+			}
+		}
+		Simulation.gotAllInGame = gotAll;
 	}
 
 	public void SyncToSimulation() {
@@ -71,6 +109,6 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		Simulation.factBox = myFactBox;
 
 		Simulation.inGame = isGame;
-		Simulation.gameName = gameName;
+		Simulation.gameID = gameID;
 	}
 }

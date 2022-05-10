@@ -1542,7 +1542,7 @@ PrefabInstance:
       objectReference: {fileID: 1050584961}
     - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
       propertyPath: knowledgeID
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
@@ -2242,6 +2242,10 @@ PrefabInstance:
       value: Default
       objectReference: {fileID: 0}
     - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: gameID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: textBox
       value: 
       objectReference: {fileID: 1728590005}
@@ -2253,6 +2257,14 @@ PrefabInstance:
       propertyPath: textAndFactOb
       value: 
       objectReference: {fileID: 1189755432}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: knowledgePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: knowledgePoints.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2616,6 +2628,10 @@ PrefabInstance:
       propertyPath: textToGrow
       value: 
       objectReference: {fileID: 1477319679}
+    - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
+      propertyPath: knowledgeID
+      value: -100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
 --- !u!1001 &3324213232458437399
@@ -2737,10 +2753,6 @@ PrefabInstance:
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: title
       value: 'DNG Malpractice: General and Claims not to be Gambling'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
-      propertyPath: knowledgeID
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact.Array.size

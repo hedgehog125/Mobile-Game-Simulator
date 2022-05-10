@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class UIKnowledgePoint : MonoBehaviour {
+	private const string repeatMessage = "Ted: You've already found this fact but here it is again...";
+	private string[] findMessage = {
+		"Ted: Nice work, just give me 5 or 10 minutes...",
+		"Ted: Alright, have a read..."
+	};
+
 	[Header("Main")]
 	[SerializeField] private int knowledgeID;
 	[SerializeField] private string title;
@@ -25,15 +31,17 @@ public class UIKnowledgePoint : MonoBehaviour {
 	}
 
 	public void OnPointClick(InputValue input) {
-		if (input.isPressed) {
-			if (outerMouseTouching) {
-				if ((! Simulation.menuPopupActive) || Simulation.stayOnLastActive) {
-					if (textToGrow != null) {
-						textToGrow.SetTrigger("Near");
-					}
+		if (! Simulation.revisitingGame) {
+			if (input.isPressed) {
+				if (outerMouseTouching) {
+					if ((! Simulation.menuPopupActive) || Simulation.stayOnLastActive) {
+						if (textToGrow != null) {
+							textToGrow.SetTrigger("Near");
+						}
 
-					if (inner.mouseTouching) {
-						Inspect();
+						if (inner.mouseTouching) {
+							Inspect();
+						}
 					}
 				}
 			}
@@ -45,11 +53,11 @@ public class UIKnowledgePoint : MonoBehaviour {
 
 		List<string> message = new List<string>();
 		if (pointsGot[knowledgeID]) {
-			message.Add("Ted: You've already found this fact but here it is again...");
+			message.Add(repeatMessage);
 		}
 		else {
-			message.Add("Ted: Nice work, give me 5 or 10 minutes...");
-			message.Add("Ted: Alright, have a read...");
+			message.Add(findMessage[0]);
+			message.Add(findMessage[1]);
 
 			Simulation.currentSave.knowledgePoints++;
 			pointsGot[knowledgeID] = true;

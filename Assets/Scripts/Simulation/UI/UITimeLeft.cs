@@ -22,7 +22,10 @@ public class UITimeLeft : MonoBehaviour {
 	private void UpdateText() {
 		Save save = Simulation.currentSave;
 
-		if (Simulation.inGame && save.timeLeft != Simulation.difficulty.gameTimeLimit) {
+		if (
+			Simulation.inGame && (! Simulation.revisitingGame)
+			&& save.timeLeft != Simulation.difficulty.gameTimeLimit
+		) {
 			text.enabled = true;
 		}
 		else {

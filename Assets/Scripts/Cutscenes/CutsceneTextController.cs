@@ -71,20 +71,20 @@ public class CutsceneTextController : MonoBehaviour {
 		if (deactivateIfWatched) {
 			Save save = Simulation.currentSave;
 
-			if (Simulation.gameName == "DNG") {
+			if (Simulation.gameID == 1) {
 				if (save.DNGSave.plays != 0) {
 					gameObject.SetActive(false);
 				}
 				save.DNGSave.plays++;
 			}
-			else if (Simulation.gameName == "NFTMatch") {
+			else if (Simulation.gameID == 1) {
 				if (save.NFTMatchSave.plays != 0) {
 					gameObject.SetActive(false);
 				}
 				save.NFTMatchSave.plays++;
 
 			}
-			else if (Simulation.gameName == "PhoneMenu") {
+			else if (Simulation.gameID == 0) {
 				if (save.watched.intro) {
 					gameObject.SetActive(false);
 				}

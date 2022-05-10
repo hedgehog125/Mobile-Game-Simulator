@@ -1037,6 +1037,10 @@ PrefabInstance:
       value: 07c7503c-8ec6-495e-bf89-4f14f6d1972e
       objectReference: {fileID: 0}
     - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
+      propertyPath: gameID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518323068074865345, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: textBox
       value: 
       objectReference: {fileID: 1679769558}
