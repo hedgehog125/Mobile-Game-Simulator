@@ -347,6 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 302770682}
   - component: {fileID: 302770686}
+  - component: {fileID: 302770687}
   - component: {fileID: 302770685}
   - component: {fileID: 302770684}
   - component: {fileID: 302770683}
@@ -441,12 +442,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24922e217b3d848ac80e10206e6a27a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorePrefab: {fileID: 323785493396262216, guid: 17875765118844e84978d6cd030568d6, type: 3}
-  topScore: 1000
+  ren: {fileID: 302770687}
+  topScore: 9990
   scoreGap: 10
+  maxNameLength: 16
+--- !u!114 &302770687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302770681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf5b01eac2f445c5bbc0fc88e5f63d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scorePrefab: {fileID: 323785493396262216, guid: 17875765118844e84978d6cd030568d6, type: 3}
   countAtOnce: 10
   outerPadding: 15
-  maxNameLength: 17
 --- !u!1 &430334980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,8 +1375,24 @@ PrefabInstance:
       value: Drag some NFTs to match them
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: stayOnLast
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[0]
       value: 'Ted: Alright, see what you can find'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[1]
+      value: Click and drag a tile to make 3 of the same type match
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[2]
+      value: Tiles disappear when there's 3 of the same type connected to each other
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}

@@ -153,7 +153,7 @@ public class ChestController : MonoBehaviour {
 		ResetAnimation();
 
 		priceText.SetActive(true);
-		if (Simulation.currentSave.DNGSave.plays == 1 && (! firstOpenMessageShown)) {
+		if (Simulation.firstGamePlay && (! firstOpenMessageShown)) { // TODO: make into something in save, or prevent close
 			textBox.stayOnLast = true;
 			textBox.Display(firstOpenMessage);
 

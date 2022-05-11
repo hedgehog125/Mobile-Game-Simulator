@@ -35,6 +35,7 @@ public class Save {
 
 	public class NFTMatchSaveClass : BaseGameSave {
 		public int score;
+		public ScoreboardController.ScoreboardItem[] scoreboard;
 	}
 	public NFTMatchSaveClass NFTMatchSave = new NFTMatchSaveClass();
 

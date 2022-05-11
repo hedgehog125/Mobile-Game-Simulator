@@ -115,9 +115,6 @@ public class NFTMatchGrid : MonoBehaviour {
 	private void Awake() {
 		count = size * size;
 		save = Simulation.currentSave.NFTMatchSave;
-		if (save.plays == 1) { // Plays will have been incremented by here
-			tutorialBox.SetActive(true);
-		}
 
 		string data = gridDataAsset.text;
 		baseGrid = new SquareType[count];
@@ -436,7 +433,7 @@ public class NFTMatchGrid : MonoBehaviour {
 		foreach (int id in matchIDs) {
 			DeleteTile(id);
 		}
-		Simulation.currentSave.NFTMatchSave.score += matchIDs.Count * scorePerMatch;
+		save.score += matchIDs.Count * scorePerMatch;
 
 		// Falling tiles are processed later so they don't effect the other checks this frame
 

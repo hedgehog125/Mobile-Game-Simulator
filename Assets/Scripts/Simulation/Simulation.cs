@@ -42,6 +42,7 @@ public class Simulation {
     public static bool menuPopupActive;
     public static bool stayOnLastActive;
     public static bool revisitingGame;
+    public static bool firstGamePlay;
     public static bool gotAllInGame;
 
     public static bool preventClose;
@@ -119,7 +120,7 @@ public class Simulation {
             currentSave.watched.intro = true;
 
             currentSave.DNGSave.plays = 1;
-            currentSave.NFTMatchSave.plays = 1;
+            currentSave.NFTMatchSave.plays = 0;
 
             currentSave.gamesUnlocked = 2;
 		}

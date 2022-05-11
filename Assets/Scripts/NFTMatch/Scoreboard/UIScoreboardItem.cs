@@ -14,14 +14,20 @@ public class UIScoreboardItem : MonoBehaviour {
 		tex = GetComponent<TextMeshProUGUI>();
 	}
 
-	public void Ready(float y, int placement, int score, string username, bool bold) {
+	[HideInInspector] public float y;
+	[HideInInspector] public int placement;
+	[HideInInspector] public int score;
+	[HideInInspector] public string username;
+	[HideInInspector] public bool isPlayer;
+
+	public void UpdateText() {
 		Vector3 pos = tran.anchoredPosition;
 
 		pos.y = y;
 		tran.anchoredPosition = pos;
 
 		string scoreText = score.ToString().PadLeft(scoreLength, '0');
-		tex.fontStyle = bold? FontStyles.Bold : FontStyles.Normal;
+		tex.fontStyle = isPlayer? FontStyles.Bold : FontStyles.Normal;
 		tex.text = $"{Tools.English.Th(placement)} {username} - {scoreText}";
 	}
 }

@@ -49,6 +49,8 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 
 			SyncToSimulation();
 		}
+
+		UpdatePlays();
 	}
 
 	private void FixedUpdate() {
@@ -88,13 +90,13 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		bool factBoxShowing = Simulation.factBox == null? false : Simulation.factBox.gameObject.activeSelf;
 
 		Simulation.menuPopupActive = textBoxShowing || factBoxShowing;
-		Simulation.stayOnLastActive = textBoxShowing ? Simulation.textBox.stayOnLast : false;
+		Simulation.stayOnLastActive = textBoxShowing? Simulation.textBox.stayOnLast : false;
 		Simulation.revisitingGame = gameID == 0 || gameID == -1? false : Simulation.currentSave.gamesUnlocked != gameID;
 
 		bool gotAll = true;
 		if (knowledgePoints.Count != 0) {
 			foreach (int id in knowledgePoints) {
-				if (!Simulation.currentSave.knowledgePointsGot[id]) {
+				if (! Simulation.currentSave.knowledgePointsGot[id]) {
 					gotAll = false;
 					break;
 				}
@@ -109,5 +111,25 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 
 		Simulation.inGame = isGame;
 		Simulation.gameID = gameID;
+	}
+
+	private void UpdatePlays() {
+		bool firstGamePlay = false;
+
+		Save save = Simulation.currentSave;
+		if (Simulation.gameID == 1) {
+			if (save.DNGSave.plays == 0) {
+				firstGamePlay = true;
+			}
+			save.DNGSave.plays++;
+		}
+		else if (Simulation.gameID == 2) {
+			if (save.NFTMatchSave.plays == 0) {
+				firstGamePlay = true;
+			}
+			save.NFTMatchSave.plays++;
+		}
+
+		Simulation.firstGamePlay = firstGamePlay;
 	}
 }
