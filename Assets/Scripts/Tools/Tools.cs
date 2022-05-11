@@ -43,23 +43,59 @@ public static class Tools {
             "evenmore"
         };
 
-        public static string Username() {
-            bool useSecondAdj = UnityEngine.Random.Range(0, 6) == 0; // 1 in 5
-            bool useNum = UnityEngine.Random.Range(0, 2) == 0; // 1 in 2
-            bool useXX = UnityEngine.Random.Range(0, 21) == 0; // 1 in 20
+        
+        public static string Username(int maxLength) {
+            string username;
 
-            string adj2 = useSecondAdj? Item(username2ndAdjs) : "";
-            string adj = Item(usernameAdjs);
-            string noun = Item(usernameNouns);
-            string num = useNum? UnityEngine.Random.Range(2, 100).ToString() : "";
-            string xxStart = useXX? "XX_" : "";
-            string xxEnd = useXX ? "_XX" : "";
+            do {
+                bool useSecondAdj = UnityEngine.Random.Range(0, 6) == 0; // 1 in 5
+                bool useNum = UnityEngine.Random.Range(0, 2) == 0; // 1 in 2
+                bool useXX = UnityEngine.Random.Range(0, 21) == 0; // 1 in 20
 
-            return $"{xxStart}{adj2}{adj}{noun}{num}{xxEnd}";
+                string adj2 = useSecondAdj? Item(username2ndAdjs) : "";
+                string adj = Item(usernameAdjs);
+                string noun = Item(usernameNouns);
+                string num = useNum? UnityEngine.Random.Range(2, 100).ToString() : "";
+                string xxStart = useXX? "XX_" : "";
+                string xxEnd = useXX? "_XX" : "";
+
+                username = $"{xxStart}{adj2}{adj}{noun}{num}{xxEnd}";
+            } while (username.Length > maxLength);
+
+            return username;
         }
 
         public static string Item(string[] array) {
             return array[UnityEngine.Random.Range(0, array.Length)];
 		}
     }
+
+    public static class English {
+        public static string Th(int index) {
+            string indexString = (index + 1).ToString(); // Start at 1
+            char last = indexString[indexString.Length - 1];
+
+            string suffix;
+            if (last == '1') {
+                suffix = "st";
+			}
+            else if (last == '2') {
+                suffix = "nd";
+			}
+            else if (last == '3') {
+                suffix = "rd";
+			}
+            else {
+                suffix = "th";
+			}
+
+            if (indexString.Length != 1) {
+                if (indexString[indexString.Length - 2] == '1') { // Numbers ending in 10-20 are all ths
+                    suffix = "th";
+				}
+			}
+
+            return indexString + suffix;
+		}
+	}
 }

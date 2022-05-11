@@ -121,7 +121,7 @@ public class Simulation {
             currentSave.DNGSave.plays = 1;
             currentSave.NFTMatchSave.plays = 1;
 
-            currentSave.gamesUnlocked = 1;
+            currentSave.gamesUnlocked = 2;
 		}
 	}
 

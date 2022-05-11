@@ -77,7 +77,7 @@ public class CutsceneTextController : MonoBehaviour {
 				}
 				save.DNGSave.plays++;
 			}
-			else if (Simulation.gameID == 1) {
+			else if (Simulation.gameID == 2) {
 				if (save.NFTMatchSave.plays != 0) {
 					gameObject.SetActive(false);
 				}
