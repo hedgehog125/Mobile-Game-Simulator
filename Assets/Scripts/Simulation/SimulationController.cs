@@ -34,7 +34,6 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		myTextbox = textAndFactOb.transform.GetChild(0).GetComponent<CutsceneTextController>();
 		myFactBox = textAndFactOb.transform.GetChild(1).GetComponent<FactPageController>();
 
-
 		if (globalController == null) {
 			DontDestroyOnLoad(gameObject);
 			globalController = this;
