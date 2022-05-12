@@ -461,6 +461,7 @@ MonoBehaviour:
   scorePrefab: {fileID: 323785493396262216, guid: 17875765118844e84978d6cd030568d6, type: 3}
   countAtOnce: 10
   outerPadding: 15
+  targetPlayerBottomOffset: 2
 --- !u!1 &430334980
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,6 +867,7 @@ GameObject:
   - component: {fileID: 1352607029}
   - component: {fileID: 1352607030}
   - component: {fileID: 1352607032}
+  - component: {fileID: 1352607031}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -936,6 +938,102 @@ MonoBehaviour:
   m_DefaultActionMap: Basic
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!82 &1352607031
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352607027}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3188aa9e8811e4d0ea36d9f3e2ace1f6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 50
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1352607032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,6 +1048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NFTPrefab: {fileID: 7592939756192900297, guid: c532a91a2e7b19842a76964b1a36ef99, type: 3}
   dataScript: {fileID: 1352607029}
+  matchSound: {fileID: 1352607031}
   baseSpeed: 3.5
   startSpeedIncrease: 0.3
   maxStartSpeed: 5

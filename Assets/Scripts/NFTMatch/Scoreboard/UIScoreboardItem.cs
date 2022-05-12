@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 
 public class UIScoreboardItem : MonoBehaviour {
+	[SerializeField] private TextMeshProUGUI scoreText;
+
 	private RectTransform tran;
 	private TextMeshProUGUI tex;
 
@@ -26,8 +28,10 @@ public class UIScoreboardItem : MonoBehaviour {
 		pos.y = y;
 		tran.anchoredPosition = pos;
 
-		string scoreText = score.ToString().PadLeft(scoreLength, '0');
 		tex.fontStyle = isPlayer? FontStyles.Bold : FontStyles.Normal;
-		tex.text = $"{Tools.English.Th(placement)} {username} - {scoreText}";
+		tex.text = $"{Tools.English.Th(placement)} {username}";
+
+		scoreText.fontStyle = tex.fontStyle;
+		scoreText.text = score.ToString().PadLeft(scoreLength, '0');
 	}
 }

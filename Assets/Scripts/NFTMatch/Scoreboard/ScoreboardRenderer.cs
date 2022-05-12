@@ -9,6 +9,7 @@ public class ScoreboardRenderer : MonoBehaviour {
 	[Header("")]
 	[SerializeField] private int countAtOnce;
 	[SerializeField] private int outerPadding;
+	[SerializeField] private int targetPlayerBottomOffset;
 
 
 	private RectTransform tran;
@@ -39,7 +40,9 @@ public class ScoreboardRenderer : MonoBehaviour {
 		}
 
 		cameraY = (playerPlacement - countAtOnce) + 1;
+		cameraY += targetPlayerBottomOffset;
 		if (cameraY < 0) cameraY = 0;
+		if (cameraY + countAtOnce > scoreboard.Length + 1) cameraY = (scoreboard.Length - countAtOnce) + 1;
 
 		if (! renderedBefore) {
 			items = new UIScoreboardItem[countAtOnce];

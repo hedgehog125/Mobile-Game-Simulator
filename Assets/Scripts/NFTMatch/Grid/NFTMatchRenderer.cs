@@ -6,6 +6,7 @@ public class NFTMatchRenderer : MonoBehaviour {
 	[Header("Objects and references")]
 	[SerializeField] private GameObject NFTPrefab;
 	[SerializeField] private NFTMatchGrid dataScript;
+	[SerializeField] private AudioSource matchSound;
 
 	[Header("Speeds, timings and accelerations")]
 	[SerializeField] private float baseSpeed;
@@ -233,6 +234,8 @@ public class NFTMatchRenderer : MonoBehaviour {
 
 			SetSwappedTarget(swappedSquares[0]);
 			SetSwappedTarget(swappedSquares[1]);
+
+			matchSound.Play();
 		}
 	}
 
