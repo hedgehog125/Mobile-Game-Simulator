@@ -119,6 +119,8 @@ public class Simulation {
             // Set some values for easier development
             currentSave.watched.intro = true;
 
+            currentSave.DNGSave.opens = 1;
+
             currentSave.DNGSave.plays = 1;
             currentSave.NFTMatchSave.plays = 0;
 

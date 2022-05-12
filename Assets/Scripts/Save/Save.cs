@@ -20,6 +20,8 @@ public class Save {
 	}
 
 	public class DNGSaveClass : BaseGameSave {
+		public int opens;
+
 		public class OwnedNFT {
 			public int baseID;
 			public int variationID;

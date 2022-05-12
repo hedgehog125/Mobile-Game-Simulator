@@ -12,6 +12,7 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private ParticleSystem particles;
 	[SerializeField] private GameObject priceText;
 	[SerializeField] private CutsceneTextController textBox;
+	[SerializeField] private Animator lightAnimator;
 
 	[Header("SFX")]
 	[SerializeField] private AudioSource limitMusic;
@@ -28,13 +29,13 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private List<string> firstOpenMessage;
 
 	private Animator anim;
+	private Save.DNGSaveClass save;
 	private bool clicking;
 	private Vector2 mousePos;
 
 	private int spawnTick;
 	private NFTController NFTOb;
 	private bool animating;
-	private bool firstOpenMessageShown;
 	private int dailyLimitProgress;
 
 	private enum States {
@@ -47,6 +48,7 @@ public class ChestController : MonoBehaviour {
 
 	private void Awake() {
 		anim = GetComponent<Animator>();
+		save = Simulation.currentSave.DNGSave;
 	}
 
 	private void OnPoint(InputValue input) {
@@ -82,7 +84,7 @@ public class ChestController : MonoBehaviour {
 			if (state == States.Open) {
 				if (spawnTick == spawnDelay) {
 					NFTOb = Instantiate(NFTPrefab, NFTHolder).GetComponent<NFTController>();
-					Simulation.currentSave.DNGSave.ownedNFTs.Add(NFTOb.Randomize());
+					save.ownedNFTs.Add(NFTOb.Randomize());
 					NFTOb.Ready();
 				}
 				if (spawnTick == pauseDelay) {
@@ -100,8 +102,6 @@ public class ChestController : MonoBehaviour {
 	}
 
 	private void Open() {
-		Save.DNGSaveClass save = Simulation.currentSave.DNGSave;
-
 		if (dailyLimitProgress == limit) {
 			if (! limitPopup.activeSelf) {
 				limitPopup.SetActive(true);
@@ -115,6 +115,7 @@ public class ChestController : MonoBehaviour {
 			dailyLimitProgress++;
 
 			particles.Play();
+			lightAnimator.SetBool("Bright", false);
 			priceText.SetActive(false);
 		}
 	}
@@ -153,11 +154,12 @@ public class ChestController : MonoBehaviour {
 		ResetAnimation();
 
 		priceText.SetActive(true);
-		if (Simulation.firstGamePlay && (! firstOpenMessageShown)) { // TODO: make into something in save, or prevent close
+		if (save.opens == 0) {
 			textBox.stayOnLast = true;
 			textBox.Display(firstOpenMessage);
-
-			firstOpenMessageShown = true;
 		}
+		save.opens++;
+
+		lightAnimator.SetBool("Bright", true);
 	}
 }
