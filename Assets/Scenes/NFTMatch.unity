@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ren: {fileID: 302770687}
-  topScore: 9990
+  topScore: 4990
   scoreGap: 10
   maxNameLength: 16
 --- !u!114 &302770687

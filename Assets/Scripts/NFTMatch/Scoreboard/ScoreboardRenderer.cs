@@ -18,16 +18,21 @@ public class ScoreboardRenderer : MonoBehaviour {
 	private bool renderedBefore;
 	private UIScoreboardItem[] items;
 	private int cameraY;
+	private bool initialized;
 
-	private void Awake() {
+	private void Init() {
 		tran = GetComponent<RectTransform>();
 
 		topY = tran.rect.height - (outerPadding * 2);
 		rowHeight = topY / countAtOnce;
 		topY = (topY / 2) - (rowHeight / 2);
+
+		initialized = true;
 	}
 
 	public void Render(ScoreboardController.ScoreboardItem[] scoreboard, int playerScore) {
+		if (! initialized) Init();
+
 		int playerPlacement = scoreboard.Length;
 		while (playerPlacement != 0 && scoreboard[playerPlacement - 1].score < playerScore) {
 			playerPlacement--;
