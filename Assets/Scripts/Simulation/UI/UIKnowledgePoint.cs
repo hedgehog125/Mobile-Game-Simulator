@@ -22,6 +22,8 @@ public class UIKnowledgePoint : MonoBehaviour {
 
     private bool outerMouseTouching;
 	private bool dialogueWaiting;
+	private bool gotThis;
+	private bool[] pointsGot;
 
 	public void OnEnter() {
 		outerMouseTouching = true;
@@ -30,8 +32,14 @@ public class UIKnowledgePoint : MonoBehaviour {
 		outerMouseTouching = false;
 	}
 
+	private void Awake() {
+		pointsGot = Simulation.currentSave.knowledgePointsGot;
+
+		gotThis = pointsGot[knowledgeID];
+	}
+
 	public void OnPointClick(InputValue input) {
-		if (! Simulation.revisitingGame) {
+		if (! (Simulation.revisitingGame || gotThis)) {
 			if (input.isPressed) {
 				if (outerMouseTouching) {
 					if ((! Simulation.menuPopupActive) || Simulation.stayOnLastActive) {
@@ -49,8 +57,6 @@ public class UIKnowledgePoint : MonoBehaviour {
 	}
 
 	private void Inspect() {
-		bool[] pointsGot = Simulation.currentSave.knowledgePointsGot;
-
 		List<string> message = new List<string>();
 		if (pointsGot[knowledgeID]) {
 			message.Add(repeatMessage);
@@ -61,6 +67,7 @@ public class UIKnowledgePoint : MonoBehaviour {
 
 			Simulation.currentSave.knowledgePoints++;
 			pointsGot[knowledgeID] = true;
+			gotThis = true;
 		}
 
 		Simulation.textBox.stayOnLast = false;

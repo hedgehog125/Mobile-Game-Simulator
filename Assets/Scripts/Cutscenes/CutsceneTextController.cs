@@ -21,6 +21,7 @@ public class CutsceneTextController : MonoBehaviour {
 
 	private int autoShowTick;
 	private int textID;
+	public bool onLast { get; private set; }
 
 	private int deactivateTick;
 
@@ -107,13 +108,13 @@ public class CutsceneTextController : MonoBehaviour {
 		else {
 			if (deactivateTick == 2) {
 				gameObject.SetActive(false);
-
-				deactivateTick = 0;
 			}
 			else {
 				deactivateTick++;
 			}
 		}
+
+		onLast = textID == displayText.Count - 1;
 	}
 
 	public void Display(List<string> message) {
@@ -122,6 +123,7 @@ public class CutsceneTextController : MonoBehaviour {
 		textID = 0;
 		autoShowTick = 0;
 		nextScene = "";
+		deactivateTick = 0;
 
 		gameObject.SetActive(true);
 		MultiAwake();

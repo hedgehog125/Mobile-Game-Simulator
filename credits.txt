@@ -32,7 +32,7 @@ Human characters base model: https://sketchfab.com/3d-models/low-poly-human-b8a3
 Table: https://sketchfab.com/3d-models/mahogany-table-e9ef3eadee9d4491b7c59fdbb19c30cd under CC BY 4.0
 
 = Music =
-Splashing around: https://www.youtube.com/watch?v=TFZRA2_LCro&list=PLMKRp0DXWwG-yCme0a3b917RFLUPFiaqT&index=11
+Splashing around: https://www.youtube.com/watch?v=TFZRA2_LCro&list=PLMKRp0DXWwG-yCme0a3b917RFLUPFiaqT&index=11 under public domain
 Sad music (I increased the volume): https://freesound.org/people/Migfus20/sounds/559834/ under CC BY 4.0
 
 = SFX =
@@ -44,8 +44,8 @@ DNG Chest open: An edit of...
     Door bang sounds: https://freesound.org/people/kyles/sounds/450790/ under CC0 1.0 (also modified for closing sound)
     Squeaky door: https://freesound.org/people/bowlingballout/sounds/398919/ under CC0 1.0
     And bamboo swing: https://freesound.org/people/InspectorJ/sounds/394431/ under CC BY 4.0 (also modified to be used for the NFT spinning and also it flying off)
-    
-    
+
+
 
 = Videos =
 Discord mod meme original: https://www.tiktok.com/@angelicalopez1991/video/6879904155339656454?is_copy_url=1&is_from_webapp=v1&q=Angelicalopez1991&t=1650225170322 (used in the NFT Match intro cutscene)

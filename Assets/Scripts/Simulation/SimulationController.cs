@@ -90,7 +90,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 		bool factBoxShowing = Simulation.factBox == null? false : Simulation.factBox.gameObject.activeSelf;
 
 		Simulation.menuPopupActive = textBoxShowing || factBoxShowing;
-		Simulation.stayOnLastActive = textBoxShowing? Simulation.textBox.stayOnLast : false;
+		Simulation.stayOnLastActive = textBoxShowing? (Simulation.textBox.stayOnLast && Simulation.textBox.onLast) : false;
 		Simulation.revisitingGame = gameID == 0 || gameID == -1? false : Simulation.currentSave.gamesUnlocked != gameID;
 
 		bool gotAll = true;
