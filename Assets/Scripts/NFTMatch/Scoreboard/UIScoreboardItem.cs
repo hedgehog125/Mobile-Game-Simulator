@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIScoreboardItem : MonoBehaviour {
+	[SerializeField] private TextMeshProUGUI tex;
 	[SerializeField] private TextMeshProUGUI scoreText;
 
 	private RectTransform tran;
-	private TextMeshProUGUI tex;
+	private Image img;
+	private Outline outln;
 
 	private const int scoreLength = 5;
 
 	private void Awake() {
 		tran = GetComponent<RectTransform>();
-		tex = GetComponent<TextMeshProUGUI>();
+		img = GetComponent<Image>();
+		outln = GetComponent<Outline>();
 	}
 
 	[HideInInspector] public float y;
@@ -28,10 +32,18 @@ public class UIScoreboardItem : MonoBehaviour {
 		pos.y = y;
 		tran.anchoredPosition = pos;
 
-		tex.fontStyle = isPlayer? FontStyles.Bold : FontStyles.Normal;
 		tex.text = $"{Tools.English.Th(placement)} {username}";
 
 		scoreText.fontStyle = tex.fontStyle;
 		scoreText.text = score.ToString().PadLeft(scoreLength, '0');
+
+		if (isPlayer) {
+			img.enabled = true;
+			outln.enabled = true;
+		}
+		else {
+			img.enabled = false;
+			outln.enabled = false;
+		}
 	}
 }

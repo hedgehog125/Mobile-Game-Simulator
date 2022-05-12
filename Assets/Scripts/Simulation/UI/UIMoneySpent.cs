@@ -61,6 +61,6 @@ public class UIMoneySpent : MonoBehaviour {
 
 	private void UpdateText(int spent) {
 		string spentText = spent.ToString().PadLeft(totalLength, '0');
-		tex.text = $"Spent: £{spentText}";
+		tex.text = $"Spent: Â£{spentText}";
 	}
 }

@@ -28,8 +28,8 @@ public class Simulation {
 
         public Difficulty(int level) {
             if (level == 0) {
-
-			}
+                gameTimeLimit = (10 * 60) * 50;
+            }
             else if (level == 1) {
                 gameTimeLimit = (5 * 60) * 50;
 			}
@@ -73,6 +73,7 @@ public class Simulation {
         if (gameID <= currentSave.gamesUnlocked) { // Unlock the next game if that doesn't decrease the progress
             currentSave.gamesUnlocked = gameID + 1;
             firstNewUnlock = gameID == 1;
+            Debug.Log(currentSave.gamesUnlocked);
         }
 
         if (changeScene) {
@@ -92,6 +93,26 @@ public class Simulation {
             
             textBox.Display(newMessage);
         }
+    }
+
+    public static void UpdateVars(List<int> knowledgePoints) {
+        bool textBoxShowing = textBox == null? false : textBox.gameObject.activeSelf;
+        bool factBoxShowing = factBox == null? false : factBox.gameObject.activeSelf;
+
+        menuPopupActive = textBoxShowing || factBoxShowing;
+        stayOnLastActive = textBoxShowing? (textBox.stayOnLast && textBox.onLast) : false;
+        revisitingGame = (gameID == 0 || gameID == -1)? false : currentSave.gamesUnlocked != gameID;
+
+        bool gotAll = true;
+        if (knowledgePoints.Count != 0) {
+            foreach (int id in knowledgePoints) {
+                if (! currentSave.knowledgePointsGot[id]) {
+                    gotAll = false;
+                    break;
+                }
+            }
+        }
+        gotAllInGame = gotAll;
     }
 
     public static void StartPlaying() {

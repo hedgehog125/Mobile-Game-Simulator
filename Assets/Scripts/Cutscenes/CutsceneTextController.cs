@@ -72,17 +72,15 @@ public class CutsceneTextController : MonoBehaviour {
 		if (deactivateIfWatched) {
 			Save save = Simulation.currentSave;
 
-			if (Simulation.inGame) {
-				if (Simulation.gameID == 0) {
-					if (save.watched.intro) {
-						gameObject.SetActive(false);
-					}
-					save.watched.intro = true;
+			if (Simulation.gameID == 0) {
+				if (save.watched.intro) {
+					gameObject.SetActive(false);
 				}
-				else {
-					if (! Simulation.firstGamePlay) {
-						gameObject.SetActive(false);
-					}
+				save.watched.intro = true;
+			}
+			else if (Simulation.gameID != -1) {
+				if (! Simulation.firstGamePlay) {
+					gameObject.SetActive(false);
 				}
 			}
 		}
