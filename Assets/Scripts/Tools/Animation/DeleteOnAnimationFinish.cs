@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeleteOnAnimationFinish : StateMachineBehaviour {
     [SerializeField] private bool destroyParent;
+    [SerializeField] private bool onlyDeactivate;
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         GameObject toDestroy;
@@ -14,6 +15,11 @@ public class DeleteOnAnimationFinish : StateMachineBehaviour {
             toDestroy = animator.gameObject;
 		}
 
-        Destroy(toDestroy);
+        if (onlyDeactivate) {
+            toDestroy.SetActive(false);
+		}
+        else {
+            Destroy(toDestroy);
+		}
     }
 }
