@@ -107,7 +107,7 @@ public class ChestController : MonoBehaviour {
 				if (spotlightTick == spotlightDelay) {
 					spotlightTick = -1;
 
-					lightAnimator.SetBool("PointAt", true);
+					lightAnimator.SetBool("Bright", true);
 				}
 				else {
 					spotlightTick++;
@@ -175,8 +175,5 @@ public class ChestController : MonoBehaviour {
 			textBox.Display(firstOpenMessage);
 		}
 		save.opens++;
-
-		lightAnimator.SetBool("Bright", true);
-		lightAnimator.SetBool("PointAt", false);
 	}
 }
