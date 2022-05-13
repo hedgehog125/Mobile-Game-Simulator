@@ -21,6 +21,7 @@ public class ChestController : MonoBehaviour {
 	[Header("Delays")]
 	[SerializeField] private int spawnDelay;
 	[SerializeField] private int pauseDelay;
+	[SerializeField] private int spotlightDelay;
 	[SerializeField] private int finishDelay;
 
 	[Header("Misc")]
@@ -34,6 +35,7 @@ public class ChestController : MonoBehaviour {
 	private Vector2 mousePos;
 
 	private int spawnTick;
+	private int spotlightTick;
 	private NFTController NFTOb;
 	private bool animating;
 	private int dailyLimitProgress;
@@ -99,6 +101,19 @@ public class ChestController : MonoBehaviour {
 			}
 			spawnTick++;
 		}
+
+		if (state == States.WaitToClose) {
+			if (spotlightTick != -1) {
+				if (spotlightTick == spotlightDelay) {
+					spotlightTick = -1;
+
+					lightAnimator.SetBool("PointAt", true);
+				}
+				else {
+					spotlightTick++;
+				}
+			}
+		}
 	}
 
 	private void Open() {
@@ -125,6 +140,7 @@ public class ChestController : MonoBehaviour {
 		anim.SetBool("Reset", false);
 
 		spawnTick = 0;
+		spotlightTick = 0;
 		animating = true;
 	}
 
@@ -140,6 +156,7 @@ public class ChestController : MonoBehaviour {
 		animating = true;
 
 		closeSound.Play();
+		lightAnimator.SetBool("PointAt", false);
 	}
 
 	public void ResetAnimation() {
