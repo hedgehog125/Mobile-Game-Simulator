@@ -156,7 +156,6 @@ public class ChestController : MonoBehaviour {
 		animating = true;
 
 		closeSound.Play();
-		lightAnimator.SetBool("PointAt", false);
 	}
 
 	public void ResetAnimation() {
@@ -178,5 +177,6 @@ public class ChestController : MonoBehaviour {
 		save.opens++;
 
 		lightAnimator.SetBool("Bright", true);
+		lightAnimator.SetBool("PointAt", false);
 	}
 }
