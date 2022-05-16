@@ -10,7 +10,8 @@ public class MainMenuSaveButton : MonoBehaviour {
 	private enum Types {
 		LoadSave,
 		NewSave,
-		ChangeSave
+		ChangeSave,
+		BackToMain
 	}
 	private Button but;
 
@@ -22,8 +23,11 @@ public class MainMenuSaveButton : MonoBehaviour {
 			Simulation.currentSave = Simulation.NewSave();
 			Simulation.StartPlaying();
 		}
-		else {
+		else if (type == Types.ChangeSave) {
 
+		}
+		else {
+			Simulation.BackToMainMenu();
 		}
 	}
 

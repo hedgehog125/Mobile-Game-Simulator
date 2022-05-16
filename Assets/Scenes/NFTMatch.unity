@@ -758,6 +758,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
+      propertyPath: fact
+      value: "This game features fake multiplayer which is now relatively common
+        in the mobile space, with roughly 60% of io games being fake multiplayer.
+        This has many advantages but is somewhat unethical. These include being able
+        to make every player falsely feel like they\u2019re good at the game, reduced
+        costs (labour and server), offline play, no matchmaking times and the ability
+        to more effectively use FOMO (fear of missing out) to get players to buy
+        cosmetics by giving the bots good items.\n\nThe reduced matchmaking times
+        in particular can be beneficial as it can allow the game to get off the ground
+        without a huge advertising budget. It does this by fixing the chicken and
+        egg problem with multiplayer games: players immediately stop playing because
+        there\u2019s no-one to play against. This is a much more justifiable use
+        case for fake multiplayer in the short term, but these games are in the long
+        term now.\n\nThe games are also often ripoffs of more popular games which
+        have actual multiplayer. So they often don\u2019t even bring much new gameplay
+        to the table due this ease of development (multiplayer is complicated to
+        implement).\n\nHave fun pwning noob \u2018players\u2019 I guess then."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
+      propertyPath: title
+      value: 'Dessert Destruction: Fake Multiplayer'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
       propertyPath: textToGrow
       value: 
       objectReference: {fileID: 302770688}
@@ -1750,6 +1773,28 @@ PrefabInstance:
       value: Logo
       objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
+      propertyPath: fact
+      value: "As you might have guessed, this is a knockoff of Candy Crush. And while
+        I and others have issues with the overly simple gameplay and purchases, it\u2019s
+        not actually too bad compared to other games. Like this knockoff.\n\nI don\u2019t
+        have an exact figure for how common they are but they are becoming more and
+        more common thanks to the ease of development due to game engines. China
+        is also a key reason as they ban most non Chinese games, creating a relatively
+        easy gap in their market to fill. You also can\u2019t copyright the concept
+        or mechanics of a game, meaning that unless they\u2019re violating trademarks,
+        there\u2019s not much recourse for the original developers. \n\nHowever,
+        the lack of laws against this is partly a good thing since it allows games
+        to build on each other. This ultimately produces better games. Many genres
+        have also come out of clones, arguably the most famous being the first person
+        shooter which started as clones of the game Doom. Even Candy Crush clones
+        have spawned their own genre now: the match 3, although they generally go
+        to more effort to be unique than this one."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
+      propertyPath: title
+      value: 'Dessert Destruction: Knockoffs'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: knowledgeID
       value: 2
       objectReference: {fileID: 0}
@@ -1853,6 +1898,22 @@ PrefabInstance:
     - target: {fileID: 8450540904532024282, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
       propertyPath: m_Name
       value: BackgroundCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450540904596096516, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450540904596096516, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450540904596096516, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450540904596096516, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8450540904596096517, guid: 73c1124e1befa43919419eb10fa4b3c1, type: 3}
       propertyPath: m_Sprite

@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 public class Simulation {
     public const string introCutscene = "Intro";
     public const string phoneScene = "PhoneMenu";
+    public const string mainMenuScene = "MainMenu";
+    public const string winScene = "Win";
+
+    public const int gameCount = 2;
 
     private static List<string> gotAllMessage;
     private static List<string> timeUpMessage;
+    private static List<string> winMessage;
     private const string firstUnlockMessage = "Press backspace to swipe up and go to the homescreen";
 
     public static CutsceneTextController textBox;
@@ -20,6 +25,9 @@ public class Simulation {
 
         timeUpMessage = new List<string>();
         timeUpMessage.Add("Ted: And time's up. You can continue playing if you like but I'll only research things in the next game");
+
+        winMessage = new List<string>();
+        winMessage.Add("Ted: Alright. That's all of them. You can look away from the phone now");
     }
 
     public static Difficulty difficulty;
@@ -58,7 +66,15 @@ public class Simulation {
         }
     }
     public static void GotAllPoints() {
-        Progress(false, gotAllMessage);
+        if (gameID == gameCount + 1) { // Last game
+            textBox.stayOnLast = false;
+            textBox.nextScene = winScene;
+
+            textBox.Display(winMessage);
+		}
+        else {
+            Progress(false, gotAllMessage);
+		}
     }
 
 
@@ -73,7 +89,6 @@ public class Simulation {
         if (gameID <= currentSave.gamesUnlocked) { // Unlock the next game if that doesn't decrease the progress
             currentSave.gamesUnlocked = gameID + 1;
             firstNewUnlock = gameID == 1;
-            Debug.Log(currentSave.gamesUnlocked);
         }
 
         if (changeScene) {
@@ -124,7 +139,11 @@ public class Simulation {
         }
     }
 
-    
+    public static void BackToMainMenu() {
+        SceneManager.LoadScene(mainMenuScene);
+    }
+
+
     public static void Init(bool initSave) {
         if (initSave) InitSave();
     }

@@ -38,7 +38,7 @@ public class ChestController : MonoBehaviour {
 	private int spotlightTick;
 	private NFTController NFTOb;
 	private bool animating;
-	private int dailyLimitProgress;
+	private int dailyLimitProgress = 4;
 
 	private enum States {
 		WaitToOpen,

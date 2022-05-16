@@ -1556,6 +1556,43 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
+      propertyPath: fact
+      value: "Yeah, I\u2019m not really sure what\u2019s going on with this game.
+        At first I thought it must have been made in China as they have a spending
+        limit of roughly \xA325-50, depending on the age. But that\u2019s per month
+        and less than even just one loot box, and it\u2019s not available in China\u2026
+        \n\nAnyway\u2026 so, it turns out that the developers are anticipating a
+        country introducing legislation. And so they\u2019re trying to get ahead
+        of the curve with an insanely high spending limit.\n\nLoot box regulations
+        are being discussed in a lot of different countries, not just China. Some
+        countries have even already introduced legislation to regulate them. Australia
+        for example, will soon classify loot boxes as gambling and as such have them
+        make a game 18+.\n\nThe Netherlands previously had some interesting legislation
+        where loot boxes that give you items that you can sell or transfer were classed
+        as gambling. This was because the items had market value and it was a \u201Cgame
+        of chance\u201D (and the Netherlands has strict gambling laws which games
+        can\u2019t really comply with). However, EA managed to successfully argue
+        that since FIFA is a game of skill, the loot boxes are legal because it\u2019s
+        overall not a game of chance. And as such, FIFA was declared legal again
+        on 9 March 2022. I can see the logic and that\u2019s probably the correct
+        legal interpretation, but I think it makes more sense to class it as 2 distinct
+        parts: the game of skill (the gameplay) and the game of chance (loot boxes,
+        which should be regulated).\n\nAnd Japan has regulations about random items
+        (gachas). Though this is done through self regulation, as opposed to through
+        laws. These are that there must be at least a 1% payout ratio (often meaning
+        being able to choose your item after a certain amount) and a spending limit
+        of about \xA3300 per player.\n\nThere are other regulations like in Belgium
+        that has similar regulations to the Netherlands, but unlike the Netherlands,
+        nothing has been overturned yet. But these are the main ones as most of the
+        possible regulations are still being discussed. Especially now that many
+        medical authorities have found that loot boxes have the same effect on the
+        brain as gambling."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
+      propertyPath: title
+      value: 'Defintely Not Gambling: Loot Box Regulations'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106550301176196789, guid: fb35cc50d96074a0d9a6bb9f81675b87, type: 3}
       propertyPath: textToGrow
       value: 
       objectReference: {fileID: 1050584961}

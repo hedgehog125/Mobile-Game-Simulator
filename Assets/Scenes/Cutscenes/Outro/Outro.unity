@@ -256,31 +256,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: nextScene
-      value: PhoneMenu
+      value: End
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[0]
-      value: 'Ted: Huh, this terrible mobile game made more money than my one'
+      value: 'Kyle: Urgh, I forgot to blink while I was playing'
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[1]
-      value: 'Ted: It also made more money per player despite being free to play'
+      value: 'Ted: Anyway, I hope you learnt something'
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[2]
-      value: 'Ted: Hmm...'
+      value: 'Ted: This is still somewhat surface level so look into it yourself
+        if you want more accuracy'
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[3]
-      value: 'Ted: Wanna help me find out how free mobile games make their money?'
+      value: 'Ted: cya'
       objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[4]
-      value: 'Kyle: Sure, my arms are getting tired from standing like this'
+      value: 'Kyle: Wait who are you talking to?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: displayText.Array.data[5]
+      value: 'Kyle: cya I guess...?'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
@@ -310,7 +315,7 @@ PrefabInstance:
       objectReference: {fileID: 737228972}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1518323068074865350, guid: 12ef1a22527624a36ae3d386e7511a29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -771,63 +776,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6243d9271d456546bbde74790fd4ba7, type: 3}
---- !u!1001 &7481142752967615258
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7481142751252941800, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_Name
-      value: PaperStack
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9990483
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.043619405
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7481142751252941801, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 95a800a6d39003144bd2b5badbb6f686, type: 3}
 --- !u!1001 &9203479632223893172
 PrefabInstance:
   m_ObjectHideFlags: 0
