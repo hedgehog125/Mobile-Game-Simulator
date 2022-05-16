@@ -24,7 +24,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	private void OnClose(InputValue input) {
 		if ((! Simulation.preventClose) && backScene != "") {
 			if (input.isPressed) {
-				SceneManager.LoadScene(backScene);
+				Simulation.ChangeScene(backScene);
 			}
 		}
 	}

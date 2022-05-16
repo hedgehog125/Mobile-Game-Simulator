@@ -19,6 +19,9 @@ public class KnowledgePointMisc : MonoBehaviour {
         if (Simulation.revisitingGame) {
             if (input.isPressed) {
                 if (! Simulation.menuPopupActive) {
+                    Simulation.textBox.stayOnLast = false;
+                    Simulation.textBox.nextScene = "";
+
                     Simulation.textBox.Display(Simulation.gotAllInGame? gotAllMessage : revisitMessage);
 				}
 		    }

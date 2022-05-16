@@ -172,6 +172,8 @@ public class ChestController : MonoBehaviour {
 		priceText.SetActive(true);
 		if (save.opens == 0) {
 			textBox.stayOnLast = true;
+			textBox.nextScene = "";
+
 			textBox.Display(firstOpenMessage);
 		}
 		save.opens++;

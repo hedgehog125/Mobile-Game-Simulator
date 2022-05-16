@@ -476,6 +476,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: ok
       objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_FadeDuration
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.14561592
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.12088542
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.41960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.30588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.16078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432410346176848149, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CloseDNGPopup, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5432410346176848150, guid: 77a03812d02331848b8c8f5546ac13ba, type: 3}
       propertyPath: type
       value: 3
@@ -548,22 +608,22 @@ MonoBehaviour:
     real games. I''m only criticising the general decline in quality of mobile games
     via the hypothetical games, not any individual mobile games.
 
-    
 
-    This
-    game features general facts about the decline in quality of the real world mobile
+
+    This game
+    features general facts about the decline in quality of the real world mobile
     games, further details can be found by clicking the research button on the main
     menu. Obviously facts specific to the games aren''t actually true in the real
     world.
 
-    
 
-    You probably shouldn''t use this for a university thesis
-    or anything.
 
-    
+    You probably shouldn''t use this for a university thesis or anything.
 
-    So please don''t sue me I guess.'
+
+
+    So
+    please don''t sue me I guess.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: c0e63a2fed8db44b3afe95db7a6cff30, type: 2}
@@ -590,7 +650,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.7
+  m_fontSize: 33.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

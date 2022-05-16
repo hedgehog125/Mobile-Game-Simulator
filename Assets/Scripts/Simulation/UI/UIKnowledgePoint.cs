@@ -71,6 +71,7 @@ public class UIKnowledgePoint : MonoBehaviour {
 		}
 
 		Simulation.textBox.stayOnLast = false;
+		Simulation.textBox.nextScene = "";
 		Simulation.textBox.Display(message);
 
 		dialogueWaiting = true;

@@ -7,7 +7,7 @@ public class Simulation {
     public const string introCutscene = "Intro";
     public const string phoneScene = "PhoneMenu";
     public const string mainMenuScene = "MainMenu";
-    public const string winScene = "Win";
+    public const string winScene = "Outro";
 
     public const int gameCount = 2;
 
@@ -66,15 +66,7 @@ public class Simulation {
         }
     }
     public static void GotAllPoints() {
-        if (gameID == gameCount + 1) { // Last game
-            textBox.stayOnLast = false;
-            textBox.nextScene = winScene;
-
-            textBox.Display(winMessage);
-		}
-        else {
-            Progress(false, gotAllMessage);
-		}
+        Progress(false, gotAllMessage);
     }
 
 
@@ -83,30 +75,38 @@ public class Simulation {
     }
 
     private static void Progress(bool changeScene, List<string> message) {
-        currentSave.timeLeft = difficulty.gameTimeLimit;
-
-        bool firstNewUnlock = false;
-        if (gameID <= currentSave.gamesUnlocked) { // Unlock the next game if that doesn't decrease the progress
-            currentSave.gamesUnlocked = gameID + 1;
-            firstNewUnlock = gameID == 1;
-        }
-
-        if (changeScene) {
-            SceneManager.LoadScene(phoneScene);
-            return;
-        }
-        
-        if (message != null) {
-            List<string> newMessage = new List<string>(message);
-
+        if (gameID == gameCount) { // Last game
             textBox.stayOnLast = false;
-            textBox.nextScene = "";
-            if (firstNewUnlock) {
-                newMessage.Add(firstUnlockMessage);
-                textBox.stayOnLast = true;
+            textBox.nextScene = winScene;
+
+            textBox.Display(winMessage);
+        }
+        else {
+            currentSave.timeLeft = difficulty.gameTimeLimit;
+
+            bool firstNewUnlock = false;
+            if (gameID <= currentSave.gamesUnlocked) { // Unlock the next game if that doesn't decrease the progress
+                currentSave.gamesUnlocked = gameID + 1;
+                firstNewUnlock = gameID == 1;
             }
-            
-            textBox.Display(newMessage);
+
+            if (changeScene) {
+                ChangeScene(phoneScene);
+                return;
+            }
+
+            if (message != null) {
+                List<string> newMessage = new List<string>(message);
+
+                textBox.stayOnLast = false;
+                textBox.nextScene = "";
+                if (firstNewUnlock) {
+                    newMessage.Add(firstUnlockMessage);
+                    textBox.stayOnLast = true;
+                }
+
+                textBox.Display(newMessage);
+            }
         }
     }
 
@@ -132,17 +132,28 @@ public class Simulation {
 
     public static void StartPlaying() {
         if (currentSave.watched.intro) {
-            SceneManager.LoadScene(phoneScene);
+            ChangeScene(phoneScene);
 		}
         else {
-            SceneManager.LoadScene(introCutscene);
+            ChangeScene(introCutscene);
         }
     }
 
     public static void BackToMainMenu() {
-        SceneManager.LoadScene(mainMenuScene);
+        ChangeScene(mainMenuScene);
     }
 
+    public static void ChangeScene(string sceneName, bool keepAudio=false) {
+        if (! keepAudio) {
+            AudioSource[] audios = GameObject.FindObjectsOfType<AudioSource>();
+
+            foreach (AudioSource audio in audios) {
+                audio.Stop();
+            }
+        }
+
+        SceneManager.LoadScene(sceneName);
+	}
 
     public static void Init(bool initSave) {
         if (initSave) InitSave();

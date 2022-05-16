@@ -8,7 +8,7 @@ public class AppButton : MonoBehaviour {
 	[SerializeField] private int unlockID;
 
     public void OnClick() {
-		SceneManager.LoadScene(sceneName);
+		Simulation.ChangeScene(sceneName);
 	}
 
 	private void Awake() {

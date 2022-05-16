@@ -40,7 +40,7 @@ public class ChangeSceneOnVideoEnd : MonoBehaviour {
 
 		if (reenableClose) Simulation.preventClose = false;
 
-		SceneManager.LoadScene(sceneToLoad);
+		Simulation.ChangeScene(sceneToLoad);
 		done = true;
 	}
 }

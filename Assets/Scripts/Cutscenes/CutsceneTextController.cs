@@ -38,7 +38,7 @@ public class CutsceneTextController : MonoBehaviour {
 							deactivateTick = 1;
 						}
 						else {
-							SceneManager.LoadScene(nextScene);
+							Simulation.ChangeScene(nextScene);
 						}
 					}
 				}
@@ -120,7 +120,6 @@ public class CutsceneTextController : MonoBehaviour {
 
 		textID = 0;
 		autoShowTick = 0;
-		nextScene = "";
 		deactivateTick = 0;
 
 		gameObject.SetActive(true);
