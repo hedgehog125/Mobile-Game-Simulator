@@ -608,13 +608,13 @@ MonoBehaviour:
 
     This game
     features general facts about the decline in quality of the real world mobile
-    games, further details can be found by clicking the research button on the main
-    menu. Obviously facts specific to the games aren''t actually true in the real
+    games. Obviously facts specific to the games aren''t actually true in the real
     world.
 
 
 
     You probably shouldn''t use this for a university thesis or anything.
+    Especially since I had to rush some of the research for the facts in the game.
 
 
 
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.2
+  m_fontSize: 32.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
