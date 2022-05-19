@@ -51,6 +51,7 @@ public class Simulation {
     public static bool stayOnLastActive;
     public static bool revisitingGame;
     public static bool firstGamePlay;
+    public static bool adPlaying;
     public static bool gotAllInGame;
 
     public static bool preventClose;
@@ -110,7 +111,7 @@ public class Simulation {
         }
     }
 
-    public static void UpdateVars(List<int> knowledgePoints) {
+    public static void UpdateVars(List<int> knowledgePoints, AdvertController ads) {
         bool textBoxShowing = textBox == null? false : textBox.gameObject.activeSelf;
         bool factBoxShowing = factBox == null? false : factBox.gameObject.activeSelf;
 
@@ -128,6 +129,10 @@ public class Simulation {
             }
         }
         gotAllInGame = gotAll;
+
+        if (ads != null) {
+            adPlaying = ads.playing;
+		}
     }
 
     public static void StartPlaying() {

@@ -11,6 +11,7 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	[SerializeField] public string backScene = "PhoneMenu";
 	[SerializeField] private GameObject textAndFactOb;
 	[SerializeField] public List<int> knowledgePoints;
+	[SerializeField] private AdvertController ads;
 
 	private CutsceneTextController myTextbox;
 	private FactPageController myFactBox;
@@ -60,11 +61,12 @@ public class SimulationController : MonoBehaviour { // Handles anything that nee
 	}
 
 	private void Tick() {
-		Simulation.UpdateVars(knowledgePoints);
+		Simulation.UpdateVars(knowledgePoints, ads);
 
 		if (Simulation.inGame) {
 			if (
 				((! Simulation.menuPopupActive) || Simulation.stayOnLastActive)
+				&& (! Simulation.adPlaying)
 				&& (! Simulation.revisitingGame)
 			) {
 				Simulation.IncreaseTime(1);

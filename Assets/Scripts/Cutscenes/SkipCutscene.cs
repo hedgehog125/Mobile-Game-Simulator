@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class SkipCutscene : MonoBehaviour {
 	[Header("Objects and references")]
 	[SerializeField] private GameObject visible;
 	[SerializeField] private Slider holdEffectUI;
 	[SerializeField] private ChangeSceneOnVideoEnd videoEndListener;
+	[SerializeField] private VideoPlayer videoToSkip;
 
 	[Header("")]
     [SerializeField] private int holdTime;
 
+	private bool canSkip;
     private bool isDown;
     private int holdTick;
 	private float holdTickFloat;
@@ -26,26 +29,34 @@ public class SkipCutscene : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		if (isDown) {
-			if (holdTick == holdTime) {
-				gameObject.SetActive(false);
-				if (videoEndListener != null) videoEndListener.Finish();
+		canSkip = videoToSkip == null || videoToSkip.isPlaying;
+
+		if (canSkip) {
+			if (isDown) {
+				if (holdTick == holdTime) {
+					isDown = false;
+
+					if (videoEndListener != null) videoEndListener.Finish();
+					if (videoToSkip != null) videoToSkip.Pause();
+				}
+				else {
+					holdTick++;
+				}
 			}
 			else {
-				holdTick++;
+				holdTick = 0;
+				holdTickFloat = 0;
 			}
-		}
-		else {
-			holdTick = 0;
-			holdTickFloat = 0;
 		}
 	}
 
 	private void Update() {
-		if (isDown) {
-			holdTickFloat += Time.deltaTime / (holdTime / 50f);
+		if (canSkip) {
+			if (isDown) {
+				holdTickFloat += Time.deltaTime / (holdTime / 50f);
+			}
+			UpdateUI();
 		}
-		UpdateUI();
 	}
 
 	private void UpdateUI() {
