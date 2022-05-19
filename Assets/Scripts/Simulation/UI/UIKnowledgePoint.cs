@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 public class UIKnowledgePoint : MonoBehaviour {
 	private const string repeatMessage = "Ted: You've already found this fact but here it is again...";
 	private string[] findMessage = {
-		"Ted: Nice work, just give me 5 or 10 minutes...",
-		"Ted: Alright, have a read..."
+		"Ted: You found it!"
 	};
 
 	[Header("Main")]
@@ -63,7 +62,6 @@ public class UIKnowledgePoint : MonoBehaviour {
 		}
 		else {
 			message.Add(findMessage[0]);
-			message.Add(findMessage[1]);
 
 			Simulation.currentSave.knowledgePoints++;
 			pointsGot[knowledgeID] = true;

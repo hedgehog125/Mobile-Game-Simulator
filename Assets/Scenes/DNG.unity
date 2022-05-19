@@ -614,6 +614,10 @@ PrefabInstance:
       propertyPath: displayText.Array.data[2]
       value: Right click to point out a malpractice
       objectReference: {fileID: 0}
+    - target: {fileID: 2672097011923189254, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: displayText.Array.data[0]
       value: 'Ted: Ah yes, Definitely Not Gambling. I''m sure that title is 100%
@@ -642,7 +646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &351660565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2162,6 +2166,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4316326299592719212, guid: 3aa6dd5058cb05a48a8e9b7352bdcdb9, type: 3}
   m_PrefabInstance: {fileID: 4316326301326641642}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2104076806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3324213232951677903, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
+  m_PrefabInstance: {fileID: 3324213232458437399}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &118915265025894500
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2940,6 +2949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Logo
       objectReference: {fileID: 0}
+    - target: {fileID: 3324213232951677903, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3544395715028995058, guid: 26f4c1ed97bf74a83ab91055f1f00e5a, type: 3}
       propertyPath: fact
       value: "Despite what the name might imply, this game probably *is* actually
@@ -3552,6 +3565,7 @@ MonoBehaviour:
   priceText: {fileID: 351660564}
   textBox: {fileID: 1728590005}
   lightAnimator: {fileID: 1644369449}
+  title: {fileID: 2104076806}
   limitMusic: {fileID: 6489136034268795254}
   closeSound: {fileID: 6489136034268795253}
   spawnDelay: 150
@@ -3562,12 +3576,6 @@ MonoBehaviour:
   limit: 5
   firstOpenMessage:
   - 'Ted: Do you see what I mean about this game? The name''s a bit misleading...'
-  - 'Ted: Maybe that''s something to look into'
-  - 'Ted: Anyway, if you spot something bad the game does then point at it and I''ll
-    research it'
-  - 'Ted: There are 2 malpractices to find in this game'
-  - 'Ted: Try and find as many of them as you can. You''ve got 5 minutes'
-  - Right click to point out a malpractice
 --- !u!114 &6489136034268795250
 MonoBehaviour:
   m_ObjectHideFlags: 0
