@@ -63,9 +63,6 @@ public class NFTController : MonoBehaviour {
 		NFT_ID = newNFT.baseID;
 		variationID = newNFT.variationID;
 
-		NFT_ID = 12;
-		variationID = 0;
-
 		return newNFT;
 	}
 

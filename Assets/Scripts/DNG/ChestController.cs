@@ -13,7 +13,6 @@ public class ChestController : MonoBehaviour {
 	[SerializeField] private GameObject priceText;
 	[SerializeField] private CutsceneTextController textBox;
 	[SerializeField] private Animator lightAnimator;
-	public GameObject title;
 
 	[Header("SFX")]
 	[SerializeField] private AudioSource limitMusic;
@@ -39,7 +38,7 @@ public class ChestController : MonoBehaviour {
 	private int spotlightTick;
 	private NFTController NFTOb;
 	private bool animating;
-	private int dailyLimitProgress = 4;
+	private int dailyLimitProgress;
 
 	private enum States {
 		WaitToOpen,
@@ -176,7 +175,6 @@ public class ChestController : MonoBehaviour {
 			textBox.nextScene = "";
 
 			textBox.Display(firstOpenMessage);
-			title.SetActive(true);
 		}
 		save.opens++;
 	}

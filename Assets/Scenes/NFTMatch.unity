@@ -1753,10 +1753,6 @@ PrefabInstance:
       propertyPath: displayText.Array.data[13]
       value: Drag some NFTs to match them
       objectReference: {fileID: 0}
-    - target: {fileID: 2672097011923189254, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3914332009534061804, guid: e949c36e25355a845bbb875939d4f7fc, type: 3}
       propertyPath: stayOnLast
       value: 1
